@@ -1,0 +1,10 @@
+diff a/RudraApp/DAL/Migrations/Configuration.cs b/RudraApp/DAL/Migrations/Configuration.cs	(rejected hunks)
+@@ -10,7 +10,7 @@
+         public Configuration()
+         {
+             AutomaticMigrationsEnabled = true;
+-            //AutomaticMigrationDataLossAllowed = true;
++            AutomaticMigrationDataLossAllowed = true;
+         }
+ 
+         protected override void Seed(DAL.MasterEntity.MyDbContext context)

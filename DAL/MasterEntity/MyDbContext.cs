@@ -1,0 +1,40 @@
+﻿using DAL.Entities;
+using DAL.Migrations;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DAL.MasterEntity
+{
+    public class MyDbContext : DbContext
+    {
+        public MyDbContext() : base("name=Tutoring")
+        {
+            //this.Configuration.LazyLoadingEnabled = false;
+            //Database.SetInitializer<MyDbContext>(null);
+            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<MyDbContext, Configuration>());
+            //Database.SetInitializer(new Configuration());
+            //Database.SetInitializer<MyDbContext>(new CreateDatabaseIfNotExists<MyDbContext>());
+        }
+
+        #region [My Entities]
+      
+        public DbSet<tbl_users> tbl_users { get; set; }
+
+        public DbSet<tbl_school> tbl_school { get; set; }
+
+        #endregion
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+        }
+
+    }
+}

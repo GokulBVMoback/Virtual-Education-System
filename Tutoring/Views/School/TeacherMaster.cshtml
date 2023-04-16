@@ -1,0 +1,82 @@
+﻿@model DAL.Entities.tbl_users
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_schoolLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">All Teachers</h3><br /><br />
+        <a href="@Url.Action("CreateTeacher","School")" class="create">
+            Create
+        </a>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <th>Contact</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Sex></th>
+                    @*<th>Country</th>*@
+                    <th>Pin Code</th>
+                    <th>Status</th>
+                    <th>Operation</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in ViewBag.data)
+                {
+
+
+                <tr>
+                    <td>  <img src="../../@item.userimage" height="50" /></td>
+                    <td>@item.firstname</td>
+                    <td>
+                        @item.lastname
+                    </td>
+                    <td>@item.email</td>
+                    <td>@item.pass </td>
+                    <td>@item.contact</td>
+                    <td>@item.address</td>
+                    <td>@item.city</td>
+                    <td>@item.state</td>
+                    <td>@item.sex</td>
+                    @*<td>@item.country</td>*@
+                    <td>@item.pin</td>
+                    <td>
+                        @if (item.isactive == true)
+                        {
+                            <span  class="create">Active</span>
+                        }
+                        else
+                        {
+                            <span  class="delete">InActive</span>
+                        }
+                                    </td>
+                    <td>
+                        <a href="@Url.Action("UpdateTeacher", new { userid = item.userid })" class="update">
+                           Update
+                        </a>
+                        <a href="@Url.Action("DeleteTeacher", new { userid = item.userid })" class="delete" onclick="return confirm('Are you sure you wish to delete? This record will no longer exsists.');">
+                          Delete
+                        </a>
+                       
+                    </td>
+                    
+
+                </tr>
+                }
+
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>
