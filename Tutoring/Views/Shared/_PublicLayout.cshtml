@@ -1,0 +1,37 @@
+﻿@using System.Web.Optimization
+@using BLL.Helpers
+@{
+    var user = Config.User;
+}
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="robots" content="noindex" />
+    <link rel="icon" href="~/Images/logo1.png" type="img/png" />
+    <title>Tutoring</title>
+
+
+
+    @Styles.Render("~/Content/homecss")
+
+    @Scripts.Render("~/Content/modernizer")
+    @Scripts.Render("~/Content/wowjs")
+    @Scripts.Render("~/Content/Jquery")
+
+</head>
+<body>
+    <div>
+        @RenderBody()
+
+    </div>
+    @Scripts.Render("~/Content/TLayoutjs")
+    @RenderSection("Scripts", false)
+
+
+</body>
+</html>
+
+
+
+

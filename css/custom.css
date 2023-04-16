@@ -1,0 +1,346 @@
+﻿
+.headerborder {
+    border-bottom: 2px solid orange !important;
+}
+
+.btnadduser {
+    float: right;
+    color: #5ecc0e !important;
+}
+
+.containerclass {
+    border-bottom: 3px solid orange !important;
+}
+
+.addadminformclass {
+    -webkit-box-shadow: 0px 0px 5px 0px grey !important;
+    -ms-box-shadow: 0px 0px 5px 0px grey !important;
+    box-shadow: 0px 0px 5px 0px grey !important;
+    -ms-border-radius: 4px !important;
+    border-radius: 4px !important;
+    margin-bottom: 1%;
+}
+
+.tablecolumn {
+    text-align: center !important;
+}
+
+.btnregisteradmin {
+    margin-right: 1%;
+}
+
+.permissiondiv {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+._overlay {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    background: #e4e4e4 none repeat scroll 0% 0%;
+    background: rgba(228, 228, 228, 0.35) none repeat scroll 0% 0%;
+    -ms-opacity: 0.9;
+    opacity: 0.9;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    z-index: 9999;
+    display: none;
+}
+
+._loader {
+    background-image: url('../adminimg/rudra_loader.gif');
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 140px;
+    margin: 22%;
+    display: block;
+}
+
+
+.dp-hover {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    margin: 0 20% 0;
+    cursor: pointer;
+}
+
+.dp:hover .dp-hover {
+    display: block;
+}
+
+.dp-hover i {
+    font-size: 20px;
+    color: #f60;
+}
+
+.editbutton {
+    display: none;
+    color: #ff6600;
+    font-size: 14px;
+    text-shadow: 1px 1px 1px rgba(29, 29, 29, 0.22);
+    cursor: pointer;
+}
+
+.name:hover .editbutton {
+    display: inherit;
+}
+
+
+.infoeditbutton {
+    display: none;
+    color: #ff6600 !important;
+    font-size: 14px !important;
+    text-shadow: 1px 1px 1px rgba(29, 29, 29, 0.22);
+    cursor: pointer;
+}
+
+.info:hover .infoeditbutton {
+    display: inherit;
+}
+
+.editcontact {
+    font-size: 13px;
+    float: right;
+     cursor: pointer;
+}
+
+    .editcontact:hover {
+        text-shadow: 1px 1px 1px rgba(29, 29, 29, 0.22);
+    }
+
+.emails{
+    vertical-align: middle;
+}
+
+.form-control:focus {
+        border-color: #ffa500;
+        outline: 0;
+        box-shadow: none !important;
+    }
+
+.panel-info{
+    color: #31708f !important;
+}
+
+.panel-success{
+    color: #3c763d !important;
+}
+
+.panel-warning{
+    color: #8a6d3b !important;
+}
+
+.panel-danger{
+    color: #a94442 !important;
+}
+
+.checkbox-inline, .radio-inline{
+    padding: 5px;
+    line-height: 25px;
+}
+
+input[type=checkbox], input[type=radio]{
+    width: 40%;
+    height: 20px;
+}
+
+.checkbox input[type=checkbox], .checkbox-inline input[type=checkbox], .radio input[type=radio], .radio-inline input[type=radio]{
+    margin-left: -33px !important;
+}
+
+.mar{
+    margin-left:20% !important;
+    margin-top:1% !important;
+}
+
+.mar a{
+    color: #fff;
+}
+
+.mar a:hover{
+    color: #fff;
+    background-color: transparent !important;
+}
+
+.mar p{
+    margin: 5px;
+    font-size: 12px !important;
+}
+
+.mar i{
+    font-size: 16px !important;
+}
+
+.min-h{
+    min-height: 50vh;
+}
+
+.btn{
+    margin-left: 5px;
+}
+
+.pull-right{
+    float: right !important;
+}
+
+.featured{
+    vertical-align: middle;
+    color: #1dc7ea !important;
+}
+
+.featured i{
+    font-size: 20px;
+}
+
+.featured:hover{
+    color: #999 !important;
+}
+
+.featured-dis{
+    vertical-align: middle;
+    color: #999 !important;
+}
+
+.featured-dis:hover{
+    color: #1dc7ea !important;
+}
+
+.featured-dis i{
+    font-size: 20px;
+}
+
+.panel-default > .panel-heading{
+    border-color: #ffa500;
+    background-color: #fffaf0;
+}
+
+.ratebox2{
+    padding: 15px 0px;
+    margin-bottom: 15px;
+}
+
+.ratebox2 i{
+    color: #ff6600;
+}
+
+.ratebox2 p.user{
+    margin: 0px;
+    font-family: Dbold;
+    font-size: 13px;
+    color: #444;
+    text-transform: uppercase;
+}
+
+.ratebox2 p.user span{
+    font-family: Dnormal;
+    color: #777;
+    margin: 0px 15px;
+    text-transform: capitalize;
+}
+
+.ratebox2 p.comment{
+    margin-top: 10px;
+    font-size: 15px;
+    font-style: italic;
+    color: #686868;
+}
+
+.slide-head{
+    padding: 6px 15px;
+    color: #fff;
+    background-color: #efab7a;
+    text-transform: uppercase;
+}
+
+.slide-label{
+    padding: 6px 15px;
+    color: #fff;
+    background-color: #948e8a;
+    text-align: center;
+}
+
+.slides{
+    padding: 5px 15px;
+    border-bottom: 1px solid #ccc;
+}
+
+.mar-t-10{
+    margin-top: 10px;
+}
+
+.slides img{
+    width: 60%;
+}
+
+.slides .col-md-2{
+    line-height: 60px;
+    text-align: center;
+}
+
+.slides .col-md-3{
+    line-height: 60px;
+    text-align: center;
+}
+
+.odd-row{
+    background-color: #fdf4ea;
+}
+
+.even-row{
+    background-color: #fff;
+}
+
+.ed-img{
+    margin-top: 15px;
+}
+
+.ed-inp{
+    margin: 15px 0;
+}
+
+.ed-img label{
+    font-family: Dnormal;
+    font-weight: 200;
+}
+
+.upload{
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+    z-index: -1;
+}
+
+.up-dv{
+    margin: 10px;
+    margin-left: 0;
+}
+
+.upl-image img{
+    width: 50%;
+}
+
+span.f-s-12{
+    font-size: 12px;
+}
+
+.submitted{
+    color: #008800;
+}
+
+.not-submitted{
+    color: #cc0000;
+}
+
+.amount span{
+    font-weight: bold;
+}
+
+.ed-inp .radio-inline{
+    padding-left: 20px;
+}
