@@ -78,6 +78,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\tbl_class.cs" />
     <Compile Include="Entities\tbl_school.cs" />
     <Compile Include="Entities\tbl_users.cs" />
     <Compile Include="MasterEntity\MyDbContext.cs" />

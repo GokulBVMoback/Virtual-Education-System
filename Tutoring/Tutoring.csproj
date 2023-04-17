@@ -2963,6 +2963,9 @@
     <Content Include="Views\School\TeacherMaster.cshtml" />
     <Content Include="Views\School\CreateTeacher.cshtml" />
     <Content Include="Views\School\UpdateTeacher.cshtml" />
+    <Content Include="Views\School\ClassMaster.cshtml" />
+    <Content Include="Views\School\CreateClass.cshtml" />
+    <Content Include="Views\School\UpdateCLass.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

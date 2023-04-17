@@ -28,6 +28,7 @@ namespace DAL.MasterEntity
 
         public DbSet<tbl_school> tbl_school { get; set; }
 
+        public DbSet<tbl_class> tbl_class { get; set; }
         #endregion
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
