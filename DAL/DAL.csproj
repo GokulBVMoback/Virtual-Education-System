@@ -79,7 +79,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\tbl_class.cs" />
+    <Compile Include="Entities\tbl_course.cs" />
+    <Compile Include="Entities\tbl_course_branch.cs" />
+    <Compile Include="Entities\tbl_course_topic.cs" />
     <Compile Include="Entities\tbl_school.cs" />
+    <Compile Include="Entities\tbl_subject.cs" />
     <Compile Include="Entities\tbl_users.cs" />
     <Compile Include="MasterEntity\MyDbContext.cs" />
     <Compile Include="Migrations\201804251826070_Initial.cs" />
