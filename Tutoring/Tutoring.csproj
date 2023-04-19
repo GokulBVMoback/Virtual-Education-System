@@ -2963,6 +2963,14 @@
     <Content Include="Views\School\ClassMaster.cshtml" />
     <Content Include="Views\School\CreateClass.cshtml" />
     <Content Include="Views\School\UpdateCLass.cshtml" />
+    <Content Include="Views\SuperAdmin\GetAllSchool.cshtml" />
+    <Content Include="Views\SuperAdmin\GetAllIndividualTeacher.cshtml" />
+    <Content Include="Views\SuperAdmin\GetAllIndividualStudent.cshtml" />
+    <Content Include="Views\SuperAdmin\GetAllCourseBrach.cshtml" />
+    <Content Include="Views\SuperAdmin\GetAllCourseTopic.cshtml" />
+    <Content Include="Views\SuperAdmin\GetAllCourses.cshtml" />
+    <Content Include="Views\SuperAdmin\GetAllSubject.cshtml" />
+    <Content Include="Views\SuperAdmin\GetAllUsers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

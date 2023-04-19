@@ -20,7 +20,7 @@ namespace DAL.Entities
         public DateTime? startdate { get; set; }
         public long fk_coursetopicid { get; set; }
         public DateTime? cr_date { get; set; }
-        public DateTime? fkuserid { get; set; }
+        public long fkuserid { get; set; }
 
     }
 }

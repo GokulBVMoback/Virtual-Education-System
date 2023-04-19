@@ -53,22 +53,53 @@ namespace BLL.Services
             return _db.tbl_users.ToList();
         }
 
-        public bool CreateSchool(tbl_school model)
+        public bool CreateUser(tbl_users model)
+        {
+            try
+            {
+                tbl_users user = new tbl_users();
+                user.email = model.email;
+                user.usertype= model.usertype;
+                user.firstname = model.firstname;
+                user.lastname = model.lastname;
+                user.sex= model.sex;
+                user.userimage= model.userimage;
+                user.pass = model.pass;
+                user.state= model.state;
+                user.fkschoolID = model.userid;
+                user.isactive = model.isactive;
+                user.address = model.address;
+                user.city = model.city;
+                user.country = model.country;
+                user.contact = model.contact;
+                user.cr_date= System.DateTime.Now;
+                user.pin=model.pin;
+                _db.tbl_users.Add(user);
+                _db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool CreateSchool(string SchoolName, string Curriculum, tbl_users model)
         {
             try
             {
                 tbl_school school = new tbl_school();
-                school.state= model.state;
-                school.schoolname = model.schoolname;
-                school.fkschoolID = Config.CurrentUser;
+                school.state = model.state;
+                school.schoolname = SchoolName;
+                school.fkuserid = Config.CurrentUser;
                 school.isactive = model.isactive;
                 school.address = model.address;
                 school.city = model.city;
                 school.country = model.country;
                 school.contact = model.contact;
-                school.cr_date= System.DateTime.Now;
-                school.curriculum=model.curriculum;
-                school.pin=model.pin;
+                school.cr_date = System.DateTime.Now;
+                school.curriculum = Curriculum;
+                school.pin = model.pin;
                 _db.tbl_school.Add(school);
                 _db.SaveChanges();
                 return true;
@@ -119,19 +150,55 @@ namespace BLL.Services
             return _db.tbl_course.Where(x=>x.courseid==courseid).FirstOrDefault();
         }
 
-        public bool UpdateSchool(tbl_school model)
+        public bool UpdateUser(tbl_users model)
         {
             try
             {
-                var item = _db.tbl_school.FirstOrDefault(x => x.schoolid == model.schoolid);
+
+                var item = _db.tbl_users.FirstOrDefault(x => x.userid == Config.CurrentUser);
+                var checkExistEmail = _db.tbl_users.Where(x => x.userid != Config.CurrentUser && x.email == model.email).FirstOrDefault();
+                if (item != null && checkExistEmail == null)
+                {
+                    item.contact = model.contact;
+                    item.address = model.address;
+                    item.email = model.email;
+                    item.firstname = model.firstname;
+                    item.lastname = model.lastname;
+                    item.city = model.city;
+                    item.state = model.state;
+                    item.country = model.country;
+                    item.pin = model.pin;
+                    item.sex = model.sex;
+                    item.userimage = model.userimage;
+                    item.isactive = model.isactive;
+                    item.up_date = System.DateTime.Now;
+                    _db.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool UpdateSchool(string SchoolName, string Curriculum, long SchoolId, tbl_users model)
+        {
+            try
+            {
+                var item = _db.tbl_school.FirstOrDefault(x => x.schoolid == SchoolId);
                 if (item != null)
                 {
-                    item.schoolname = model.schoolname;
+                    item.schoolname = SchoolName;
                     item.address = model.address;
                     item.city = model.city;
                     item.contact = model.contact;
                     item.country = model.country;
-                    item.curriculum = model.curriculum;
+                    item.curriculum = Curriculum;
                     item.pin = model.pin;
                     item.state = model.state;
                     item.isactive = model.isactive;
@@ -218,28 +285,14 @@ namespace BLL.Services
             }
         }
 
-        public bool UpdateUser(tbl_users model)
+        public bool DeleteUser(long UserID)
         {
             try
             {
-                
-                var item = _db.tbl_users.FirstOrDefault(x => x.userid == Config.CurrentUser);
-                var checkExistEmail = _db.tbl_users.Where(x => x.userid != Config.CurrentUser && x.email==model.email).FirstOrDefault();
-                if (item != null && checkExistEmail==null)
+                var item = _db.tbl_users.FirstOrDefault(x => x.userid == UserID);
+                if (item != null)
                 {
-                    item.contact = model.contact;
-                    item.address = model.address;
-                    item.email = model.email;
-                    item.firstname = model.firstname;
-                    item.lastname = model.lastname;
-                    item.city = model.city;
-                    item.state = model.state;
-                    item.country = model.country;
-                    item.pin = model.pin;
-                    item.sex = model.sex;
-                    item.userimage = model.userimage;
-                    item.isactive = model.isactive;
-                    item.up_date = System.DateTime.Now;
+                    item.isdelete = true;
                     _db.SaveChanges();
                     return true;
                 }
@@ -342,26 +395,5 @@ namespace BLL.Services
             }
         }
 
-        public bool DeleteUser(long UserID)
-        {
-            try
-            {
-                var item = _db.tbl_users.FirstOrDefault(x => x.userid == UserID);
-                if (item != null)
-                {
-                    item.isdelete = true;
-                    _db.SaveChanges();
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            catch
-            {
-                return false;
-            }
-        }
     }
 }

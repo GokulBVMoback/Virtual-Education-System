@@ -1,0 +1,136 @@
+﻿@model IEnumerable<DAL.Entities.tbl_users>
+
+@{
+    ViewBag.Title = "GetAllUsers";
+    Layout = "~/Views/Shared/_superAdminLayout.cshtml";
+}
+
+<h2>GetAllUsers</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pass)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.usertype)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.firstname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lastname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.contact)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.city)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.state)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.country)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fkschoolID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isactive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cr_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.up_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isdelete)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sex)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.userimage)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in ViewBag.data) {
+    <tr>
+        <td>
+            @item.email
+        </td>
+        <td>
+            @item.pass
+        </td>
+        <td>
+            @item.usertype
+        </td>
+        <td>
+            @item.firstname
+        </td>
+        <td>
+            @item.lastname
+        </td>
+        <td>
+            @item.contact
+        </td>
+        <td>
+            @item.address
+        </td>
+        <td>
+            @item.city
+        </td>
+        <td>
+            @item.state
+        </td>
+        <td>
+            @item.country
+        </td>
+        <td>
+            @item.pin
+        </td>
+        <td>
+            @item.fkschoolID
+        </td>
+        <td>
+            @item.isactive
+        </td>
+        <td>
+            @item.cr_date
+        </td>
+        <td>
+            @item.up_date
+        </td>
+        <td>
+            @item.isdelete
+        </td>
+        <td>
+            @item.sex
+        </td>
+        <td>
+            @item.userimage
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.userid }) |
+            @Html.ActionLink("Details", "Details", new { id=item.userid }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.userid })
+        </td>
+    </tr>
+}
+
+</table>

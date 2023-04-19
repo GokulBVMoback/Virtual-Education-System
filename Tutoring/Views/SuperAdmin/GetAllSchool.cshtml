@@ -1,0 +1,106 @@
+﻿@model IEnumerable<DAL.Entities.tbl_school>
+
+@{
+    ViewBag.Title = "GetAllSchool";
+    Layout = "~/Views/Shared/_superAdminLayout.cshtml";
+}
+
+<h2>GetAllSchool</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.schoolname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.contact)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.city)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.state)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.country)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isactive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cr_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.up_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isdelete)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fkuserid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.curriculum)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in ViewBag.data) {
+    <tr>
+        <td>
+            @item.schoolname
+        </td>
+        <td>
+            @item.contact
+        </td>
+        <td>
+            @item.address
+        </td>
+        <td>
+            @item.city
+        </td>
+        <td>
+            @item.state
+        </td>
+        <td>
+            @item.country
+        </td>
+        <td>
+            @item.pin
+        </td>
+        <td>
+            @item.isactive
+        </td>
+        <td>
+            @item.cr_date
+        </td>
+        <td>
+            @item.up_date
+        </td>
+        <td>
+            @item.isdelete
+        </td>
+        <td>
+            @item.fkuserid
+        </td>
+        <td>
+            @item.curriculum
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.schoolid }) |
+            @Html.ActionLink("Details", "Details", new { id=item.schoolid }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.schoolid })
+        </td>
+    </tr>
+}
+
+</table>

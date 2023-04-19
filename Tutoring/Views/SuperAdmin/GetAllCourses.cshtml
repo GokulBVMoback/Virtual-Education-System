@@ -1,0 +1,76 @@
+﻿@model IEnumerable<DAL.Entities.tbl_course>
+
+@{
+    ViewBag.Title = "GetAllCourses";
+    Layout = "~/Views/Shared/_superAdminLayout.cshtml";
+}
+
+<h2>GetAllCourses</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.coursename)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.duration)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.coursefee)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.course_desc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.startdate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fk_coursetopicid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cr_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fkuserid)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in ViewBag.data) {
+    <tr>
+        <td>
+            @item.coursename
+        </td>
+        <td>
+            @item.duration
+        </td>
+        <td>
+            @item.coursefee
+        </td>
+        <td>
+            @item.course_desc
+        </td>
+        <td>
+            @item.startdate
+        </td>
+        <td>
+            @item.fk_coursetopicid
+        </td>
+        <td>
+            @item.cr_date
+        </td>
+        <td>
+            @item.fkuserid
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.courseid }) |
+            @Html.ActionLink("Details", "Details", new { id=item.courseid }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.courseid })
+        </td>
+    </tr>
+}
+
+</table>

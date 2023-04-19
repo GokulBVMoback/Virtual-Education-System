@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Entities
 {
-    [Table("tbl_corse_branch")]
+    [Table("tbl_course_branch")]
     public class tbl_course_branch
     {
         [Key]

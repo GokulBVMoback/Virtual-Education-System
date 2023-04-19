@@ -1,0 +1,46 @@
+﻿@model IEnumerable<DAL.Entities.tbl_course_topic>
+
+@{
+    ViewBag.Title = "GetAllCourseTopic";
+    Layout = "~/Views/Shared/_superAdminLayout.cshtml";
+}
+
+<h2>GetAllCourseTopic</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.topicname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fk_coursebranchid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cr_date)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in ViewBag.data) {
+    <tr>
+        <td>
+            @item.topicname
+        </td>
+        <td>
+            @item.fk_coursebranchid
+        </td>
+        <td>
+            @item.cr_date
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.coursetopicid }) |
+            @Html.ActionLink("Details", "Details", new { id=item.coursetopicid }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.coursetopicid })
+        </td>
+    </tr>
+}
+
+</table>
