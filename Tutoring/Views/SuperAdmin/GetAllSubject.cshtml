@@ -5,48 +5,54 @@
     Layout = "~/Views/Shared/_superAdminLayout.cshtml";
 }
 
-<h2>GetAllSubject</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.subjectname)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fkclassid)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.cr_date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fkschoolid)
-        </th>
-        <th></th>
-    </tr>
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">All Subjects</h3><br /><br />
+    </div>
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.subjectname)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fkclassid)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.cr_date)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fkschoolid)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
 
-@foreach (var item in ViewBag.data) {
-    <tr>
-        <td>
-            @item.subjectname
-        </td>
-        <td>
-            @item.fkclassid
-        </td>
-        <td>
-            @item.cr_date
-        </td>
-        <td>
-            @item.fkschoolid
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.subjectid }) |
-            @Html.ActionLink("Details", "Details", new { id=item.subjectid }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.subjectid })
-        </td>
-    </tr>
-}
+                @foreach (var item in ViewBag.data)
+                {
+                    <tr>
+                        <td>
+                            @item.subjectname
+                        </td>
+                        <td>
+                            @item.fkclassid
+                        </td>
+                        <td>
+                            @item.cr_date
+                        </td>
+                        <td>
+                            @item.fkschoolid
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.subjectid }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.subjectid })
+                        </td>
+                    </tr>
+                }
 
-</table>
+        </table>
+    </div>
+</div>

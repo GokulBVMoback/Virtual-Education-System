@@ -57,26 +57,35 @@ namespace BLL.Services
         {
             try
             {
-                tbl_users user = new tbl_users();
-                user.email = model.email;
-                user.usertype= model.usertype;
-                user.firstname = model.firstname;
-                user.lastname = model.lastname;
-                user.sex= model.sex;
-                user.userimage= model.userimage;
-                user.pass = model.pass;
-                user.state= model.state;
-                user.fkschoolID = model.userid;
-                user.isactive = model.isactive;
-                user.address = model.address;
-                user.city = model.city;
-                user.country = model.country;
-                user.contact = model.contact;
-                user.cr_date= System.DateTime.Now;
-                user.pin=model.pin;
-                _db.tbl_users.Add(user);
-                _db.SaveChanges();
-                return true;
+                var email=_db.tbl_users.Where(x=>x.email==model.email).FirstOrDefault();
+                if (email == null)
+                {
+                    tbl_users user = new tbl_users();
+                    user.email = model.email;
+                    user.usertype = 2;
+                    user.firstname = model.firstname;
+                    user.lastname = model.lastname;
+                    user.sex = model.sex;
+                    user.userimage = model.userimage;
+                    user.pass = model.pass;
+                    user.state = model.state;
+                    user.fkschoolID = model.userid;
+                    user.isactive = model.isactive;
+                    user.address = model.address;
+                    user.city = model.city;
+                    user.country = model.country;
+                    user.contact = model.contact;
+                    user.cr_date = System.DateTime.Now;
+                    user.pin = model.pin;
+                    _db.tbl_users.Add(user);
+                    _db.SaveChanges();
+                    Config.SchoolUser= user;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             catch
             {
@@ -91,7 +100,7 @@ namespace BLL.Services
                 tbl_school school = new tbl_school();
                 school.state = model.state;
                 school.schoolname = SchoolName;
-                school.fkuserid = Config.CurrentUser;
+                school.fkuserid = model.userid;
                 school.isactive = model.isactive;
                 school.address = model.address;
                 school.city = model.city;
@@ -101,6 +110,9 @@ namespace BLL.Services
                 school.curriculum = Curriculum;
                 school.pin = model.pin;
                 _db.tbl_school.Add(school);
+                _db.SaveChanges();
+                var user=_db.tbl_users.Where(x=>x.userid==model.userid).FirstOrDefault();
+                user.fkschoolID= school.schoolid;
                 _db.SaveChanges();
                 return true;
             }
@@ -155,8 +167,8 @@ namespace BLL.Services
             try
             {
 
-                var item = _db.tbl_users.FirstOrDefault(x => x.userid == Config.CurrentUser);
-                var checkExistEmail = _db.tbl_users.Where(x => x.userid != Config.CurrentUser && x.email == model.email).FirstOrDefault();
+                var item = _db.tbl_users.FirstOrDefault(x => x.userid == model.userid);
+                var checkExistEmail = _db.tbl_users.Where(x => x.userid != model.userid && x.email == model.email).FirstOrDefault();
                 if (item != null && checkExistEmail == null)
                 {
                     item.contact = model.contact;

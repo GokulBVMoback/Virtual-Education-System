@@ -1,0 +1,64 @@
+﻿@model DAL.Entities.tbl_school
+
+@{
+    ViewBag.Title = "CreateSchool2";
+    Layout = "~/Views/Shared/_superAdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="card">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="header headerborder">
+                    <h4 class="title" style="margin-left:20px">
+                        Add School
+                    </h4>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-lg-offset-2">
+                <div>
+                    @if (ViewBag.msg != null)
+                    {
+                        <h1 style="color:red">@ViewBag.msg</h1>
+                    }
+                </div>
+                <div class="content" style="margin:3% !important;">
+                    @using (Html.BeginForm("CreateSchool2", "SuperAdmin", FormMethod.Post,
+                                      new { enctype = "multipart/form-data", @data_ajax = "false" }))
+                    {
+
+                        <div class="form-group">
+                            <label class="control-label" style="padding-bottom:10px;">
+                                School Name
+                            </label>
+
+                            @Html.TextBoxFor(x => x.schoolname, new { @class = "form-control", @placeholder = "School Name", required = "required" })
+
+                            @Html.ValidationMessageFor(x => x.schoolname, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" style="padding-bottom:10px;">
+                                Curriculum
+                            </label>
+
+                            @Html.TextBoxFor(x => x.curriculum, new { @class = "form-control", @placeholder = "Curiculum", required = "required" })
+
+                            @Html.ValidationMessageFor(x => x.curriculum, "", new { @class = "text-danger" })
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-3">
+                                <input id="send" type="submit" class="btn btn-success" value="Submit">
+                                <a href="@Url.Action("CreateSchool","SuperAdmin")" class="btn btn-primary">Cancel</a>
+
+                            </div>
+                        </div>
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

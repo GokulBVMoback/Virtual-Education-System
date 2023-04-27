@@ -1,15 +1,15 @@
-﻿@model IEnumerable<DAL.Entities.tbl_course_topic>
+﻿@model IEnumerable<DAL.Entities.tbl_course_branch>
 
 @{
-    ViewBag.Title = "GetAllCourseTopic";
+    ViewBag.Title = "GetAllCourseBranch";
     Layout = "~/Views/Shared/_superAdminLayout.cshtml";
 }
 
 
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">All Course Topic</h3><br /><br />
-        <a href="@Url.Action("CreateCourseTopic","SuperAdmin")" class="create">
+        <h3 class="card-title">All Branches</h3><br /><br />
+        <a href="@Url.Action("CreateCourseBranch","SuperAdmin")" class="create">
             Create
         </a>
     </div>
@@ -18,34 +18,29 @@
             <thead>
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.topicname)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.fk_coursebranchid)
+                        @Html.DisplayNameFor(model => model.branchname)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.cr_date)
                     </th>
                     <th></th>
                 </tr>
-                </thead>
+            </thead>
+
             <tbody>
 
                 @foreach (var item in ViewBag.data)
                 {
                     <tr>
                         <td>
-                            @item.topicname
-                        </td>
-                        <td>
-                            @item.fk_coursebranchid
+                            @item.branchname
                         </td>
                         <td>
                             @item.cr_date
                         </td>
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.coursetopicid }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.coursetopicid })
+                            @Html.ActionLink("Edit", "Edit", new { id = item.coursebranchid }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.coursebranchid })
                         </td>
                     </tr>
                 }

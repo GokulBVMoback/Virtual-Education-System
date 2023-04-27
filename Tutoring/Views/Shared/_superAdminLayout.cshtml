@@ -71,6 +71,9 @@
                     <a href="#" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
+                    <a href="@Url.Action("ChangePassword", "SuperAdmin")" class="nav-link">Change Password</a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
                     <a href="@Url.Action("Logout", "Home")" class="nav-link">Logout</a>
                 </li>
 
@@ -146,7 +149,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="@Url.Action("GetAllCourseBrach", "SuperAdmin")" class="nav-link">
+                            <a href="@Url.Action("GetAllCourseBranch", "SuperAdmin")" class="nav-link">
                                 <i class="nav-icon far fa-calendar-alt"></i>
                                 <p>
                                     Course Branch List
@@ -260,3 +263,4 @@
     </script>
 </body>
 </html>
+@RenderSection("scripts",required:false)
