@@ -2982,6 +2982,8 @@
     <Content Include="Views\SuperAdmin\GetCourses.cshtml" />
     <Content Include="Views\SuperAdmin\UpdateSchool.cshtml" />
     <Content Include="Views\SuperAdmin\UpdateSchool2.cshtml" />
+    <Content Include="Views\SuperAdmin\UpdateCourseBranch.cshtml" />
+    <Content Include="Views\SuperAdmin\UpdateCourseTopic.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
