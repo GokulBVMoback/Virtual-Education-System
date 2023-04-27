@@ -23,7 +23,7 @@
                     <th>
                         @Html.DisplayNameFor(model => model.cr_date)
                     </th>
-                    <th></th>
+                    <th>Operation</th>
                 </tr>
             </thead>
 
@@ -39,8 +39,12 @@
                             @item.cr_date
                         </td>
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.coursebranchid }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.coursebranchid })
+                            <a href="@Url.Action("UpdateCourseBranch", new { coursebranchid = item.coursebranchid })" class="update">
+                                Update
+                            </a>
+                            <a href="@Url.Action("DeleteClass", new { coursebranchid = item.coursebranchid })" class="delete" onclick="return confirm('Are you sure you wish to delete? This record will no longer exsists.');">
+                                Delete
+                            </a>
                         </td>
                     </tr>
                 }

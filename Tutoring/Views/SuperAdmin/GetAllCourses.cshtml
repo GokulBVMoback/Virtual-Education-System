@@ -41,7 +41,7 @@
                     <th>
                         @Html.DisplayNameFor(model => model.fkuserid)
                     </th>
-                    <th></th>
+                    <th>Operation</th>
                 </tr>
                 </thead>
             <tbody>
@@ -74,7 +74,9 @@
                             @item.fkuserid
                         </td>
                         <td>
-                            @Html.ActionLink("Details", "GetCourses", new { CourseID = item.courseid })
+                            <a href="@Url.Action("GetCourses", new { classid = item.courseid })" class="update">
+                                Details
+                            </a>
                         </td>
                     </tr>
                 }

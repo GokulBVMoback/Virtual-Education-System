@@ -26,7 +26,7 @@
                     <th>
                         @Html.DisplayNameFor(model => model.fkschoolid)
                     </th>
-                    <th></th>
+                    <th>Operation</th>
                 </tr>
             </thead>
             <tbody>
@@ -47,8 +47,12 @@
                             @item.fkschoolid
                         </td>
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.subjectid }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.subjectid })
+                            <a href="@Url.Action("UpdateClass", new { classid = item.subjectid })" class="update">
+                                Update
+                            </a>
+                            <a href="@Url.Action("DeleteClass", new { classid = item.subjectid })" class="delete" onclick="return confirm('Are you sure you wish to delete? This record will no longer exsists.');">
+                                Delete
+                            </a>
                         </td>
                     </tr>
                 }

@@ -237,18 +237,18 @@ namespace Tutoring.Controllers
             }
         }
 
-        public ActionResult UpdateSchool(string msg)
+        public ActionResult UpdateSchool(long userid, string msg)
         {
             if (Config.CurrentUser == 0)
             {
                 return RedirectToAction("Login", "Home");
             }
             ViewBag.msg = msg;
-            return View();
+            return View(new tbl_users());
         }
 
         [HttpPost]
-        public ActionResult UpdateSchool(tbl_users model, HttpPostedFileBase uploadFile1)
+        public ActionResult UpdateSchool(long userid,tbl_users model, HttpPostedFileBase uploadFile1)
         {
             string s1;
 
@@ -270,11 +270,11 @@ namespace Tutoring.Controllers
             var itemdata = adminManager.UpdateUser(model);
             if (itemdata == true)
             {
-                return RedirectToAction("CreateSchool2", "SuperAdmin");
+                return RedirectToAction("UpdateSchool2", "SuperAdmin");
             }
             else
             {
-                return RedirectToAction("CreateSchool", "SuperAdmin", new { @msg = "Something went wrong" });
+                return RedirectToAction("UpdateSchool", "SuperAdmin", new { @msg = "Something went wrong" });
             }
         }
 
@@ -291,18 +291,18 @@ namespace Tutoring.Controllers
         [HttpPost]
         public ActionResult UpdateSchool2(tbl_school School)
         {
-            var itemdata = adminManager.UpdateSchool(School.schoolname, School.curriculum, School.schoolid, Config.SchoolUser);
+            var itemdata = adminManager.UpdateSchool(School.schoolname, School.curriculum, Config.SchoolUser);
             if (itemdata == true)
             {
                 return RedirectToAction("GetAllSchool", "SuperAdmin");
             }
             else
             {
-                return RedirectToAction("CreateSchool", "SuperAdmin", new { @msg = "Something went wrong" });
+                return RedirectToAction("UpdateSchool2", "SuperAdmin", new { @msg = "Something went wrong" });
             }
         }
 
-        public ActionResult UpdateCourseBranch(string msg)
+        public ActionResult UpdateCourseBranch(long coursebranchid, string msg)
         {
             if (Config.CurrentUser == 0)
             {
@@ -313,9 +313,9 @@ namespace Tutoring.Controllers
         }
 
         [HttpPost]
-        public ActionResult UpdateCourseBranch(tbl_course_branch Branch)
+        public ActionResult UpdateCourseBranch(long coursebranchid, tbl_course_branch Branch)
         {
-            var itemdata = adminManager.CreateBranch(Branch);
+            var itemdata = adminManager.UpdateBranch(coursebranchid, Branch);
             if (itemdata == true)
             {
                 return RedirectToAction("GetAllCourseBranch", "SuperAdmin");
@@ -326,7 +326,7 @@ namespace Tutoring.Controllers
             }
         }
 
-        public ActionResult UpdateCourseTopic(string msg)
+        public ActionResult UpdateCourseTopic(long coursetopicid, string msg)
         {
             if (Config.CurrentUser == 0)
             {
@@ -337,9 +337,10 @@ namespace Tutoring.Controllers
         }
 
         [HttpPost]
-        public ActionResult UpdateCourseTopic(tbl_course_topic Topic)
+        public ActionResult UpdateCourseTopic(long coursetopicid, tbl_course_topic Topic)
         {
-            var itemdata = adminManager.CreateTopic(Topic);
+            var itemdata = adminManager.UpdateTopic(coursetopicid, Topic);
+
             if (itemdata == true)
             {
                 return RedirectToAction("GetAllCourseTopic", "SuperAdmin");

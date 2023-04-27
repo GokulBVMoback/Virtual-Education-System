@@ -69,7 +69,7 @@
                     <th>
                         @Html.DisplayNameFor(model => model.userimage)
                     </th>
-                    <th></th>
+                    <th>Operation</th>
                 </tr>
             </thead>
             <tbody>
@@ -132,8 +132,12 @@
                             @item.userimage
                         </td>
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.userid }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.userid })
+                            <a href="@Url.Action("UpdateClass", new { classid = item.userid })" class="update">
+                                Update
+                            </a>
+                            <a href="@Url.Action("DeleteClass", new { classid = item.userid })" class="delete" onclick="return confirm('Are you sure you wish to delete? This record will no longer exsists.');">
+                                Delete
+                            </a>
                         </td>
                     </tr>
                 }

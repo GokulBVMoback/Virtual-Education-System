@@ -185,6 +185,7 @@ namespace BLL.Services
                     item.isactive = model.isactive;
                     item.up_date = System.DateTime.Now;
                     _db.SaveChanges();
+                    Config.SchoolUser = item;
                     return true;
                 }
                 else
@@ -198,11 +199,11 @@ namespace BLL.Services
             }
         }
 
-        public bool UpdateSchool(string SchoolName, string Curriculum, long SchoolId, tbl_users model)
+        public bool UpdateSchool(string SchoolName, string Curriculum, tbl_users model)
         {
             try
             {
-                var item = _db.tbl_school.FirstOrDefault(x => x.schoolid == SchoolId);
+                var item = _db.tbl_school.FirstOrDefault(x => x.schoolid == model.fkschoolID);
                 if (item != null)
                 {
                     item.schoolname = SchoolName;
@@ -229,11 +230,11 @@ namespace BLL.Services
             }
         }
 
-        public bool UpdateBranch(tbl_course_branch model)
+        public bool UpdateBranch(long branchid, tbl_course_branch model)
         {
             try
             {
-                var item = _db.tbl_course_branch.FirstOrDefault(x => x.coursebranchid == model.coursebranchid);
+                var item = _db.tbl_course_branch.FirstOrDefault(x => x.coursebranchid == branchid);
                 if (item != null)
                 {
                     item.branchname = model.branchname;
@@ -251,11 +252,11 @@ namespace BLL.Services
             }
         }
 
-        public bool UpdateTopic(tbl_course_topic model)
+        public bool UpdateTopic(long topicid, tbl_course_topic model)
         {
             try
             {
-                var item = _db.tbl_course_topic.FirstOrDefault(x => x.coursetopicid == model.coursetopicid);
+                var item = _db.tbl_course_topic.FirstOrDefault(x => x.coursetopicid == topicid);
                 if (item != null)
                 {
                     item.topicname = model.topicname;
