@@ -132,10 +132,10 @@
                             @item.userimage
                         </td>
                         <td>
-                            <a href="@Url.Action("UpdateClass", new { classid = item.userid })" class="update">
+                            <a href="@Url.Action("UpdateIndividualTeacher", new { userid = item.userid })" class="update">
                                 Update
                             </a>
-                            <a href="@Url.Action("DeleteClass", new { classid = item.userid })" class="delete" onclick="return confirm('Are you sure you wish to delete? This record will no longer exsists.');">
+                            <a href="@Url.Action("DeleteIndividualTeacher", new { userid = item.userid })" class="delete" onclick="return confirm('Are you sure you wish to delete? This record will no longer exsists.');">
                                 Delete
                             </a>
                         </td>

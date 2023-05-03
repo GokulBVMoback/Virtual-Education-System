@@ -2968,7 +2968,6 @@
     <Content Include="Views\School\UpdateCLass.cshtml" />
     <Content Include="Views\SuperAdmin\GetAllSchool.cshtml" />
     <Content Include="Views\SuperAdmin\GetAllIndividualTeacher.cshtml" />
-    <Content Include="Views\SuperAdmin\GetAllIndividualStudent.cshtml" />
     <Content Include="Views\SuperAdmin\GetAllCourseBranch.cshtml" />
     <Content Include="Views\SuperAdmin\GetAllCourseTopic.cshtml" />
     <Content Include="Views\SuperAdmin\GetAllCourses.cshtml" />
@@ -2984,6 +2983,12 @@
     <Content Include="Views\SuperAdmin\UpdateSchool2.cshtml" />
     <Content Include="Views\SuperAdmin\UpdateCourseBranch.cshtml" />
     <Content Include="Views\SuperAdmin\UpdateCourseTopic.cshtml" />
+    <Content Include="Views\SuperAdmin\UpdateIndividualTeacher.cshtml" />
+    <Content Include="Views\SuperAdmin\UpdateIndividualStudent.cshtml" />
+    <Content Include="Views\SuperAdmin\UpdateIndividualStudent2.cshtml" />
+    <Content Include="Views\SuperAdmin\UpdateSubject.cshtml" />
+    <Content Include="Views\SuperAdmin\UpdateUser.cshtml" />
+    <Content Include="Views\SuperAdmin\GetAllIndividualStudent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

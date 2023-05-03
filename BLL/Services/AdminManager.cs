@@ -1,11 +1,14 @@
-﻿using BLL.Helpers;
+﻿using Amazon.S3.Model;
+using BLL.Helpers;
 using DAL.Entities;
 using DAL.MasterEntity;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace BLL.Services
 {
@@ -23,9 +26,9 @@ namespace BLL.Services
             return _db.tbl_users.Where(x=>x.usertype==3 && x.fkschoolID==0 && x.isdelete == false).ToList();
         }
 
-        public List<tbl_users> GetIndividualStudents()
+        public List<tbl_student> GetIndividualStudents()
         {
-            return _db.tbl_users.Where(x => x.usertype == 4 && x.fkschoolID == 0 && x.isdelete == false).ToList();
+            return _db.tbl_student.Where(x => x.fkschoolid == 0).ToList();
         }
 
         public List<tbl_course_branch> GetCourseBranch()
@@ -162,13 +165,13 @@ namespace BLL.Services
             return _db.tbl_course.Where(x=>x.courseid==courseid).FirstOrDefault();
         }
 
-        public bool UpdateUser(tbl_users model)
+        public bool UpdateUser(long userid,tbl_users model)
         {
             try
             {
 
-                var item = _db.tbl_users.FirstOrDefault(x => x.userid == model.userid);
-                var checkExistEmail = _db.tbl_users.Where(x => x.userid != model.userid && x.email == model.email).FirstOrDefault();
+                var item = _db.tbl_users.FirstOrDefault(x => x.userid == userid);
+                var checkExistEmail = _db.tbl_users.Where(x => x.userid != userid && x.email == model.email).FirstOrDefault();
                 if (item != null && checkExistEmail == null)
                 {
                     item.contact = model.contact;
@@ -203,7 +206,7 @@ namespace BLL.Services
         {
             try
             {
-                var item = _db.tbl_school.FirstOrDefault(x => x.schoolid == model.fkschoolID);
+                var item = _db.tbl_school.FirstOrDefault(x => x.fkuserid == model.userid);
                 if (item != null)
                 {
                     item.schoolname = SchoolName;
@@ -275,15 +278,50 @@ namespace BLL.Services
             }
         }
 
-        public bool UpdateSubject(tbl_subject model)
+        public bool UpdateSubject(long subjectid,tbl_subject model)
         {
             try
             {
-                var item = _db.tbl_subject.FirstOrDefault(x => x.subjectid == model.subjectid);
+                var item = _db.tbl_subject.FirstOrDefault(x => x.subjectid == subjectid);
                 if (item != null)
                 {
                     item.subjectname = model.subjectname;
                     item.fkclassid = model.fkclassid;
+                    _db.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool UpdateIndividualStudent(tbl_student student,tbl_users model)
+        {
+            try
+            {
+                var item = _db.tbl_student.FirstOrDefault(x => x.fkuserid == model.userid);
+                if (item != null)
+                {
+                    item.firstname = model.firstname;
+                    item.lastname = model.lastname;
+                    item.fathername = student.fathername;
+                    item.mothername = student.mothername;
+                    item.sex= model.sex;
+                    item.contact = model.contact;
+                    item.email = model.email;
+                    item.address = model.address;
+                    item.city = model.city;
+                    item.state = model.state;
+                    item.country = model.country;
+                    item.pin = model.pin;
+                    item.fkschoolid = student.fkschoolid;
+                    item.fkclassid=student.fkclassid;
                     _db.SaveChanges();
                     return true;
                 }
@@ -320,11 +358,36 @@ namespace BLL.Services
             }
         }
 
-        public bool DeleteSchool(long SchoolID)
+        public bool DeleteSchool(long fkuserid)
         {
             try
             {
-                var item = _db.tbl_school.FirstOrDefault(x => x.schoolid == SchoolID);
+                var item = _db.tbl_users.FirstOrDefault(x => x.userid == fkuserid && x.usertype==2);
+                var item2 = _db.tbl_school.FirstOrDefault(x => x.fkuserid == fkuserid);
+                if (item != null)
+                {
+                    item.isdelete = true;
+                    _db.SaveChanges();
+                    item2.isdelete = true;
+                    _db.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool DeleteIndividualTeacher(long userID)
+        {
+            try
+            {
+                var item = _db.tbl_users.FirstOrDefault(x => x.userid == userID && x.usertype == 3 && x.fkschoolID==0);
                 if (item != null)
                 {
                     item.isdelete = true;
@@ -342,14 +405,38 @@ namespace BLL.Services
             }
         }
 
-        public bool DeleteBranch(long BranchID)
+        public bool DeleteIndividualStudent(long userID)
         {
             try
             {
-                var item = _db.tbl_course_branch.FirstOrDefault(x => x.coursebranchid == BranchID);
+                var item = _db.tbl_users.FirstOrDefault(x => x.userid == userID && x.usertype == 4 && x.fkschoolID==0);
+                var item2 = _db.tbl_student.FirstOrDefault(x=>x.fkuserid==userID);
+                if (item2 != null)
+                {
+                    item.isdelete = true;
+                    _db.tbl_student.Remove(item2);
+                    _db.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool DeleteBranch(long subjectid)
+        {
+            try
+            {
+                var item = _db.tbl_subject.FirstOrDefault(x => x.subjectid == subjectid);
                 if (item != null)
                 {
-                    _db.tbl_course_branch.Remove(item);
+                    _db.tbl_subject.Remove(item);
                     _db.SaveChanges();
                     return true;
                 }

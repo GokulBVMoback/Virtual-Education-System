@@ -16,6 +16,20 @@ namespace Tutoring.Controllers
         public Usermanager usermanager=new Usermanager();
         // GET: SuperAdmin
 
+        public string UploadImage(string prefix, HttpPostedFileBase uploadFile1)
+        {
+            string s1;
+            string path = Server.MapPath("~/Content/UserImage/");
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            Random rd = new Random();
+            int num = rd.Next(100000, 200000);
+            string filename = prefix + num + ".jpg";
+            uploadFile1.SaveAs(path + filename);
+            return s1 = "Content/UserImage/" + filename;
+        }
         public ActionResult Index()
         {
             if (Config.CurrentUser == 0)
@@ -113,13 +127,13 @@ namespace Tutoring.Controllers
             return View();
         }
 
-        public ActionResult GetCourses(long CourseID)
+        public ActionResult GetCourses(long courseid)
         {
             if (Config.CurrentUser == 0)
             {
                 return RedirectToAction("Login", "Home");
             }
-            var Data = adminManager.GetCourse(CourseID);
+            var Data = adminManager.GetCourse(courseid);
             //ViewBag.data = Data;
             return View(Data);
         }
@@ -141,16 +155,18 @@ namespace Tutoring.Controllers
 
             if (uploadFile1 != null)
             {
-                string path = Server.MapPath("~/Content/UserImage/");
-                if (!Directory.Exists(path))
-                {
-                    Directory.CreateDirectory(path);
-                }
-                Random rd = new Random();
-                int num = rd.Next(100000, 200000);
-                string filename = "School" + num + ".jpg";
-                uploadFile1.SaveAs(path + filename);
-                s1 = "Content/UserImage/" + filename;
+                string prefix = "School";
+                s1=UploadImage(prefix,uploadFile1);
+                //string path = Server.MapPath("~/Content/UserImage/");
+                //if (!Directory.Exists(path))
+                //{
+                //    Directory.CreateDirectory(path);
+                //}
+                //Random rd = new Random();
+                //int num = rd.Next(100000, 200000);
+                //string filename = "School" + num + ".jpg";
+                //uploadFile1.SaveAs(path + filename);
+                //s1 = "Content/UserImage/" + filename;
             }
             else { s1 = "0"; }
             model.userimage = s1;
@@ -254,20 +270,12 @@ namespace Tutoring.Controllers
 
             if (uploadFile1 != null)
             {
-                string path = Server.MapPath("~/Content/UserImage/");
-                if (!Directory.Exists(path))
-                {
-                    Directory.CreateDirectory(path);
-                }
-                Random rd = new Random();
-                int num = rd.Next(100000, 200000);
-                string filename = "School" + num + ".jpg";
-                uploadFile1.SaveAs(path + filename);
-                s1 = "Content/UserImage/" + filename;
+                string prefix = "School";
+                s1 = UploadImage(prefix, uploadFile1);
             }
             else { s1 = "0"; }
             model.userimage = s1;
-            var itemdata = adminManager.UpdateUser(model);
+            var itemdata = adminManager.UpdateUser(userid,model);
             if (itemdata == true)
             {
                 return RedirectToAction("UpdateSchool2", "SuperAdmin");
@@ -351,6 +359,157 @@ namespace Tutoring.Controllers
             }
         }
 
+        public ActionResult UpdateIndividualTeacher(long? userid, string msg)
+        {
+            if (Config.CurrentUser == 0)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            ViewBag.msg = msg;
+            return View(new tbl_users());
+        }
+
+        [HttpPost]
+        public ActionResult UpdateIndividualTeacher(long userid, tbl_users model,HttpPostedFileBase uploadFile1)
+        {
+            string s1;
+
+            if (uploadFile1 != null)
+            {
+                string prefix = "Teacher";
+                s1 = UploadImage(prefix, uploadFile1);
+            }
+            else { s1 = "0"; }
+            model.userimage = s1;
+            var itemdata = adminManager.UpdateUser(userid,model);
+
+            if (itemdata == true)
+            {
+                return RedirectToAction("GetAllIndividualTeacher", "SuperAdmin");
+            }
+            else
+            {
+                return RedirectToAction("UpdateIndividualTeacher", "SuperAdmin", new { @msg = "Something went wrong" });
+            }
+        }
+
+        public ActionResult UpdateIndividualStudent(long? userid, string msg)
+        {
+            if (Config.CurrentUser == 0)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            ViewBag.msg = msg;
+            return View(new tbl_users());
+        }
+
+        [HttpPost]
+        public ActionResult UpdateIndividualStudent(long userid, tbl_users User,HttpPostedFileBase uploadFile1)
+        {
+            string s1;
+
+            if (uploadFile1 != null)
+            {
+                string prefix = "Student";
+                s1 = UploadImage(prefix, uploadFile1);
+            }
+            else { s1 = "0"; }
+            User.userimage = s1;
+            var itemdata = adminManager.UpdateUser(userid,User);
+
+            if (itemdata == true)
+            {
+                return RedirectToAction("UpdateIndividualStudent2", "SuperAdmin");
+            }
+            else
+            {
+                return RedirectToAction("UpdateIndividualStudent", "SuperAdmin", new { @msg = "Something went wrong" });
+            }
+        }
+
+        public ActionResult UpdateIndividualStudent2(string msg)
+        {
+            if (Config.CurrentUser == 0)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            ViewBag.msg = msg;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult UpdateIndividualStudent2(tbl_student student)
+        {
+            var itemdata = adminManager.UpdateIndividualStudent(student,Config.SchoolUser);
+
+            if (itemdata == true)
+            {
+                return RedirectToAction("GetAllIndividualStudent", "SuperAdmin");
+            }
+            else
+            {
+                return RedirectToAction("UpdateIndividualStudent2", "SuperAdmin", new { @msg = "Something went wrong" });
+            }
+        }
+
+        public ActionResult UpdateSubject(long subjectid, string msg)
+        {
+            if (Config.CurrentUser == 0)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            ViewBag.msg = msg;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult UpdateSubject(long subjectid, tbl_subject Subject)
+        {
+            var itemdata = adminManager.UpdateSubject(subjectid, Subject);
+
+            if (itemdata == true)
+            {
+                return RedirectToAction("GetAllSubject", "SuperAdmin");
+            }
+            else
+            {
+                return RedirectToAction("UpdateSubject", "SuperAdmin", new { @msg = "Something went wrong" });
+            }
+        }
+
+        public ActionResult UpdateUser(long userid, string msg)
+        {
+            if (Config.CurrentUser == 0)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            ViewBag.msg = msg;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult UpdateUser(long userid, tbl_users User, HttpPostedFileBase uploadFile1)
+        {
+            string s1;
+
+            if (uploadFile1 != null)
+            {
+                string prefix = "Student";
+                s1 = UploadImage(prefix, uploadFile1);
+            }
+            else { s1 = "0"; }
+            User.userimage = s1;
+            var itemdata = adminManager.UpdateUser(userid, User);
+            if (itemdata == true)
+            {
+                return RedirectToAction("GetAllUser", "SuperAdmin");
+            }
+            else
+            {
+                return RedirectToAction("UpdateUser", "SuperAdmin", new { @msg = "Something went wrong" });
+            }
+        }
+
         public ActionResult ChangePassword(string msg)
         {
             if (Config.CurrentUser == 0)
@@ -373,6 +532,72 @@ namespace Tutoring.Controllers
             {
                 return RedirectToAction("ChangePassword", "SuperAdmin", new { @msg = "Something went wrong" });
             }
+        }
+
+        public ActionResult DeleteSchool(long userid)
+        {
+            if (Config.CurrentUser == 0)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            var itemdata = adminManager.DeleteSchool(userid);
+
+            return RedirectToAction("GetAllSchool", "SuperAdmin");
+        }
+
+        public ActionResult DeleteIndividualTeacher(long userid)
+        {
+            if (Config.CurrentUser == 0)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            var itemdata = adminManager.DeleteIndividualTeacher(userid);
+
+            return RedirectToAction("GetAllIndividualTeacher", "SuperAdmin");
+        }
+
+        public ActionResult DeleteIndividualStudent(long userid)
+        {
+            if (Config.CurrentUser == 0)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            var itemdata = adminManager.DeleteIndividualStudent(userid);
+
+            return RedirectToAction("GetAllIndividualStudent", "SuperAdmin");
+        }
+
+        public ActionResult DeleteBranch(long coursebranchid)
+        {
+            if (Config.CurrentUser == 0)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            var itemdata = adminManager.DeleteBranch(coursebranchid);
+
+            return RedirectToAction("GetAllCourseBranch", "SuperAdmin");
+        }
+
+        public ActionResult DeleteTopic(long coursetopicid)
+        {
+            if (Config.CurrentUser == 0)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            var itemdata = adminManager.DeleteTopic(coursetopicid);
+
+            return RedirectToAction("GetAllCourseTopic", "SuperAdmin");
+        }
+
+        public ActionResult DeleteSubject(long subjectid)
+        {
+            if (Config.CurrentUser == 0)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            var itemdata = adminManager.DeleteBranch(subjectid);
+
+            return RedirectToAction("GetAllSubject", "SuperAdmin");
         }
     }
 }
