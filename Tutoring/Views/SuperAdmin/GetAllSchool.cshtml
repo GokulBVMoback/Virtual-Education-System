@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DAL.Entities.tbl_school>
+﻿@model IEnumerable<BLL.Models.SchoolView>
 
 @{
     ViewBag.Title = "GetAllSchool";
@@ -17,43 +17,34 @@
             <thead>
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.schoolname)
+                        School Name
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.contact)
+                        Contact
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.address)
+                        Address
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.city)
+                        City
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.state)
+                        State
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.country)
+                        Country
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.pin)
+                        Pin
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.isactive)
+                        Active Status
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.cr_date)
+                        User Name
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.up_date)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.isdelete)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.fkuserid)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.curriculum)
+                        Curriculum
                     </th>
                     <th>Operation</th>
                 </tr>
@@ -89,16 +80,7 @@
                             @item.isactive
                         </td>
                         <td>
-                            @item.cr_date
-                        </td>
-                        <td>
-                            @item.up_date
-                        </td>
-                        <td>
-                            @item.isdelete
-                        </td>
-                        <td>
-                            @item.fkuserid
+                            @item.username
                         </td>
                         <td>
                             @item.curriculum
@@ -106,6 +88,9 @@
                         <td>
                             <a href="@Url.Action("UpdateSchool", new { userid = item.fkuserid })" class="update">
                                 Update
+                            </a>
+                            <a href="@Url.Action("ChangeSchoolActiveStatus", new { schoolid = item.schoolid })" class="update">
+                                Active/InActive
                             </a>
                             <a href="@Url.Action("DeleteSchool", new { userid = item.fkuserid })" class="delete" onclick="return confirm('Are you sure you wish to delete? This record will no longer exsists.');">
                                 Delete

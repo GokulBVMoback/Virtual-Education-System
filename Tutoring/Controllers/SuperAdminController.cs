@@ -1,6 +1,7 @@
 ﻿using BLL.Helpers;
 using BLL.Services;
 using DAL.Entities;
+using DAL.MasterEntity;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,6 +15,7 @@ namespace Tutoring.Controllers
     {
         public AdminManager adminManager=new AdminManager();
         public Usermanager usermanager=new Usermanager();
+        MyDbContext _db = new MyDbContext();
         // GET: SuperAdmin
 
         public string UploadImage(string prefix, HttpPostedFileBase uploadFile1)
@@ -494,7 +496,24 @@ namespace Tutoring.Controllers
 
             if (uploadFile1 != null)
             {
-                string prefix = "Student";
+                var user=_db.tbl_users.Where(x => x.userid == userid).FirstOrDefault();
+                string prefix=null;
+                switch (user.usertype)
+                {
+                    case 1:
+                        prefix = "Admin";
+                        break;
+                    case 2:
+                        prefix = "School";
+                        break;
+                    case 3:
+                        prefix = "Teacher";
+                        break;
+                    case 4:
+                        prefix = "Student";
+                        break;
+
+                }
                 s1 = UploadImage(prefix, uploadFile1);
             }
             else { s1 = "0"; }
@@ -598,6 +617,30 @@ namespace Tutoring.Controllers
             var itemdata = adminManager.DeleteBranch(subjectid);
 
             return RedirectToAction("GetAllSubject", "SuperAdmin");
+        }
+
+        public ActionResult ChangeUserActiveStatus(long userid)
+        {
+            if (Config.CurrentUser == 0)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            var itemdata = adminManager.ChangeUserActiveStatus(userid);
+            string url = this.Request.UrlReferrer.AbsolutePath;
+            url=url.Substring(url.LastIndexOf("/"));
+            return RedirectToAction(url);
+        }
+
+
+        public ActionResult ChangeSchoolActiveStatus(long schoolid)
+        {
+            if (Config.CurrentUser == 0)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            var itemdata = adminManager.ChangeSchoolActiveStatus(schoolid);
+
+            return RedirectToAction("GetAllSchool", "SuperAdmin");
         }
     }
 }

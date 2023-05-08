@@ -1,5 +1,6 @@
 ﻿using Amazon.S3.Model;
 using BLL.Helpers;
+using BLL.Models;
 using DAL.Entities;
 using DAL.MasterEntity;
 using System;
@@ -16,9 +17,26 @@ namespace BLL.Services
     {
         MyDbContext _db = new MyDbContext();
 
-        public List<tbl_school> GetSchool()
+        public List<SchoolView> GetSchool()
         {
-            return _db.tbl_school.Where(x=>x.isdelete==false).ToList();
+            List<SchoolView> result = (from school in _db.tbl_school
+                                       join user in _db.tbl_users on school.fkuserid equals user.userid
+                                       orderby school.schoolid
+                                       select new SchoolView
+                                       {
+                                           schoolid = school.schoolid,
+                                           schoolname = school.schoolname,
+                                           contact = school.contact,
+                                           address = school.address,
+                                           city = school.city,
+                                           state = school.state,
+                                           country = school.country,
+                                           pin = school.pin,
+                                           isactive = school.isactive,
+                                           username = user.firstname+" "+user.lastname,
+                                           curriculum = school.curriculum
+                                       }).ToList();
+            return result;
         }
 
         public List<tbl_users> GetIndividualTeachers()
@@ -36,19 +54,52 @@ namespace BLL.Services
             return _db.tbl_course_branch.ToList();
         }
 
-        public List<tbl_course_topic> GetCourseTopic()
+        public List<CourseTopicView> GetCourseTopic()
         {
-            return _db.tbl_course_topic.ToList();
+            List<CourseTopicView> result = (from topic in _db.tbl_course_topic
+                                        join branch in _db.tbl_course_branch on topic.fk_coursebranchid equals branch.coursebranchid
+                                        orderby topic.coursetopicid
+                                        select new CourseTopicView
+                                        {
+                                            coursetopicid=topic.coursetopicid,
+                                            topicname = topic.topicname,
+                                            branchname = branch.branchname
+                                        }).ToList();
+            return result;
         }
 
-        public List<tbl_course> GetAllCourse()
+        public List<CourseView> GetAllCourse()
         {
-            return _db.tbl_course.ToList();
+            List<CourseView> result = (from course in _db.tbl_course
+                                       join topic in _db.tbl_course_topic on course.fk_coursetopicid equals topic.coursetopicid
+                                       orderby course.courseid
+                                       select new CourseView
+                                       {
+                                           courseid = course.courseid,
+                                           coursename = course.coursename,
+                                           duration = course.duration,
+                                           coursefee = course.coursefee,
+                                           course_desc = course.course_desc,
+                                           startdate = course.startdate,
+                                           courseTopicName = topic.topicname
+                                       }).ToList();
+            return result;
         }
 
-        public List<tbl_subject> GetSubject()
+        public List<SubjectView> GetSubject()
         {
-            return _db.tbl_subject.ToList();
+            List<SubjectView> result = (from subject in _db.tbl_subject
+                                       join school in _db.tbl_school on subject.fkschoolid equals school.schoolid
+                                       join tblclass in _db.tbl_class on subject.fkclassid equals tblclass.classid
+                                       orderby subject.subjectid
+                                       select new SubjectView
+                                       {
+                                           subjectid = subject.subjectid,
+                                           subjectname = subject.subjectname,
+                                           classname=tblclass.classname,
+                                           schoolname= school.schoolname
+                                       }).ToList();
+            return result;
         }
 
         public List<tbl_users> GetUsers()
@@ -160,9 +211,25 @@ namespace BLL.Services
             }
         }
 
-        public tbl_course GetCourse(long courseid)
+        public CourseView GetCourse(long courseid)
         {
-            return _db.tbl_course.Where(x=>x.courseid==courseid).FirstOrDefault();
+            CourseView result = (from course in _db.tbl_course
+                                       join topic in _db.tbl_course_topic on course.fk_coursetopicid equals topic.coursetopicid
+                                       join user in _db.tbl_users on course.fkuserid equals user.userid
+                                       orderby course.courseid
+                                       where course.courseid == courseid
+                                       select new CourseView
+                                       {
+                                           courseid = course.courseid,
+                                           coursename = course.coursename,
+                                           duration = course.duration,
+                                           coursefee = course.coursefee,
+                                           course_desc = course.course_desc,
+                                           startdate = course.startdate,
+                                           courseTopicName = topic.topicname,
+                                           username=user.firstname+" "+user.lastname
+                                       }).FirstOrDefault();
+            return result;
         }
 
         public bool UpdateUser(long userid,tbl_users model)
@@ -481,6 +548,56 @@ namespace BLL.Services
                 if (item != null)
                 {
                     _db.tbl_subject.Remove(item);
+                    _db.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool ChangeUserActiveStatus(long userid)
+        {
+            try
+            {
+                var item = _db.tbl_users.FirstOrDefault(x => x.userid == userid);
+                if (item != null)
+                {
+                    if(item.usertype==2)
+                    {
+                        var item2 = _db.tbl_school.FirstOrDefault(x => x.fkuserid == userid);
+                        item2.isactive = !(item2.isactive == true) ? false : true;
+                        _db.SaveChanges();
+                    }
+                    item.isactive=item.isactive == true ? false : true;
+                    _db.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool ChangeSchoolActiveStatus(long schoolid)
+        {
+            try
+            {
+                var item = _db.tbl_school.FirstOrDefault(x => x.schoolid == schoolid);
+                if (item != null)
+                {
+                    item.isactive = item.isactive == true ? false : true;
                     _db.SaveChanges();
                     return true;
                 }

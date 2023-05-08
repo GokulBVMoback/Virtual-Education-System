@@ -16,58 +16,43 @@
             <thead>
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.email)
+                        User Image
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.pass)
+                        Email
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.usertype)
+                        Pass
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.firstname)
+                        First Name
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.lastname)
+                        Last Name
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.contact)
+                        Contact
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.address)
+                        Address
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.city)
+                        City
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.state)
+                        State
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.country)
+                        Country
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.pin)
+                        Pin
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.fkschoolID)
+                        Active Status
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.isactive)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.cr_date)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.up_date)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.isdelete)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.sex)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.userimage)
+                        Sex
                     </th>
                     <th>Operation</th>
                 </tr>
@@ -78,13 +63,13 @@
                 {
                     <tr>
                         <td>
+                            <img src="../../@item.userimage" height="50" />
+                        </td>
+                        <td>
                             @item.email
                         </td>
                         <td>
                             @item.pass
-                        </td>
-                        <td>
-                            @item.usertype
                         </td>
                         <td>
                             @item.firstname
@@ -111,29 +96,17 @@
                             @item.pin
                         </td>
                         <td>
-                            @item.fkschoolID
-                        </td>
-                        <td>
                             @item.isactive
-                        </td>
-                        <td>
-                            @item.cr_date
-                        </td>
-                        <td>
-                            @item.up_date
-                        </td>
-                        <td>
-                            @item.isdelete
                         </td>
                         <td>
                             @item.sex
                         </td>
                         <td>
-                            @item.userimage
-                        </td>
-                        <td>
                             <a href="@Url.Action("UpdateIndividualTeacher", new { userid = item.userid })" class="update">
                                 Update
+                            </a>
+                            <a href="@Url.Action("ChangeUserActiveStatus", new { userid = item.userid })" class="update">
+                                Active/InActive
                             </a>
                             <a href="@Url.Action("DeleteIndividualTeacher", new { userid = item.userid })" class="delete" onclick="return confirm('Are you sure you wish to delete? This record will no longer exsists.');">
                                 Delete

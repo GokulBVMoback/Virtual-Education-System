@@ -2978,7 +2978,6 @@
     <Content Include="Views\SuperAdmin\ChangePassword.cshtml" />
     <Content Include="Views\SuperAdmin\CreateCourseBranch.cshtml" />
     <Content Include="Views\SuperAdmin\CreateCourseTopic.cshtml" />
-    <Content Include="Views\SuperAdmin\GetCourses.cshtml" />
     <Content Include="Views\SuperAdmin\UpdateSchool.cshtml" />
     <Content Include="Views\SuperAdmin\UpdateSchool2.cshtml" />
     <Content Include="Views\SuperAdmin\UpdateCourseBranch.cshtml" />
@@ -2989,6 +2988,7 @@
     <Content Include="Views\SuperAdmin\UpdateSubject.cshtml" />
     <Content Include="Views\SuperAdmin\UpdateUser.cshtml" />
     <Content Include="Views\SuperAdmin\GetAllIndividualStudent.cshtml" />
+    <Content Include="Views\SuperAdmin\GetCourses.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

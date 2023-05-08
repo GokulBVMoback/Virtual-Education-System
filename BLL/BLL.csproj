@@ -143,7 +143,12 @@
     <Compile Include="Helpers\UtilDropDownHelper.cs" />
     <Compile Include="Helpers\WebHelper.cs" />
     <Compile Include="Mapper.cs" />
+    <Compile Include="Models\CourseTopicView.cs" />
+    <Compile Include="Models\CourseView.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\SchoolView.cs" />
+    <Compile Include="Models\SubjectView.cs" />
+    <Compile Include="Models\UserView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AdminManager.cs" />
     <Compile Include="Services\SchoolManager.cs" />

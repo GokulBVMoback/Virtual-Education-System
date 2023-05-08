@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DAL.Entities.tbl_subject>
+﻿@model IEnumerable<BLL.Models.SubjectView>
 
 @{
     ViewBag.Title = "GetAllSubject";
@@ -15,16 +15,13 @@
             <thead>
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.subjectname)
+                        Subject Name
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.fkclassid)
+                        Class Name
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.cr_date)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.fkschoolid)
+                        School Name
                     </th>
                     <th>Operation</th>
                 </tr>
@@ -38,13 +35,10 @@
                             @item.subjectname
                         </td>
                         <td>
-                            @item.fkclassid
+                            @item.classname
                         </td>
                         <td>
-                            @item.cr_date
-                        </td>
-                        <td>
-                            @item.fkschoolid
+                            @item.schoolname
                         </td>
                         <td>
                             <a href="@Url.Action("UpdateSubject", new { subjectid = item.subjectid })" class="update">

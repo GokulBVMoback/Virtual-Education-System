@@ -18,10 +18,7 @@
             <thead>
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.branchname)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.cr_date)
+                        Branch Name
                     </th>
                     <th>Operation</th>
                 </tr>
@@ -34,9 +31,6 @@
                     <tr>
                         <td>
                             @item.branchname
-                        </td>
-                        <td>
-                            @item.cr_date
                         </td>
                         <td>
                             <a href="@Url.Action("UpdateCourseBranch", new { coursebranchid = item.coursebranchid })" class="update">
