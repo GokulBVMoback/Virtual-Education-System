@@ -9,6 +9,6 @@ namespace BLL.Models
 {
     public class UserView:tbl_users
     {
-        public string UserType { get; set; }
+        public string SchoolName { get; set; }
     }
 }

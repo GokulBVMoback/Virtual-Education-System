@@ -32,6 +32,7 @@ namespace BLL.Services
                                            state = school.state,
                                            country = school.country,
                                            pin = school.pin,
+                                           fkuserid= school.fkuserid,
                                            isactive = school.isactive,
                                            username = user.firstname+" "+user.lastname,
                                            curriculum = school.curriculum
@@ -102,9 +103,31 @@ namespace BLL.Services
             return result;
         }
 
-        public List<tbl_users> GetUsers()
+        public List<UserView> GetUsers()
         {
-            return _db.tbl_users.ToList();
+            List<UserView> result = (from user in _db.tbl_users
+                                    join school in _db.tbl_school on user.fkschoolID equals school.schoolid into userlist
+                                    from schl in userlist.DefaultIfEmpty()
+                                    select new UserView
+                                    {
+                                        userid = user.userid,
+                                        email = user.email,
+                                        pass = user.pass,
+                                        usertype = user.usertype,
+                                        firstname = user.firstname,
+                                        lastname = user.lastname,
+                                        contact = user.contact,
+                                        address = user.address,
+                                        city = user.city,
+                                        state = user.state,
+                                        country = user.country,
+                                        pin = user.pin,
+                                        SchoolName = schl==null?"Not in School":schl.schoolname,
+                                        isactive = user.isactive,
+                                        sex = user.sex,
+                                        userimage = user.userimage
+            }).ToList();
+            return result;
         }
 
         public bool CreateUser(tbl_users model)

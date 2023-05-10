@@ -89,9 +89,18 @@
                             <a href="@Url.Action("UpdateSchool", new { userid = item.fkuserid })" class="update">
                                 Update
                             </a>
-                            <a href="@Url.Action("ChangeSchoolActiveStatus", new { schoolid = item.schoolid })" class="update">
-                                Active/InActive
-                            </a>
+                            @if (item.isactive == true)
+                            {
+                                <a href="@Url.Action("ChangeSchoolActiveStatus", new { schoolid = item.schoolid })" class="update">
+                                    Inactive
+                                </a>
+                            }
+                            else if (item.isactive == false)
+                            {
+                                <a href="@Url.Action("ChangeSchoolActiveStatus", new { schoolid = item.schoolid })" class="update">
+                                    Active
+                                </a>
+                            }
                             <a href="@Url.Action("DeleteSchool", new { userid = item.fkuserid })" class="delete" onclick="return confirm('Are you sure you wish to delete? This record will no longer exsists.');">
                                 Delete
                             </a>

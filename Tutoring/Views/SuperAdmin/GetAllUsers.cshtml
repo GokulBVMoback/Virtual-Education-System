@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DAL.Entities.tbl_users>
+﻿@model IEnumerable<BLL.Models.UserView>
 
 @{
     ViewBag.Title = "GetAllUsers";
@@ -76,9 +76,30 @@
                         <td>
                             @item.pass
                         </td>
-                        <td>
-                            @item.usertype
-                        </td>
+                        @if (item.usertype == 1)
+                        {
+                            <td>
+                                Super Admin
+                            </td>
+                        }
+                        else if (item.usertype == 2)
+                        {
+                            <td>
+                                School
+                            </td>
+                        }
+                        else if (item.usertype == 3)
+                        {
+                            <td>
+                                Teacher
+                            </td>
+                        }
+                        else if (item.usertype == 4)
+                        {
+                            <td>
+                                Student
+                            </td>
+                        }
                         <td>
                             @item.firstname
                         </td>
@@ -104,7 +125,7 @@
                             @item.pin
                         </td>
                         <td>
-                            @item.fkschoolID
+                            @item.SchoolName
                         </td>
                         <td>
                             @item.isactive
@@ -116,13 +137,22 @@
                             <a href="@Url.Action("UpdateUser", new { userid = item.userid })" class="update">
                                 Update
                             </a>
-                            <a href="@Url.Action("ChangeUserActiveStatus", new { userid = item.userid })" class="update">
-                                Active/InActive
-                            </a>
+                            @if (item.isactive == true)
+                             {
+                                <a href="@Url.Action("ChangeUserActiveStatus", new { userid = item.userid })" class="update">                                    
+                                    Inactive
+                                </a>
+                             }
+                            else if (item.isactive == false)
+                            {
+                                <a href="@Url.Action("ChangeUserActiveStatus", new { userid = item.userid })" class="update">
+                                    Active
+                                </a>
+                            }
                             <a href="@Url.Action("DeleteUser", new { userid = item.userid })" class="delete" onclick="return confirm('Are you sure you wish to delete? This record will no longer exsists.');">
-                                Delete
-                            </a>
-                        </td>
+                                    Delete
+                                </a>
+                            </td>
                     </tr>
                 }
 
