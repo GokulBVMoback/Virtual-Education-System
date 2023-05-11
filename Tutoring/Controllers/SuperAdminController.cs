@@ -1,4 +1,5 @@
 ﻿using BLL.Helpers;
+using BLL.Models;
 using BLL.Services;
 using DAL.Entities;
 using DAL.MasterEntity;
@@ -540,9 +541,9 @@ namespace Tutoring.Controllers
         }
 
         [HttpPost]
-        public ActionResult ChangePassword(tbl_users User)
+        public ActionResult ChangePassword(ChangePassword User)
         {
-            var itemdata = usermanager.ChangePassword(User.pass);
+            var itemdata = usermanager.ChangePassword(User);
             if (itemdata == true)
             {
                 return RedirectToAction("Index", "SuperAdmin");

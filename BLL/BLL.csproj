@@ -143,6 +143,7 @@
     <Compile Include="Helpers\UtilDropDownHelper.cs" />
     <Compile Include="Helpers\WebHelper.cs" />
     <Compile Include="Mapper.cs" />
+    <Compile Include="Models\ChangePassword.cs" />
     <Compile Include="Models\CourseTopicView.cs" />
     <Compile Include="Models\CourseView.cs" />
     <Compile Include="Models\LoginModel.cs" />

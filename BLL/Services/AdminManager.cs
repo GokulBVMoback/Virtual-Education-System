@@ -126,7 +126,7 @@ namespace BLL.Services
                                         isactive = user.isactive,
                                         sex = user.sex,
                                         userimage = user.userimage
-            }).ToList();
+                                    }).ToList();
             return result;
         }
 

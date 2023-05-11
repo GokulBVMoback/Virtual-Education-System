@@ -21,14 +21,14 @@ namespace BLL.Services
             return item;
         }
 
-        public bool ChangePassword(string password)
+        public bool ChangePassword(ChangePassword newPassword)
         {
             try
             {
                 var item = _db.tbl_users.FirstOrDefault(x => x.userid == Config.CurrentUser);
-                if (item != null)
+                if (item != null && item.pass==newPassword.OldPassword && newPassword.NewPassword==newPassword.ConfirmPassword)
                 {   
-                    item.pass = password;
+                    item.pass = newPassword.NewPassword;
                     item.up_date=System.DateTime.Now;
                     _db.SaveChanges();
                     return true;
