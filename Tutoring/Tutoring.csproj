@@ -15,7 +15,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Tutoring</RootNamespace>
     <AssemblyName>Tutoring</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort>
@@ -2963,6 +2963,32 @@
     <Content Include="Views\School\TeacherMaster.cshtml" />
     <Content Include="Views\School\CreateTeacher.cshtml" />
     <Content Include="Views\School\UpdateTeacher.cshtml" />
+    <Content Include="Views\School\ClassMaster.cshtml" />
+    <Content Include="Views\School\CreateClass.cshtml" />
+    <Content Include="Views\School\UpdateCLass.cshtml" />
+    <Content Include="Views\SuperAdmin\GetAllSchool.cshtml" />
+    <Content Include="Views\SuperAdmin\GetAllIndividualTeacher.cshtml" />
+    <Content Include="Views\SuperAdmin\GetAllCourseBranch.cshtml" />
+    <Content Include="Views\SuperAdmin\GetAllCourseTopic.cshtml" />
+    <Content Include="Views\SuperAdmin\GetAllCourses.cshtml" />
+    <Content Include="Views\SuperAdmin\GetAllSubject.cshtml" />
+    <Content Include="Views\SuperAdmin\GetAllUsers.cshtml" />
+    <Content Include="Views\SuperAdmin\CreateSchool.cshtml" />
+    <Content Include="Views\SuperAdmin\CreateSchool2.cshtml" />
+    <Content Include="Views\SuperAdmin\CreateCourseBranch.cshtml" />
+    <Content Include="Views\SuperAdmin\CreateCourseTopic.cshtml" />
+    <Content Include="Views\SuperAdmin\UpdateSchool.cshtml" />
+    <Content Include="Views\SuperAdmin\UpdateSchool2.cshtml" />
+    <Content Include="Views\SuperAdmin\UpdateCourseBranch.cshtml" />
+    <Content Include="Views\SuperAdmin\UpdateCourseTopic.cshtml" />
+    <Content Include="Views\SuperAdmin\UpdateIndividualTeacher.cshtml" />
+    <Content Include="Views\SuperAdmin\UpdateIndividualStudent.cshtml" />
+    <Content Include="Views\SuperAdmin\UpdateIndividualStudent2.cshtml" />
+    <Content Include="Views\SuperAdmin\UpdateSubject.cshtml" />
+    <Content Include="Views\SuperAdmin\UpdateUser.cshtml" />
+    <Content Include="Views\SuperAdmin\GetAllIndividualStudent.cshtml" />
+    <Content Include="Views\SuperAdmin\GetCourses.cshtml" />
+    <Content Include="Views\SuperAdmin\ChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

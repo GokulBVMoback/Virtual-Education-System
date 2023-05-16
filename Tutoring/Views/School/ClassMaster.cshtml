@@ -1,0 +1,53 @@
+﻿@model DAL.Entities.tbl_users
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_schoolLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">All Classes</h3><br /><br />
+        <a href="@Url.Action("CreateClass","School")" class="create">
+            Create
+        </a>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>ClassName</th>
+                    <th>Section</th>
+                   
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in ViewBag.data)
+                {
+
+
+                <tr>
+                    
+                    <td>@item.classname</td>
+                    <td>
+                        @item.section
+                    </td>
+                    
+                    <td>
+                        <a href="@Url.Action("UpdateClass", new { classid = item.classid })" class="update">
+                           Update
+                        </a>
+                        <a href="@Url.Action("DeleteClass", new { classid = item.classid })" class="delete" onclick="return confirm('Are you sure you wish to delete? This record will no longer exsists.');">
+                          Delete
+                        </a>
+                       
+                    </td>
+                    
+
+                </tr>
+                }
+
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>

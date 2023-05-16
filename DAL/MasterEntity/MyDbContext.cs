@@ -28,6 +28,13 @@ namespace DAL.MasterEntity
 
         public DbSet<tbl_school> tbl_school { get; set; }
 
+        public DbSet<tbl_class> tbl_class { get; set; }
+        public DbSet<tbl_course> tbl_course { get; set; }
+        public DbSet<tbl_course_branch> tbl_course_branch { get; set; }
+        public DbSet<tbl_course_topic> tbl_course_topic { get; set; }
+        public DbSet<tbl_subject> tbl_subject { get; set; }
+        public DbSet<tbl_student> tbl_student { get; set; }
+
         #endregion
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

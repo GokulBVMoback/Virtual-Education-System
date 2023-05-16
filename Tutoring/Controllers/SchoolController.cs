@@ -15,6 +15,7 @@ namespace Tutoring.Controllers
     public class SchoolController : Controller
     {
         TeacherManager teachermanager = new TeacherManager();
+        SchoolManager schoolmanager = new SchoolManager();
         MyDbContext _db = new MyDbContext();
         // GET: School
         public ActionResult Index()
@@ -133,5 +134,85 @@ namespace Tutoring.Controllers
 
 
         }
+
+
+
+        public ActionResult ClassMaster()
+        {
+            if (Config.CurrentUser == 0)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            var classdata = schoolmanager.Classlist(Config.User.fkschoolID);
+            ViewBag.data = classdata;
+            return View();
+        }
+
+
+        public ActionResult CreateClass(string msg)
+        {
+            if (Config.CurrentUser == 0)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            ViewBag.msg = msg;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateClass(tbl_class model)
+        {
+            string s1;
+
+
+            var itemdata = schoolmanager.CreateClass(model);
+            if (itemdata == true)
+            {
+                return RedirectToAction("ClassMaster", "School");
+            }
+            else
+            {
+                return RedirectToAction("ClassMaster", "School", new { @msg = "Something went wrong" });
+            }
+
+            return View();
+        }
+        public ActionResult DeleteClass(long Classid)
+        {
+            var itemdata = schoolmanager.DeleteClass(Classid);
+
+            return RedirectToAction("Classmaster", "School");
+
+
+        }
+
+        public ActionResult UpdateCLass(int classid)
+        {
+            if (Config.CurrentUser == 0)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            var itemdata = _db.tbl_class.First(x => x.classid == classid);
+           
+            return View(itemdata);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateCLass(tbl_class model)
+        {
+            var itemdata = schoolmanager.UpdateClass(model);
+            if (itemdata == true)
+            {
+                return RedirectToAction("Classmaster", "School");
+            }
+            else
+            {
+                return RedirectToAction("updateclass", "School", new { @msg = "Something went wrong" });
+            }
+
+            return View();
+        }
+
+
     }
 }
