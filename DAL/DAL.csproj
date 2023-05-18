@@ -78,9 +78,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\changepassword.cs" />
     <Compile Include="Entities\tbl_class.cs" />
     <Compile Include="Entities\tbl_school.cs" />
+    <Compile Include="Entities\tbl_subject.cs" />
+    <Compile Include="Entities\tbl_timetable.cs" />
     <Compile Include="Entities\tbl_users.cs" />
+    <Compile Include="Entities\Timetableview.cs" />
     <Compile Include="MasterEntity\MyDbContext.cs" />
     <Compile Include="Migrations\201804251826070_Initial.cs" />
     <Compile Include="Migrations\201804251826070_Initial.Designer.cs">
