@@ -1,0 +1,74 @@
+﻿@model IEnumerable<BLL.Models.CourseView>
+
+@{
+    ViewBag.Title = "GetAllCourses";
+    Layout = "~/Views/Shared/_superAdminLayout.cshtml";
+}
+
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">All Courses</h3><br /><br />
+        <a href="@Url.Action("CreateCourse","SuperAdmin")" class="create">
+            Create
+        </a>
+    </div>
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        Course Name
+                    </th>
+                    <th>
+                        Duration
+                    </th>
+                    <th>
+                        Course fee
+                    </th>
+                    <th>
+                        Course Description
+                    </th>
+                    <th>
+                        Start Date
+                    </th>
+                    <th>
+                        Course Topic Name
+                    </th>
+                    <th>Operation</th>
+                </tr>
+                </thead>
+            <tbody>
+
+                @foreach (var item in ViewBag.data)
+                {
+                    <tr>
+                        <td>
+                            @item.coursename
+                        </td>
+                        <td>
+                            @item.duration
+                        </td>
+                        <td>
+                            @item.coursefee
+                        </td>
+                        <td>
+                            @item.course_desc
+                        </td>
+                        <td>
+                            @item.startdate
+                        </td>
+                        <td>
+                            @item.courseTopicName
+                        </td>
+                        <td>
+                            <a href="@Url.Action("GetCourses", new { courseid = item.courseid })" class="update">
+                                Details
+                            </a>
+                        </td>
+                    </tr>
+                }
+
+        </table>
+        </div>
+</div>

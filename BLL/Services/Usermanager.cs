@@ -1,4 +1,5 @@
-﻿using BLL.Models;
+﻿using BLL.Helpers;
+using BLL.Models;
 using DAL.Entities;
 using DAL.MasterEntity;
 using System;
@@ -18,6 +19,29 @@ namespace BLL.Services
         {
             var item = _db.tbl_users.FirstOrDefault(x => x.email == model.UserName && x.pass == model.Password);
             return item;
+        }
+
+        public bool ChangePassword(ChangePassword newPassword)
+        {
+            try
+            {
+                var item = _db.tbl_users.FirstOrDefault(x => x.userid == Config.CurrentUser);
+                if (item != null && item.pass==newPassword.OldPassword && newPassword.NewPassword==newPassword.ConfirmPassword)
+                {   
+                    item.pass = newPassword.NewPassword;
+                    item.up_date=System.DateTime.Now;
+                    _db.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }
