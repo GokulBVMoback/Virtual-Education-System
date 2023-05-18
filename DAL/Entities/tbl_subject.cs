@@ -18,6 +18,4 @@ namespace DAL.Entities
         public DateTime? cr_date { get; set; }
         public long fkschoolid { get; set; }
     }
-
 }
-
