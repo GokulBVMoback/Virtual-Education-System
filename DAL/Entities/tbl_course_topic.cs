@@ -8,16 +8,13 @@ using System.Threading.Tasks;
 
 namespace DAL.Entities
 {
-    [Table("tbl_subject")]
-    public class tbl_subject
+    [Table("tbl_course_topic")]
+    public class tbl_course_topic
     {
         [Key]
-        public long subjectid { get; set; }
-        public string subjectname { get; set; }
-        public long fkclassid { get; set; }
+        public long coursetopicid { get; set; }
+        public string topicname { get; set; }
+        public long fk_coursebranchid { get; set; }
         public DateTime? cr_date { get; set; }
-        public long fkschoolid { get; set; }
     }
-
 }
-
