@@ -126,12 +126,8 @@
     <Compile Include="Mapper.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\Change Password.cs" />
-    <Compile Include="Services\StudentManager.cs" />
     <Compile Include="Services\SchoolManager.cs" />
-    <Compile Include="Services\SubjectManager.cs" />
     <Compile Include="Services\TeacherManager.cs" />
-    <Compile Include="Services\TimetableManager.cs" />
     <Compile Include="Services\Usermanager.cs" />
   </ItemGroup>
   <ItemGroup>
