@@ -42,21 +42,6 @@ namespace BLL.Helpers
             }
         }
 
-        public static tbl_users SchoolUser
-        {
-            get
-            {
-                if (System.Web.HttpContext.Current.Session["SchoolUser"] == null)
-                    return null;
-                else
-                    return (tbl_users)System.Web.HttpContext.Current.Session["SchoolUser"];
-            }
-            set
-            {
-                System.Web.HttpContext.Current.Session["SchoolUser"] = value;
-            }
-        }
-
         //public static UsersProfile UsersProfile
         //{
         //    get

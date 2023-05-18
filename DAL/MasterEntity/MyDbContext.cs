@@ -32,11 +32,6 @@ namespace DAL.MasterEntity
         public DbSet<tbl_subject> tbl_subject { get; set; }
         public DbSet<tbl_timetable> tbl_timetable { get; set; }
         public DbSet<Timetableview> Timetableview { get; set; }
-        public DbSet<tbl_course> tbl_course { get; set; }
-        public DbSet<tbl_course_branch> tbl_course_branch { get; set; }
-        public DbSet<tbl_course_topic> tbl_course_topic { get; set; }
-        public DbSet<tbl_student> tbl_student { get; set; }
-
         #endregion
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
