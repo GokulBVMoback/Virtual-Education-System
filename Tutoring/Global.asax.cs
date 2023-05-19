@@ -44,6 +44,7 @@ namespace Tutoring
 
 
         protected void Application_PostAuthorizeRequest()
+        
         {
             if (IsWebApiRequest())
             {

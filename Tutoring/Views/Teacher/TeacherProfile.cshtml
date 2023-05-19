@@ -1,0 +1,71 @@
+﻿@model DAL.Entities.tbl_users
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_teacherLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Profile</h3><br /><br />
+        @*<a href="@Url.Action("Profile","Teacher")" class="create">
+                Create
+            </a>*@
+    </div>
+    <!-- /.card-header -->
+
+   
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Lastname</th>
+                    <th>Sex</th>
+                    <th>Contact</th>
+                    <th>Address</th>
+                    <th>Email</th>
+                    <th>State</th>
+                    <th>Country</th>
+                    <th>Pincode</th>
+                    <th>Image</th>
+
+
+
+
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in ViewBag.data)
+                {
+                    <tr>
+                        <td>@item.firstname</td>
+                        <td>@item.lastname</td>
+                        <td>@item.sex</td>
+                        <td>@item.contact</td>
+                        <td>@item.address</td>
+                        <td>@item.email</td>
+                        <td>@item.state</td>
+                        <td>@item.country</td>
+                        <td>@item.pin</td>
+                        <td>@item.userimage</td>
+
+
+                        @*<td>
+                                <a href="@Url.Action("UpdateCourse", new { studentid = item.studentid })" class="update">
+                                   Update
+                                </a>
+                                <a href="@Url.Action("DeleteCourse", new { studentid = item.studentid })" class="delete" onclick="return confirm('Are you sure you wish to delete? This record will no longer exsists.');">
+                                  Delete
+                                </a>
+
+                            </td>*@
+
+
+                    </tr>
+                }
+
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>

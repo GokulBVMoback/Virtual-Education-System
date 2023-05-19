@@ -1,5 +1,7 @@
 ﻿@using System.Web.Optimization
 @using BLL.Helpers
+@using DAL.Entities
+
 <!DOCTYPE html>
 
 <html>
@@ -70,13 +72,17 @@
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link">Home</a>
                 </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="@Url.Action("Logout", "Home")" class="nav-link">Logout</a>
                 </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="@Url.Action("ChangePassword", "Teacher")" class="nav-link">Change Password</a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="@Url.Action("Login", "Home")" class="nav-link">Logout</a>
+
             </ul>
 
             <!-- Right navbar links -->
-            
+
         </nav>
         <!-- /.navbar -->
         <!-- Main Sidebar Container -->
@@ -92,21 +98,21 @@
                 <!-- Sidebar user (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     @*<div class="image">
-                        <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-                    </div>*@
+                            <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                        </div>*@
                     <div class="info">
                         <a href="#" class="d-block">Welcome</a>
                     </div>
                 </div>
 
-                
+
 
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-                             with font-awesome or any other icon font library -->
-                     
+    with font-awesome or any other icon font library -->
+
                         <li class="nav-item">
                             <a href="../calendar.html" class="nav-link">
                                 <i class="nav-icon far fa-calendar-alt"></i>
@@ -116,7 +122,89 @@
                                 </p>
                             </a>
                         </li>
-                       
+
+                        @if (Config.User.fkschoolID == 0)
+                         {
+                            <li class="nav-item">
+                                <a href="@Url.Action("Course", "Teacher")" class="nav-link">
+                                    <i class="nav-icon far fa-calendar-alt"></i>
+                                    <p>
+                                        Courses
+                                        <span class="badge badge-info right">2</span>
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="@Url.Action("courseStudent", "Teacher")" class="nav-link">
+                                    <i class="nav-icon far fa-calendar-alt"></i>
+                                    <p>
+                                        Student
+                                        <span class="badge badge-info right">2</span>
+                                    </p>
+                                </a>
+                            </li>
+                         }
+
+                        <li class="nav-item">
+                            <a href="@Url.Action("Timetable", "Teacher")" class="nav-link">
+                                <i class="nav-icon far fa-calendar-alt"></i>
+                                <p>
+                                    Timetable
+                                    <span class="badge badge-info right">2</span>
+                                </p>
+                            </a>
+                        </li>
+
+                        @if (Config.User.fkschoolID != 0)
+                        {
+                            <li class="nav-item">
+                                <a href="@Url.Action("Subjects", "Teacher")" class="nav-link">
+                                    <i class="nav-icon far fa-calendar-alt"></i>
+                                    <p>
+                                        Subjects
+                                        <span class="badge badge-info right">2</span>
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="@Url.Action("Student", "Teacher")" class="nav-link">
+                                    <i class="nav-icon far fa-calendar-alt"></i>
+                                    <p>
+                                        Student
+                                        <span class="badge badge-info right">2</span>
+                                    </p>
+                                </a>
+                            </li>
+                        }
+
+
+                        <li class="nav-item">
+                            <a href="@Url.Action("Profile", "Teacher")" class="nav-link">
+                                <i class="nav-icon far fa-calendar-alt"></i>
+                                <p>
+                                    Profile
+                                    <span class="badge badge-info right">2</span>
+                                </p>
+                            </a>
+                        </li>
+
+
+
+                        @*@if (Model.email == "teacher@domain.com")
+        {
+          <li class="nav-item">
+              <a href="@Url.Action("Profile", "Teacher")" class="nav-link">
+                  <i class="nav-icon far fa-calendar-alt"></i>
+                  <p>
+                      Subjects
+                      <span class="badge badge-info right">2</span>
+                  </p>
+              </a>
+          </li>
+        }*@
+
+
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -128,7 +216,7 @@
         <div class="content-wrapper">
 
             @RenderBody()
-          
+
         </div>
         <!-- /.content-wrapper -->
         <footer class="main-footer">
