@@ -121,9 +121,8 @@ namespace BLL.Services
                 tbl_student student = new tbl_student();
                 student.firstname = model.firstname;
                 student.lastname = model.lastname;
-                student.fatherName = model.fatherName;
-                student.motherName = model.motherName;
-
+                student.fathername = model.fathername;
+                student.mothername = model.mothername;
                 student.contact = model.contact;
                 student.address = model.address;
                 student.city = model.city;

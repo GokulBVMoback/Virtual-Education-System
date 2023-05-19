@@ -279,8 +279,8 @@ namespace Tutoring.Controllers
                 student.email = model.email;
                 student.lastname = model.lastname;
                 student.firstname = model.firstname;
-                student.motherName = model.motherName;
-                student.fatherName = model.fatherName;
+                student.mothername = model.motherName;
+                student.fathername = model.fatherName;
                 student.sex = model.sex;
                 student.fkclassid = model.fkclassId;
                 student.fkschoolid = model.fkschoolID;
