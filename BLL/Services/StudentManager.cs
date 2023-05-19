@@ -1,4 +1,5 @@
 ﻿using BLL.Helpers;
+using BLL.Models;
 using DAL.Entities;
 using DAL.MasterEntity;
 using Microsoft.AspNet.Identity;
@@ -8,6 +9,8 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CourseView = DAL.Entities.CourseView;
+using SubjectView = DAL.Entities.SubjectView;
 
 namespace BLL.Services
 {
@@ -27,7 +30,7 @@ namespace BLL.Services
         }
         public List<Timetableview> TimetableForSchoolStudent(long FKschoolID, DateTime currentDate)
         {
-            var user = _db.tbl_students.FirstOrDefault(x => x.fkuserid == Config.CurrentUser);
+            var user = _db.tbl_student.FirstOrDefault(x => x.fkuserid == Config.CurrentUser);
             var item = _db.Timetableview.Where(x => x.fkschoolid == FKschoolID && x.fkclassid == user.fkclassid && x.nameofday == currentDate.DayOfWeek.ToString()).ToList();
             return item;
         }
@@ -38,7 +41,7 @@ namespace BLL.Services
             {
                 if (FkSchoolId != 0)
                 {
-                    var user = _db.tbl_students.FirstOrDefault(x => x.fkuserid == Config.CurrentUser);
+                    var user = _db.tbl_student.FirstOrDefault(x => x.fkuserid == Config.CurrentUser);
                     long id = user.fkclassid;
                     var item = _db.subjectView.Where(x => x.schoolid == FkSchoolId && x.classid == user.fkclassid).ToList();
                     return item;

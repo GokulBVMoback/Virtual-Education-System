@@ -1,4 +1,5 @@
 ﻿using BLL.Helpers;
+using BLL.Models;
 using BLL.Services;
 using DAL.Entities;
 using DAL.MasterEntity;
@@ -164,7 +165,6 @@ namespace Tutoring.Controllers
             {
                 return RedirectToAction("ChangePassword", "Student", new { @msg = "Something went wrong" });
             }
-            return View();
         }
 
         public ActionResult Profile()
