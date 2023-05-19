@@ -1,0 +1,47 @@
+﻿
+@model DAL.Entities.Timetableview
+@{
+    ViewBag.Title = "TimetableForSchoolStudent";
+    Layout = "~/Views/Shared/_studentLayout.cshtml";
+}
+<div class="card">
+    <div class="card-header">
+
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Nameofday</th>
+                    <th>Period Number</th>
+                    <th>Teacher Name</th>
+                    <th>Class</th>
+                    <th>Subject name</th>
+                    <th>Section</th>
+                    <th>Link<th>
+                  
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in ViewBag.data)
+                {
+                    <tr>
+
+                        <td>@item.nameofday</td>
+                        <td> @item.periodnumber </td>
+                        <td>@item.firstname</td>
+                        <td> @item.classname </td>
+                        <td>@item.subjectname</td>
+                        <td> @item.section </td>
+                        <td>
+                           <a href="@Url.Action("#","Student")" class="btn btn-primary">Link</a>
+                        </td>
+                    </tr>
+                }
+
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>

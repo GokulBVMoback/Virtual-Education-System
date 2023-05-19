@@ -1,4 +1,5 @@
-﻿using BLL.Models;
+﻿using BLL.Helpers;
+using BLL.Models;
 using DAL.Entities;
 using DAL.MasterEntity;
 using System;
@@ -17,6 +18,11 @@ namespace BLL.Services
         public tbl_users Login (LoginModel model)
         {
             var item = _db.tbl_users.FirstOrDefault(x => x.email == model.UserName && x.pass == model.Password);
+            return item;
+        }
+        public tbl_users Profile()
+        {
+            var item = _db.tbl_users.FirstOrDefault(x => x.userid == Config.CurrentUser);
             return item;
         }
     }

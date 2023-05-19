@@ -2384,6 +2384,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="ApplicationInsights.config">
@@ -2963,6 +2964,18 @@
     <Content Include="Views\School\ClassMaster.cshtml" />
     <Content Include="Views\School\CreateClass.cshtml" />
     <Content Include="Views\School\UpdateCLass.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Student\ChangePassword.cshtml" />
+    <Content Include="Views\Student\Profile.cshtml" />
+    <Content Include="Views\Student\CouseMaster.cshtml" />
+    <Content Include="Views\Student\TimetableForSchoolStudent.cshtml" />
+    <Content Include="Views\Student\SubjectView.cshtml" />
+    <Content Include="Views\Student\TeacherViewForIndividualStudents.cshtml" />
+    <Content Include="Views\Student\TeacherViewForStudent.cshtml" />
+    <Content Include="Views\Student\TimetableForIndividualStudent.cshtml" />
+    <Content Include="Views\Student\GetIndividualStudentDetails.cshtml" />
+    <Content Include="Views\Student\PurchaseCouse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

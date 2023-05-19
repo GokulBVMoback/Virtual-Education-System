@@ -1,0 +1,48 @@
+﻿@model DAL.Entities.CourseView
+@{
+    ViewBag.Title = "CouseMaster";
+    Layout = "~/Views/Shared/_studentLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+    
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>coursename</th>
+                    <th>duration</th>
+                    <th>coursefee</th>
+                    <th>course_desc</th>
+                    <th>startdate</th>
+                    <th>TeacherNAme</th>
+                    <th>Email</th>
+                    <th>topicname</th>
+                    <th>branchname</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in ViewBag.data)
+                {
+                    <tr>
+
+                        <td>@item.coursename</td>
+                        <td> @item.duration </td>
+                        <td>@item.coursefee</td>
+                        <td> @item.course_desc </td>
+                        <td> @item.startdate </td>
+                        <td> @item.firstname,@item.lastname </td>
+                        <td> @item.email </td>
+                        <td> @item.topicname </td>
+                        <td>@item.branchname</td>
+                    </tr>
+                }
+
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>
