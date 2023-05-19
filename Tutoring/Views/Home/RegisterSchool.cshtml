@@ -1,0 +1,254 @@
+﻿@model Tutoring.Models.School_Reg
+@*@model Tutoring.Controllers.MyViewModel*@
+
+
+@{
+    Layout = "~/Views/Shared/_PublicLayout.cshtml";
+
+}
+
+
+<div class="container-fluid">
+    <div class="card">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="header headerborder">
+                    <h4 class="title" style="margin-left:20px">
+                        Sign Up School
+
+                    </h4>
+                </div>
+            </div>
+        </div>
+        @if (ViewBag.issuccess)
+        {
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Congratulations!</strong> Your account has been successfully created.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @*<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                    <symbol id="check-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                    </symbol>
+                    <symbol id="info-fill" viewBox="0 0 16 16">
+                        <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+                    </symbol>
+                    <symbol id="exclamation-triangle-fill" viewBox="0 0 16 16">
+                        <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                    </symbol>
+                </svg>*@
+
+
+            @*<div class="alert alert-success d-flex align-items-center" role="alert">
+                    <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill" /></svg>
+                    <div>
+                        Congratulations! Your account has been successfully created.
+                    </div>
+                </div>*@
+
+
+        }
+
+
+        <div class="row">
+            <div class="col-md-6 col-lg-offset-2">
+
+                <div class="content" style="margin:3% !important;">
+                    @using (Html.BeginForm("RegisterSchool", "Home", FormMethod.Post,
+                                          new { enctype = "multipart/form-data", @data_ajax = "false" }))
+                    {
+                        <div class="form-group">
+                            <label class="control-label" style="padding-bottom:10px;">
+                                Email
+                            </label>
+
+                            @Html.TextBoxFor(x => x.email, new { @class = "form-control", @placeholder = "Email", required = "required" })
+
+                            @Html.ValidationMessageFor(x => x.email, "", new { @class = "text-danger" })
+
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" style="padding-bottom:10px;">
+                                Password
+                            </label>
+
+                            @Html.TextBoxFor(x => x.pass, new { @class = "form-control", @placeholder = "Password", required = "required", type = "pass", id = "pass" })
+
+                            @Html.ValidationMessageFor(x => x.pass, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" style="padding-bottom:10px;">
+                                User Type
+                            </label>
+
+                            <label for="User Types"></label>
+
+
+                            @*@using (Html.BeginForm("MyAction", "Home", FormMethod.Post))
+                {
+                    @Html.DropDownListFor(model => model.SelectedEnumValue, new SelectList(Enum.GetValues(typeof(MyEnum)), Model.SelectedEnumValue))
+                    <input type="submit" value="Submit" />
+                }*@
+
+
+                            @*@Html.DropDownListFor(m => m.usertype, ViewBag.UserType as SelectList, null)*@
+                            @Html.DropDownListFor(x => x.usertype, EnumHelper.GetSelectList(typeof(Tutoring.Controllers.UserType)), "Select User Type", new { @class = "form-control" })
+
+
+                            @*@Html.TextBoxFor(x => x.usertype, new { @class = "form-control", @placeholder = "User Type", required = "required" })*@
+
+                            <!--@Html.ValidationMessageFor(x => x.usertype, "", new { @class = "text-danger" })-->
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label" style="padding-bottom:10px;">
+                                First Name
+                            </label>
+
+                            @Html.TextBoxFor(x => x.firstname, new { @class = "form-control", @placeholder = "First Name", required = "required" })
+
+                            @Html.ValidationMessageFor(x => x.firstname, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" style="padding-bottom:10px;">
+                                Last Name
+                            </label>
+
+                            @Html.TextBoxFor(x => x.lastname, new { @class = "form-control", @placeholder = "Last Name", required = "required" })
+
+                            @Html.ValidationMessageFor(x => x.lastname, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" style="padding-bottom:10px;">
+                                Contact
+                            </label>
+
+                            @Html.TextBoxFor(x => x.contact, new { @class = "form-control", @placeholder = "Contact", required = "required" })
+
+                            @Html.ValidationMessageFor(x => x.contact, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label" style="padding-bottom:10px;">
+                                Address
+                            </label>
+
+                            @Html.TextBoxFor(x => x.address, new { @class = "form-control", @placeholder = "Address", required = "required" })
+
+                            @Html.ValidationMessageFor(x => x.address, "", new { @class = "text-danger" })
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="control-label" style="padding-bottom:10px;">
+                                City
+                            </label>
+
+                            @Html.TextBoxFor(x => x.city, new { @class = "form-control", @placeholder = "City", required = "required" })
+
+                            @Html.ValidationMessageFor(x => x.city, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label" style="padding-bottom:10px;">
+                                State
+                            </label>
+
+                            @Html.TextBoxFor(x => x.state, new { @class = "form-control", @placeholder = "State", required = "required" })
+
+                            @Html.ValidationMessageFor(x => x.state, "", new { @class = "text-danger" })
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="control-label" style="padding-bottom:10px;">
+                                Country
+                            </label>
+
+                            @Html.TextBoxFor(x => x.country, new { @class = "form-control", @placeholder = "Country", required = "required" })
+
+                            @Html.ValidationMessageFor(x => x.country, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label" style="padding-bottom:10px;">
+                                Pin
+                            </label>
+
+                            @Html.TextBoxFor(x => x.pin, new { @class = "form-control", @placeholder = "Pin", required = "required" })
+
+                            @Html.ValidationMessageFor(x => x.pin, "", new { @class = "text-danger" })
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="control-label" style="padding-bottom:10px;">
+                                School Name
+                            </label>
+
+                            @Html.TextBoxFor(x => x.schoolname, new { @class = "form-control", @placeholder = "School Name", required = "required" })
+
+                            @Html.ValidationMessageFor(x => x.schoolname, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" style="padding-bottom:10px;">
+                                Curriculum
+                            </label>
+
+                            @Html.TextBoxFor(x => x.curriculum, new { @class = "form-control", @placeholder = "Curriculum", required = "required" })
+
+                            @Html.ValidationMessageFor(x => x.curriculum, "", new { @class = "text-danger" })
+                        </div>
+
+
+
+                        <div class="editor-field">
+                            <label class="control-label" style="padding-bottom:10px;">
+                                Sex :
+                            </label>
+
+
+                            Male
+                            @Html.RadioButtonFor(model => model.sex, "Male")
+                            FeMale
+                            @Html.RadioButtonFor(model => model.sex, "FeMale")
+
+                        </div>
+
+
+
+
+
+
+
+
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-3">
+                                <input type="submit" class="btn btn-success" value="Submit">
+
+                            </div>
+
+
+
+                        </div>
+
+
+                    }
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+    </div>
+</div>
+
+

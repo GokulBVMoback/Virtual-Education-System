@@ -32,12 +32,12 @@ namespace BLL.Services
                 tbl_users users = new tbl_users();
                 users.state = model.state;
                 users.email = model.email;
-                users.isactive = model.isactive;
+                users.isactive =true;
                 users.address = model.address;
                 users.city = model.city;
                 users.country = model.country;
                 users.pin = model.pin;
-                users.cr_date = System.DateTime.Now;
+                users.cr_date =DateTime.Now;
                 users.firstname = model.firstname;
                 users.lastname = model.lastname;
                 users.pass = model.pass;
@@ -109,5 +109,40 @@ namespace BLL.Services
                 return false;
             }
         }
-    }
-}
+             
+            //public bool TeacherRegister(tbl_users model)
+            //    {
+            //        try
+            //        {
+            //            tbl_users teacher = new tbl_users();
+            //            teacher.firstname = model.firstname;
+            //            teacher.lastname = model.lastname;
+            //            teacher.contact = model.contact;
+            //            teacher.address = model.address;
+            //            teacher.city = model.city;
+            //            teacher.state = model.state;
+            //            teacher.country = model.country;
+            //            teacher.pin = model.pin;
+            //            teacher.fkschoolID = model.fkschoolID;
+
+            //            teacher.sex = model.sex;
+            //            teacher.userimage = model.userimage;
+            //            teacher.usertype = model.usertype;
+            //            teacher.email = model.email;
+            //            teacher.pass = model.pass;
+
+
+            //            _db.tbl_users.Add(teacher);
+            //            _db.SaveChanges();
+            //            return true;
+            //        }
+            //        catch
+            //        {
+            //            return false;
+            //        }
+               // }
+            }
+
+        }
+    
+
