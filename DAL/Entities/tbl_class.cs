@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ThirdParty.BouncyCastle.Math;
 
 namespace DAL.Entities
 {
@@ -16,6 +17,7 @@ namespace DAL.Entities
         public string classname { get; set; }
         public string section { get; set; }
         public DateTime? cr_date { get; set; }
-        public long fkschoolid { get; }
+        public long fkschoolid { get; set; }
     }
 }
+

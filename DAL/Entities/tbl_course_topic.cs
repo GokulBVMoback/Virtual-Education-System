@@ -18,3 +18,4 @@ namespace DAL.Entities
         public DateTime? cr_date { get; set; }
     }
 }
+

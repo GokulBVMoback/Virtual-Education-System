@@ -14,12 +14,12 @@ namespace DAL.Entities
     {
         [Key]
         public long courseid { get; set; }
-        public string coursename { get; set;}
+        public string coursename { get; set; }
         public string duration { get; set; }
         public string coursefee { get; set; }
-        public string course_desc{ get; set; }
-        public DateTime startdate { get; set;}
-        public long fk_coursetopicid { get; set;}
+        public string course_desc { get; set; }
+        public DateTime? startdate { get; set; }
+        public long fk_coursetopicid { get; set; }
         public DateTime? cr_date { get; set; }
         public long fkuserid { get; set; }
 

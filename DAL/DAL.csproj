@@ -81,6 +81,7 @@
     <Compile Include="Entities\CourseView.cs" />
     <Compile Include="Entities\studentView.cs" />
     <Compile Include="Entities\SubjectView.cs" />
+    <Compile Include="Entities\changepassword.cs" />
     <Compile Include="Entities\tbl_class.cs" />
     <Compile Include="Entities\tbl_course.cs" />
     <Compile Include="Entities\tbl_course_branch.cs" />

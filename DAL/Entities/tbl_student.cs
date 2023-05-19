@@ -8,12 +8,9 @@ using System.Threading.Tasks;
 
 namespace DAL.Entities
 {
-    
-
     [Table("tbl_student")]
     public class tbl_student
     {
-        //tbl_school school=new tbl_school();
         [Key]
         public long studentid { get; set; }
         public string firstname { get; set; }

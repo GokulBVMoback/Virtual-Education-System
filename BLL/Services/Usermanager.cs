@@ -4,6 +4,7 @@ using DAL.Entities;
 using DAL.MasterEntity;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations.Builders;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,24 +22,35 @@ namespace BLL.Services
             return item;
         }
 
-        public bool ChangePassword(string password)
+        public bool ChangePassword(ChangePassword newPassword)
         {
             try
             {
-                var pass=_db.tbl_users.FirstOrDefault(a=>a.userid==Config.CurrentUser);
-                if (pass != null)
-                {
-                    pass.pass=password;
-                    pass.up_date=System.DateTime.Now;
+                var item = _db.tbl_users.FirstOrDefault(x => x.userid == Config.CurrentUser);
+                if (item != null && item.pass==newPassword.OldPassword && newPassword.NewPassword==newPassword.ConfirmPassword)
+                {   
+                    item.pass = newPassword.NewPassword;
+                    item.up_date=System.DateTime.Now;
                     _db.SaveChanges();
                     return true;
                 }
-                return false;
+                else
+                {
+                    return false;
+                }
+
             }
             catch
             {
                 return false;
             }
         }
+      
+        public tbl_users Profile()
+        {
+            var item = _db.tbl_users.FirstOrDefault(x => x.userid == Config.CurrentUser);
+                return item;
+        }
+
     }
 }
