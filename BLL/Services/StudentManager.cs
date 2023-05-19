@@ -75,7 +75,7 @@ namespace BLL.Services
         }
         public List<CourseView> courseViews()
         {
-            var item = _db.CourseView.ToList();
+            var item = _db.courseView.ToList();
             return item;
         }
         public List<TeacherViewForStudent> TeacherViewForIndividualStudents()//TeacherViewForIndividualStudents
