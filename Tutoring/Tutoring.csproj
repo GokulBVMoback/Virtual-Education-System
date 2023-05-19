@@ -143,6 +143,7 @@
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -205,6 +206,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.Helpers.dll</HintPath>
     </Reference>
@@ -242,6 +244,7 @@
     <Reference Include="System.Web.Optimization">
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
     </Reference>
@@ -2976,6 +2979,40 @@
     <Content Include="Views\Student\TimetableForIndividualStudent.cshtml" />
     <Content Include="Views\Student\GetIndividualStudentDetails.cshtml" />
     <Content Include="Views\Student\PurchaseCouse.cshtml" />
+    <Content Include="Views\School\CreateStudent.cshtml" />
+    <Content Include="Views\School\StudentMaster.cshtml" />
+    <Content Include="Views\School\UpdateStudent.cshtml" />
+    <Content Include="Views\School\SubjectMaster.cshtml" />
+    <Content Include="Views\School\CreateSubject.cshtml" />
+    <Content Include="Views\School\UpdateSubject.cshtml" />
+    <Content Include="Views\School\ChangePassword.cshtml" />
+    <Content Include="Views\School\TimetableMaster.cshtml" />
+    <Content Include="Views\School\CreateTimetable.cshtml" />
+    <Content Include="Views\School\UpdateTimetable.cshtml" />
+    <Content Include="Views\SuperAdmin\GetAllSchool.cshtml" />
+    <Content Include="Views\SuperAdmin\GetAllIndividualTeacher.cshtml" />
+    <Content Include="Views\SuperAdmin\GetAllCourseBranch.cshtml" />
+    <Content Include="Views\SuperAdmin\GetAllCourseTopic.cshtml" />
+    <Content Include="Views\SuperAdmin\GetAllCourses.cshtml" />
+    <Content Include="Views\SuperAdmin\GetAllSubject.cshtml" />
+    <Content Include="Views\SuperAdmin\GetAllUsers.cshtml" />
+    <Content Include="Views\SuperAdmin\CreateSchool.cshtml" />
+    <Content Include="Views\SuperAdmin\CreateSchool2.cshtml" />
+    <Content Include="Views\SuperAdmin\CreateCourseBranch.cshtml" />
+    <Content Include="Views\SuperAdmin\CreateCourseTopic.cshtml" />
+    <Content Include="Views\SuperAdmin\UpdateSchool.cshtml" />
+    <Content Include="Views\SuperAdmin\UpdateSchool2.cshtml" />
+    <Content Include="Views\SuperAdmin\UpdateCourseBranch.cshtml" />
+    <Content Include="Views\SuperAdmin\UpdateCourseTopic.cshtml" />
+    <Content Include="Views\SuperAdmin\UpdateIndividualTeacher.cshtml" />
+    <Content Include="Views\SuperAdmin\UpdateIndividualStudent.cshtml" />
+    <Content Include="Views\SuperAdmin\UpdateIndividualStudent2.cshtml" />
+    <Content Include="Views\SuperAdmin\UpdateSubject.cshtml" />
+    <Content Include="Views\SuperAdmin\UpdateUser.cshtml" />
+    <Content Include="Views\SuperAdmin\GetAllIndividualStudent.cshtml" />
+    <Content Include="Views\SuperAdmin\GetCourses.cshtml" />
+    <Content Include="Views\SuperAdmin\ChangePassword.cshtml" />
+    <Content Include="Views\School\Profile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

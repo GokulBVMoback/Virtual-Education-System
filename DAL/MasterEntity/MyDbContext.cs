@@ -27,24 +27,21 @@ namespace DAL.MasterEntity
         #region [My Entities]
 
         public DbSet<tbl_users> tbl_users { get; set; }
-
         public DbSet<tbl_school> tbl_school { get; set; }
-
         public DbSet<tbl_class> tbl_class { get; set; }
-
         public DbSet<UserDisplay> UserDisplay { get; set; }
-
-        public DbSet<tbl_student> tbl_students { get; set; }
-
         public DbSet<SubjectView> subjectView { get; set; }
-
         public DbSet<CourseView> CourseView { get; set; }
-        public DbSet<Timetableview> Timetableview { get; set; }
-
         public DbSet<TeacherViewForStudent> teacherViewForIndividualStudents { get; set; }
         public DbSet<IndividualStudent> individualStudents { get; set; }
-
         public DbSet<PurchaseCouseView> purchaseCouseViews { get; set; }
+        public DbSet<tbl_subject> tbl_subject { get; set; }
+        public DbSet<tbl_timetable> tbl_timetable { get; set; }
+        public DbSet<Timetableview> Timetableview { get; set; }
+        public DbSet<tbl_course> tbl_course { get; set; }
+        public DbSet<tbl_course_branch> tbl_course_branch { get; set; }
+        public DbSet<tbl_course_topic> tbl_course_topic { get; set; }
+        public DbSet<tbl_student> tbl_student { get; set; }
 
         #endregion
 
