@@ -1,0 +1,300 @@
+﻿@model DAL.Entities.tbl_users
+@using BLL.Helpers
+
+
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_teacherLayout.cshtml";
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Profile</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="@Url.Action("Index","Teacher")">Home</a></li>
+                    <li class="breadcrumb-item active">User Profile</li>
+                    @if (Config.User.fkschoolID == 0)
+                     {
+                        <li class="breadcrumb-item"><a href="@Url.Action("UpdateTeacher","Teacher")">Update User Profile</a></li>
+                     }
+
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
+                <!-- Profile Image -->
+                <div class="card card-primary card-outline">
+                    <div class="card-body box-profile">
+                        <div class="text-center">
+                            <img class="profile-user-img img-fluid img-circle"
+                                 src="../../@Model.userimage"
+                                 alt="User profile picture">
+                        </div>
+                        <h3 class="profile-username text-center">
+                            @Html.DisplayFor(model => model.firstname)  @Html.DisplayFor(model => model.lastname)
+                        </h3>
+                        <p class="text-muted text-center">Software Engineer</p>
+
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+                <!-- About Me Box -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">About Me</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <strong><i class="fas fa-book mr-1"></i> Education</strong>
+                        <p class="text-muted">
+                            B.S. in Computer Science from the University of Tennessee at Knoxville
+                        </p>
+                        <hr>
+                        <strong><i class="far fa-file-alt mr-1"></i> Address</strong>
+                        <p class="text-muted">
+                            @Html.DisplayFor(model => model.address)
+                        </p>
+                        <hr>
+                        <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
+                        <p class="text-muted">
+                            @Html.DisplayFor(model => model.country)
+                            @Html.DisplayFor(model => model.state)
+                            @Html.DisplayFor(model => model.city)
+
+                        </p>
+                        <hr>
+                        <strong><i class="fas fa-pencil-alt mr-1"></i> Skills</strong>
+                        <p class="text-muted">
+                            <span class="tag tag-danger">UI Design</span>
+                            <span class="tag tag-success">Coding</span>
+                            <span class="tag tag-info">Javascript</span>
+                            <span class="tag tag-warning">PHP</span>
+                            <span class="tag tag-primary">Node.js</span>
+                        </p>
+                        <hr>
+                        <strong><i class="far fa-file-alt mr-1"></i> Notes</strong>
+                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-header p-2">
+                        <ul class="nav nav-pills">
+                            <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Description</a></li>
+
+                        </ul>
+                    </div><!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <div class="active tab-pane" id="activity">
+                                <!-- Post -->
+                                <div class="post">
+
+                                    <p>
+                                        Lorem ipsum represents a long-held tradition for designers,
+                                        typographers and the like. Some people hate it and argue for
+                                        its demise, but others ignore the hate as they create awesome
+                                        tools to help create filler text for everyone from bacon lovers
+                                        to Charlie Sheen fans.
+                                    </p>
+
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <!-- /.tab-content -->
+                    </div><!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>
+
+<!------<h2>Profile</h2>
+
+<div>
+    <h4>tbl_users</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>-->
+<!---->
+<!---->@*@Html.DisplayNameFor(model => model.email)*@<!---->
+<!--<!--Email
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.email)
+</dd>
+
+
+<!--<dt>-->
+<!----><!---->
+<!----><!--@*@Html.DisplayNameFor(model => model.firstname)*@<!----><!---->
+<!--<!--First Name
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.firstname)
+</dd>
+
+<dt>-->
+<!----><!---->
+<!----><!--@*@Html.DisplayNameFor(model => model.lastname)*@<!----><!---->
+<!--<!--Last Name
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.lastname)
+</dd>-->
+<!--<dt>--><!---->
+<!---->@*@Html.DisplayNameFor(model => model.contact)*@<!---->
+<!--<!--Contact
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.contact)
+</dd>
+
+<dt>-->
+<!---->
+<!---->@*@Html.DisplayNameFor(model => model.address)*@<!---->
+<!--<!--Address
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.address)
+</dd>
+
+<dt>-->
+<!---->
+<!---->@*@Html.DisplayNameFor(model => model.city)*@<!---->
+<!--<!--City
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.city)
+</dd>
+
+<dt>-->
+<!---->
+<!---->@*@Html.DisplayNameFor(model => model.state)*@<!---->
+<!--<!--State
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.state)
+</dd>
+
+<dt>-->
+<!---->
+<!---->@*@Html.DisplayNameFor(model => model.country)*@<!---->
+<!--<!--Country
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.country)
+</dd>
+
+<dt>-->
+<!---->
+<!---->@*@Html.DisplayNameFor(model => model.pin)*@<!---->
+<!--<!--Pincode
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.pin)
+</dd>-->
+<!---->
+<!---->@*<dt>
+        @Html.DisplayNameFor(model => model.fkschoolID)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.fkschoolID)
+    </dd>*@
+
+@*<dt>
+        @Html.DisplayNameFor(model => model.isactive)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.isactive)
+    </dd>*@
+
+@*<dt>
+        @Html.DisplayNameFor(model => model.cr_date)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.cr_date)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.up_date)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.up_date)
+    </dd>*@
+
+@*<dt>
+        @Html.DisplayNameFor(model => model.isdelete)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.isdelete)
+    </dd>*@<!---->
+<!--<!--<dt>--><!---->
+<!---->@*@Html.DisplayNameFor(model => model.sex)*@<!---->
+<!--<!--Sex
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.sex)
+</dd>
+
+<dt>-->
+<!---->
+<!---->@*@Html.DisplayNameFor(model => model.userimage)*@<!---->
+<!--<!--Image
+</dt>-->
+<!---->
+<!---->@*<dd>
+        <img src="../../@Model.userimage" height="50" />
+    </dd>*@
+
+@*</dl>
+    <p>
+
+        @if (BLL.Helpers.Config.User.fkschoolID != 0)
+        {
+        <p>
+
+            <a href="@Url.Action("UpdateTeacher", new { userid = Model.userid })" class="update">
+                Update
+            </a>
+
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    }
+        </p>*@<!---->

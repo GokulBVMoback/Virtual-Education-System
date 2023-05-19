@@ -1,0 +1,66 @@
+﻿@model DAL.Entities.CourseView
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_teacherLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">All Courses</h3><br /><br />
+        <a href="@Url.Action("CreateCourse","Teacher")" class="create">
+            Create
+        </a>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    @*<th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Email</th>*@
+                    <th>Course Name</th>
+                    <th>Topicname</th>
+                    <th>Branchname</th>
+                    <th>Duration</th>
+                    <th>Course fee</th>
+                    <th>Course desc</th>
+                    <th>Start date</th>
+
+
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in ViewBag.Course)
+                {
+                <tr>
+                    @*<td>@item.firstname</td>
+                    <td>@item.lastname</td>*@
+                    @*<td>@item.email</td>*@
+                    <td>@item.coursename</td>
+                    <td>@item.topicname</td>
+                    <td>@item.branchname</td>
+                    <td>@item.duration</td>
+                    <td>@item.coursefee</td>
+                    <td>@item.course_desc</td>
+                    <td>@item.startdate</td>
+
+                    <td>
+                        <a href="@Url.Action("UpdateCourse", new { courseid = item.courseid })" class="update">
+                           Update
+                        </a>
+                        <a href="@Url.Action("DeleteCourse", new { courseid = item.courseid })" class="delete" onclick="return confirm('Are you sure you wish to delete? This record will no longer exsists.');">
+                          Delete
+                        </a>
+                       
+                    </td>
+                    
+
+                </tr>
+                }
+
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>

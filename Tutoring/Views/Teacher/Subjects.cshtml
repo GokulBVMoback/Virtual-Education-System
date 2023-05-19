@@ -1,0 +1,54 @@
+﻿@model DAL.Entities.SubjectView
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_teacherLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Subjects</h3><br /><br />
+        @*<a href="@Url.Action("Student","Teacher")" class="create">
+                Create
+            </a>*@
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Subjectname</th>
+                    <th>Classname</th>
+                    <th>Section</th>
+                    <th>School Name</th>
+                   
+
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in ViewBag.data)
+                {
+                    <tr>
+                        <td>@item.subjectname</td>
+                        <td>@item.classname</td>
+                        <td>@item.section</td>
+                        <td>@item.schoolname</td>
+
+                        @*<td>
+            <a href="@Url.Action("UpdateCourse", new { studentid = item.studentid })" class="update">
+               Update
+            </a>
+            <a href="@Url.Action("DeleteCourse", new { studentid = item.studentid })" class="delete" onclick="return confirm('Are you sure you wish to delete? This record will no longer exsists.');">
+              Delete
+            </a>
+
+        </td>*@
+
+
+                    </tr>
+                }
+
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>

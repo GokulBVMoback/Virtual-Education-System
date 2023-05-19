@@ -71,12 +71,14 @@
                     <a href="#" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
+                    <a href="@Url.Action("ChangePassword", "School")" class="nav-link">Change Password</a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
                     <a href="@Url.Action("Logout", "Home")" class="nav-link">Logout</a>
                 </li>
             </ul>
-
             <!-- Right navbar links -->
-            
+
         </nav>
         <!-- /.navbar -->
         <!-- Main Sidebar Container -->
@@ -173,7 +175,6 @@
                                 </p>
                             </a>
                         </li>
-
                         <li class="nav-item">
                             <a href="@Url.Action("ChangePassword", "School")" class="nav-link">
                                 <i class="nav-icon far fa-calendar-alt"></i>

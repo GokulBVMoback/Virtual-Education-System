@@ -38,17 +38,19 @@ namespace BLL.Services
                 {
                     return false;
                 }
+
             }
             catch
             {
                 return false;
             }
         }
-        
+      
         public tbl_users Profile()
         {
             var item = _db.tbl_users.FirstOrDefault(x => x.userid == Config.CurrentUser);
                 return item;
         }
+
     }
 }

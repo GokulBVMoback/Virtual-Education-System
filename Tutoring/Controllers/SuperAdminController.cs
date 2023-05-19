@@ -487,7 +487,7 @@ namespace Tutoring.Controllers
                 return RedirectToAction("Login", "Home");
             }
             ViewBag.msg = msg;
-            return View();
+            return View(new tbl_users());
         }
 
         [HttpPost]
