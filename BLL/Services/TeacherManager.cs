@@ -130,7 +130,7 @@ namespace BLL.Services
         /// <returns></returns>
 
         //Retrive
-        public List< CourseView >CouserList()
+        public List<DAL.Entities.CourseView> CouserList()
         {
             var result = _db.courseView.ToList();
             return result;
@@ -337,9 +337,9 @@ namespace BLL.Services
         //.....................................................................................................................................//
 
         //subject Retreive
-        public List<SubjectView> GetSubjects(long schoolid)
+        public List<DAL.Entities.SubjectView> GetSubjects(long schoolid)
         {
-            List<SubjectView> sub = _db.subjectView.Where(s => s.schoolid == schoolid).ToList();
+            List<DAL.Entities.SubjectView> sub = _db.subjectView.Where(s => s.schoolid == schoolid).ToList();
             return sub;
         }
 

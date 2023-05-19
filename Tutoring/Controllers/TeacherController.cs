@@ -8,7 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.IO;
-
+using BLL.Models;
 
 namespace Tutoring.Controllers
 {
@@ -300,9 +300,9 @@ namespace Tutoring.Controllers
         }
 
         [HttpPost]
-        public ActionResult ChangePassword(tbl_users user)
+        public ActionResult ChangePassword(ChangePassword user)
         {
-            var item = usermanager.ChangePassword(user.pass);
+            var item = usermanager.ChangePassword(user);
             if(item==true)
             {
                 return RedirectToAction("Profile", "Teacher");
@@ -322,7 +322,7 @@ namespace Tutoring.Controllers
         [HttpGet]
         public ActionResult Subjects()
         {
-            List<SubjectView> subjects = teacherManager.GetSubjects(Config.User.fkschoolID);
+            List<DAL.Entities.SubjectView> subjects = teacherManager.GetSubjects(Config.User.fkschoolID);
             ViewBag.data = subjects;
             return View();
         }

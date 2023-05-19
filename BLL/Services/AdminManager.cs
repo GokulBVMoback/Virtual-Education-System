@@ -10,6 +10,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using CourseView = BLL.Models.CourseView;
+using SubjectView = BLL.Models.SubjectView;
 
 namespace BLL.Services
 {
