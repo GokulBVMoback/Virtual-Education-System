@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace BLL.Services
 {
-    public  class SchoolManager
+    public class SchoolManager
     {
         MyDbContext _db = new MyDbContext();
         public List<tbl_class> Classlist(long FKschoolID)
         {
-            
+
             var item = _db.tbl_class.Where(x => x.fkschoolid == FKschoolID).ToList();
             return item;
         }
@@ -27,7 +27,7 @@ namespace BLL.Services
                 users.section = model.section;
                 users.cr_date = System.DateTime.Now;
                 users.fkschoolid = Config.CurrentUser;
-              
+
                 _db.tbl_class.Add(users);
                 _db.SaveChanges();
                 return true;
@@ -67,7 +67,7 @@ namespace BLL.Services
                 {
                     item.classname = model.classname;
                     item.section = model.section;
-                   
+
                     _db.SaveChanges();
                     return true;
                 }
@@ -79,6 +79,41 @@ namespace BLL.Services
             catch
             {
                 return false;
+            }
+
+
+
+
+
+        }
+
+        public long CreateSchool(tbl_school model)
+        {
+            try
+            {
+                tbl_school school = new tbl_school();
+                school.schoolname = model.schoolname;
+                school.address = model.address;
+                school.city = model.city;
+                school.state = model.state;
+                school.country = model.country;
+                school.curriculum = model.curriculum;
+                school.pin = model.pin;
+                school.contact = model.contact;
+                school.isactive = true;
+                school.cr_date = DateTime.Now;
+                school.isdelete = false;
+                school.fkuserid = model.fkuserid;
+                school.schoolname=model.schoolname;
+
+                _db.tbl_school.Add(school);
+                _db.SaveChanges();
+                var id = school.schoolid;
+                return id;
+            }
+            catch
+            {
+                return 0;
             }
 
         }

@@ -40,12 +40,12 @@ namespace BLL.Services
                 tbl_users users = new tbl_users();
                 users.state = model.state;
                 users.email = model.email;
-                users.isactive = model.isactive;
+                users.isactive =true;
                 users.address = model.address;
                 users.city = model.city;
                 users.country = model.country;
                 users.pin = model.pin;
-                users.cr_date = System.DateTime.Now;
+                users.cr_date =DateTime.Now;
                 users.firstname = model.firstname;
                 users.lastname = model.lastname;
                 users.pass = model.pass;
