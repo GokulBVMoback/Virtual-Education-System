@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using ThirdParty.BouncyCastle.Math;
 
 namespace BLL.Services
 {
@@ -15,16 +17,22 @@ namespace BLL.Services
     {
         MyDbContext _db = new MyDbContext();
 
+
+        /// <summary>
+        /// crud for teacher
+        /// </summary>
+        /// <param name="FKschoolID"></param>
+        /// <returns></returns>
+
+        //Retrieve
         public List<tbl_users> TeacherList(long FKschoolID)
         {
             int id = Convert.ToInt32(Constant.Teacher.ToString());
-            var item = _db.tbl_users.Where(x => x.fkschoolID==FKschoolID && x.usertype==id && x.isdelete==false).ToList();
+            var item = _db.tbl_users.Where(x => x.fkschoolID == FKschoolID && x.usertype == id && x.isdelete == false).ToList();
             return item;
         }
 
-
-       
-
+        //create
         public bool CreateTeacher(tbl_users model)
         {
             try
@@ -54,6 +62,8 @@ namespace BLL.Services
                 return false;
             }
         }
+
+        //update
         public bool UpdateTeacher(tbl_users model)
         {
             try
@@ -88,6 +98,8 @@ namespace BLL.Services
             }
 
         }
+
+        //delete
         public bool DeleteTeacher(long UserID)
         {
             try
@@ -109,40 +121,228 @@ namespace BLL.Services
                 return false;
             }
         }
-             
-            //public bool TeacherRegister(tbl_users model)
-            //    {
-            //        try
-            //        {
-            //            tbl_users teacher = new tbl_users();
-            //            teacher.firstname = model.firstname;
-            //            teacher.lastname = model.lastname;
-            //            teacher.contact = model.contact;
-            //            teacher.address = model.address;
-            //            teacher.city = model.city;
-            //            teacher.state = model.state;
-            //            teacher.country = model.country;
-            //            teacher.pin = model.pin;
-            //            teacher.fkschoolID = model.fkschoolID;
 
-            //            teacher.sex = model.sex;
-            //            teacher.userimage = model.userimage;
-            //            teacher.usertype = model.usertype;
-            //            teacher.email = model.email;
-            //            teacher.pass = model.pass;
+        //.........................................................................................................//
+        /// <summary>
+        /// crud for courses
+        /// </summary>
+        /// <param name="FKuserId"></param>
+        /// <returns></returns>
 
+        //Retrive
+        public List<DAL.Entities.CourseView> CouserList()
+        {
+            var result = _db.courseView.ToList();
+            return result;
+        }
 
-            //            _db.tbl_users.Add(teacher);
-            //            _db.SaveChanges();
-            //            return true;
-            //        }
-            //        catch
-            //        {
-            //            return false;
-            //        }
-               // }
+        //Create
+        public bool CreateCourse(tbl_course model)
+        {
+            try
+            {
+                tbl_course course = new tbl_course();
+                course.coursename=model.coursename;
+                course.duration= model.duration;
+                course.coursefee= model.coursefee;
+                course.course_desc = model.course_desc;
+                course.startdate =model.startdate;
+                course.fkuserid = Config.CurrentUser;
+                course.cr_date=System.DateTime.Now;
+                course.fk_coursetopicid= model.fk_coursetopicid;
+                _db.tbl_course.Add(course);
+                _db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        //update
+        public bool UpdateCourse(tbl_course model)
+        {
+            try
+            {
+                var item = _db.tbl_course.FirstOrDefault(x => x.courseid == model.courseid);
+                if (item != null)
+                {
+                    item.coursename = model.coursename;
+                    item.duration = model.duration;
+                    item.coursefee = model.coursefee;
+                    item.course_desc = model.course_desc;
+                    item.startdate = model.startdate;
+                    item.fk_coursetopicid= model.fk_coursetopicid;
+                    _db.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
             }
 
         }
-    
 
+        //delete
+        public bool DeleteCourse(long courseid)
+        {
+            try
+            {
+                var item = _db.tbl_course.FirstOrDefault(x => x.courseid == courseid);
+                if (item != null)
+                {
+                    _db.tbl_course.Remove(item);
+                    _db.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        //...............................................................................................................//
+
+        /// <summary>
+        /// crud for time table
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        /// 
+
+        //retrieve
+        public List<Timetableview> Timetable(long userid,DateTime currentDate)
+        {
+            var result = _db.Timetableview.Where(s=>s.fkteacherid== userid && s.nameofday==currentDate.DayOfWeek.ToString()).ToList();
+            return result;
+        }
+
+        //create
+        public bool CreateTimetable(tbl_timetable model)
+        {
+            try
+            {
+               
+
+                tbl_timetable timetable = new tbl_timetable();
+                timetable.nameofday=model.nameofday;
+                timetable.periodnumber=model.periodnumber;
+                timetable.fkteacherid = Config.CurrentUser;
+                timetable.fksubjectid = model.fksubjectid;  
+                timetable.fkclassid=model.fkclassid;
+                timetable.fkschoolid = Config.User.fkschoolID;
+                timetable.cr_date=System.DateTime.Now;
+                _db.tbl_timetable.Add(timetable);
+                _db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        //update
+        public bool UpdateTimetable(tbl_timetable model)
+        {
+            try
+            {
+                var item = _db.tbl_timetable.FirstOrDefault(x => x.timetableid == model.timetableid);
+                if (item != null)
+                {
+                    item.nameofday = model.nameofday;
+                    item.periodnumber = model.periodnumber;
+                    item.fksubjectid = model.fksubjectid;   
+                    item.fkclassid = model.fkclassid;
+                    _db.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+
+        }
+
+        //delete
+        public bool DeleteTimetable(long timetableid)
+        {
+            try
+            {
+                var item = _db.tbl_timetable.FirstOrDefault(x => x.timetableid == timetableid);
+                if (item != null)
+                {
+                    _db.tbl_timetable.Remove(item);
+                    _db.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        //......................................................................................................................//
+        /// <summary>
+        /// Retrieve student details
+        /// </summary>
+        /// <param name="schoolid"></param>
+        /// <returns></returns>
+       
+        //for School Teacher
+        public List<tbl_student> GetStudent(long schoolid)
+        {
+            List<tbl_student> students = _db.tbl_student.Where(s => s.fkschoolid == schoolid).ToList();
+            return students;
+        }
+
+        //for Individual teacher
+        public List<TeacherCouseView>GetCourseStudent(long schoolid)
+        {
+            List<TeacherCouseView>courseStudent=_db.teacherCouseViews.Where(s=>s.fkschoolID==schoolid).ToList();
+            return courseStudent;
+        }
+
+
+        //......................................................................................................................//
+
+        //Profile Retreive
+        public tbl_users TeacherProfile(long userid)
+        {
+            var result = _db.tbl_users.Where(a=>a.userid==userid).FirstOrDefault();
+            return result;
+        }
+
+        //.....................................................................................................................................//
+
+        //subject Retreive
+        public List<DAL.Entities.SubjectView> GetSubjects(long schoolid)
+        {
+            List<DAL.Entities.SubjectView> sub = _db.subjectView.Where(s => s.schoolid == schoolid).ToList();
+            return sub;
+        }
+
+        //.....................................................................................................................................//
+    }
+}

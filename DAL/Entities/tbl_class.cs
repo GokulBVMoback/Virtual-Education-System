@@ -20,3 +20,4 @@ namespace DAL.Entities
         public long fkschoolid { get; set; }
     }
 }
+

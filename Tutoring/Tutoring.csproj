@@ -52,6 +52,9 @@
     <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="AWSSDK.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL">
+      <HintPath>..\packages\AWSSDK.Core.3.7.106.24\lib\net45\AWSSDK.Core.dll</HintPath>
+    </Reference>
     <Reference Include="BigBlueButtonSDK">
       <HintPath>C:\Users\Naveen Rana\Desktop\BigBlueButtonSDK\BigBlueButtonSDK\obj\Debug\BigBlueButtonSDK.dll</HintPath>
     </Reference>
@@ -2385,6 +2388,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="ApplicationInsights.config">
@@ -2961,12 +2965,61 @@
     <Content Include="Views\School\TeacherMaster.cshtml" />
     <Content Include="Views\School\CreateTeacher.cshtml" />
     <Content Include="Views\School\UpdateTeacher.cshtml" />
+    <Content Include="Views\Teacher\Course.cshtml" />
+    <Content Include="Views\Teacher\CreateCourse.cshtml" />
+    <Content Include="Views\Teacher\UpdateCourse.cshtml" />
+    <Content Include="Views\Teacher\UpdateTimetable.cshtml" />
+    <Content Include="Views\Teacher\Timetable.cshtml" />
+    <Content Include="Views\Teacher\Student.cshtml" />
+    <Content Include="Views\Teacher\CreateTimetable.cshtml" />
+    <Content Include="Views\Teacher\TeacherProfile.cshtml" />
+    <Content Include="Views\Teacher\Profile.cshtml" />
+    <Content Include="Views\Teacher\ChangePassword.cshtml" />
+    <Content Include="Views\Teacher\Subjects.cshtml" />
+    <Content Include="Views\Teacher\UpdateTeacher.cshtml" />
+    <Content Include="Views\Teacher\courseStudent.cshtml" />
     <Content Include="Views\School\ClassMaster.cshtml" />
     <Content Include="Views\School\CreateClass.cshtml" />
     <Content Include="Views\School\UpdateCLass.cshtml" />
     <Content Include="Views\Home\RegisterSchool.cshtml" />
     <Content Include="Views\Home\RegisterTeacher.cshtml" />
     <Content Include="Views\Home\RegisterStudent.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\School\CreateStudent.cshtml" />
+    <Content Include="Views\School\StudentMaster.cshtml" />
+    <Content Include="Views\School\UpdateStudent.cshtml" />
+    <Content Include="Views\School\SubjectMaster.cshtml" />
+    <Content Include="Views\School\CreateSubject.cshtml" />
+    <Content Include="Views\School\UpdateSubject.cshtml" />
+    <Content Include="Views\School\ChangePassword.cshtml" />
+    <Content Include="Views\School\TimetableMaster.cshtml" />
+    <Content Include="Views\School\CreateTimetable.cshtml" />
+    <Content Include="Views\School\UpdateTimetable.cshtml" />
+    <Content Include="Views\SuperAdmin\GetAllSchool.cshtml" />
+    <Content Include="Views\SuperAdmin\GetAllIndividualTeacher.cshtml" />
+    <Content Include="Views\SuperAdmin\GetAllCourseBranch.cshtml" />
+    <Content Include="Views\SuperAdmin\GetAllCourseTopic.cshtml" />
+    <Content Include="Views\SuperAdmin\GetAllCourses.cshtml" />
+    <Content Include="Views\SuperAdmin\GetAllSubject.cshtml" />
+    <Content Include="Views\SuperAdmin\GetAllUsers.cshtml" />
+    <Content Include="Views\SuperAdmin\CreateSchool.cshtml" />
+    <Content Include="Views\SuperAdmin\CreateSchool2.cshtml" />
+    <Content Include="Views\SuperAdmin\CreateCourseBranch.cshtml" />
+    <Content Include="Views\SuperAdmin\CreateCourseTopic.cshtml" />
+    <Content Include="Views\SuperAdmin\UpdateSchool.cshtml" />
+    <Content Include="Views\SuperAdmin\UpdateSchool2.cshtml" />
+    <Content Include="Views\SuperAdmin\UpdateCourseBranch.cshtml" />
+    <Content Include="Views\SuperAdmin\UpdateCourseTopic.cshtml" />
+    <Content Include="Views\SuperAdmin\UpdateIndividualTeacher.cshtml" />
+    <Content Include="Views\SuperAdmin\UpdateIndividualStudent.cshtml" />
+    <Content Include="Views\SuperAdmin\UpdateIndividualStudent2.cshtml" />
+    <Content Include="Views\SuperAdmin\UpdateSubject.cshtml" />
+    <Content Include="Views\SuperAdmin\UpdateUser.cshtml" />
+    <Content Include="Views\SuperAdmin\GetAllIndividualStudent.cshtml" />
+    <Content Include="Views\SuperAdmin\GetCourses.cshtml" />
+    <Content Include="Views\SuperAdmin\ChangePassword.cshtml" />
+    <Content Include="Views\School\Profile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,66 @@
+﻿@model DAL.Entities.tbl_subject
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_schoolLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="card">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="header headerborder">
+                    <h4 class="title" style="margin-left:20px">
+                        Add Subjects  
+                      
+                    </h4>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-lg-offset-2">
+                <div>
+                    @if (ViewBag.msg != null)
+                    {
+                        <h1 style="color:red">@ViewBag.msg</h1>
+                    }
+                </div>
+                <div class="content" style="margin:3% !important;">
+                    @using (Html.BeginForm("CreateSubject", "School", FormMethod.Post,
+                                      new { enctype = "multipart/form-data", @data_ajax = "false" }))
+                    {
+
+
+                        <div class="form-group">
+                            <label class="control-label" style="padding-bottom:10px;">
+                               Subject name
+                            </label>
+
+                            @Html.TextBoxFor(x => x.subjectname, new { @class = "form-control", @placeholder = "Subject Name", required = "required" })
+
+                            @Html.ValidationMessageFor(x => x.subjectname, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" style="padding-bottom:10px;">
+                               ClassId
+                            </label>
+
+                            @Html.TextBoxFor(x => x.fkclassid, new { @class = "form-control", @placeholder = "ClassId", required = "required" })
+
+                            @Html.ValidationMessageFor(x => x.fkclassid, "", new { @class = "text-danger" })
+                        </div>
+                       
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-3">
+                                <input id="send" type="submit" class="btn btn-success" value="Submit">
+                                <a href="@Url.Action("SubjectMaster","School")" class="btn btn-primary">Cancel</a>
+
+                            </div>
+                        </div>
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

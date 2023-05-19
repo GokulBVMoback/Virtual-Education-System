@@ -1,0 +1,109 @@
+﻿@model IEnumerable<DAL.Entities.tbl_student>
+
+@{
+    ViewBag.Title = "GetAllIndividualStudent";
+    Layout = "~/Views/Shared/_superAdminLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">All Individual Students</h3><br /><br />
+    </div>
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        First Name
+                    </th>
+                    <th>
+                        Last Name
+                    </th>
+                    <th>
+                        Father Name
+                    </th>
+                    <th>
+                        Mother Name
+                    </th>
+                    <th>
+                        Sex
+                    </th>
+                    <th>
+                        Contact
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                        Address
+                    </th>
+                    <th>
+                        City
+                    </th>
+                    <th>
+                        State
+                    </th>
+                    <th>
+                        Country
+                    </th>
+                    <th>
+                        Pin
+                    </th>
+                    <th>Operation</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in ViewBag.data)
+                {
+                    <tr>
+                        <td>
+                            @item.firstname
+                        </td>
+                        <td>
+                            @item.lastname
+                        </td>
+                        <td>
+                            @item.fathername
+                        </td>
+                        <td>
+                            @item.mothername
+                        </td>
+                        <td>
+                            @item.sex
+                        </td>
+                        <td>
+                            @item.contact
+                        </td>
+                        <td>
+                            @item.email
+                        </td>
+                        <td>
+                            @item.address
+                        </td>
+                        <td>
+                            @item.city
+                        </td>
+                        <td>
+                            @item.state
+                        </td>
+                        <td>
+                            @item.country
+                        </td>
+                        <td>
+                            @item.pin
+                        </td>
+                        <td>
+                            <a href="@Url.Action("UpdateIndividualStudent", new { userid = item.fkuserid })" class="update">
+                                Update
+                            </a>
+                            <a href="@Url.Action("DeleteIndividualStudent", new { userid = item.fkuserid })" class="delete" onclick="return confirm('Are you sure you wish to delete? This record will no longer exsists.');">
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
+
+        </table>
+    </div>
+</div>

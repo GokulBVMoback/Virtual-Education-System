@@ -18,7 +18,7 @@ namespace DAL.Entities
         public long userid { get; set; }
         public string email { get; set; }
         public string pass { get; set; }
-        public int? usertype { get; set; }
+        public int usertype { get; set; }
         public string firstname { get; set; }
         public string lastname { get; set; }
         public string contact { get; set; }
