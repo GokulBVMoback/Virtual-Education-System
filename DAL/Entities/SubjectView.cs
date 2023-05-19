@@ -5,19 +5,24 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ThirdParty.BouncyCastle.Math;
 
 namespace DAL.Entities
 {
-    [Table("tbl_class")]
-    public class tbl_class
+    [Table("SubjectView")]
+   
+    public class SubjectView/* :tbl_subject*/
     {
         [Key]
+        public long subjectid { get; set; }
+        public string subjectname { get; set; }
         public long classid { get; set; }
         public string classname { get; set; }
         public string section { get; set; }
-        public DateTime? cr_date { get; set; }
-        public long fkschoolid { get; set; }
+        public string schoolname { get; set; }
+        public long schoolid { get; set; }
+
+
+        //public string classname { get; set; }
+        //public string schoolname { get; set; }
     }
 }
-
