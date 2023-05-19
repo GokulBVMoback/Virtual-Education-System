@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace DAL.Entities
 {
-    public class ChangePassword
+    public class changepassword
     {
         public long UserId { get; set; }
         public string OldPassword { get; set; }
-
         public string NewPassword { get; set; }
     }
 }
