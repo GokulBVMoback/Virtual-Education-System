@@ -70,8 +70,28 @@ namespace Tutoring.Controllers
         }
 
         [HttpPost]
-        public ActionResult UpdateTeacher(tbl_users model)
+        public ActionResult UpdateTeacher(tbl_users model, HttpPostedFileBase uploadFile1)
         {
+            SuperAdminController admin = new SuperAdminController();
+            string s1;
+
+            if (uploadFile1 != null)
+            {
+                string prefix = "Teacher";
+                s1 = admin.UploadImage(prefix, uploadFile1);
+                //string path = Server.MapPath("~/Content/UserImage/");
+                //if (!Directory.Exists(path))
+                //{
+                //    Directory.CreateDirectory(path);
+                //}
+                //Random rd = new Random();
+                //int num = rd.Next(100000, 200000);
+                //string filename = "School" + num + ".jpg";
+                //uploadFile1.SaveAs(path + filename);
+                //s1 = "Content/UserImage/" + filename;
+            }
+            else { s1 = "0"; }
+            model.userimage = s1;
 
             var itemdata = teacherManager.UpdateTeacher(model);
             if (itemdata == true)

@@ -224,7 +224,7 @@ namespace BLL.Services
         //retrieve
         public List<Timetableview> Timetable(long userid,DateTime currentDate)
         {
-            var result = _db.timetableview.Where(s=>s.fkteacherid== userid && s.nameofday==currentDate.DayOfWeek.ToString()).ToList();
+            var result = _db.Timetableview.Where(s=>s.fkteacherid== userid && s.nameofday==currentDate.DayOfWeek.ToString()).ToList();
             return result;
         }
 
