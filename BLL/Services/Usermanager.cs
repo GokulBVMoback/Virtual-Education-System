@@ -4,6 +4,7 @@ using DAL.Entities;
 using DAL.MasterEntity;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations.Builders;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,6 +43,12 @@ namespace BLL.Services
             {
                 return false;
             }
+        }
+        
+        public tbl_users Profile()
+        {
+            var item = _db.tbl_users.FirstOrDefault(x => x.userid == Config.CurrentUser);
+                return item;
         }
     }
 }

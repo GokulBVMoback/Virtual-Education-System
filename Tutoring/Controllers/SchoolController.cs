@@ -22,7 +22,9 @@ namespace Tutoring.Controllers
         SubjectManager subjectmanager = new SubjectManager();
         TimetableManager timetablemanager = new TimetableManager();
         Change_Password change_password=new Change_Password();
+        Usermanager Usermanager=new Usermanager();  
         MyDbContext _db = new MyDbContext();
+
         // GET: School
         public ActionResult Index()
         {
@@ -487,5 +489,17 @@ namespace Tutoring.Controllers
             }
             return View();
         }
+
+        public ActionResult Profile()
+        {
+            if (Config.CurrentUser == 0)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            var profile = Usermanager.Profile();
+           // ViewBag.data = profile;
+            return View(profile);
+        }
+
     }
 }
