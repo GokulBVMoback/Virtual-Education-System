@@ -132,7 +132,7 @@ namespace BLL.Services
         //Retrive
         public List<DAL.Entities.CourseView> CouserList()
         {
-            var result = _db.courseView.ToList();
+            var result = _db.courseView.Where(x=>x.fkuserid==Config.CurrentUser).ToList();
             return result;
         }
 
@@ -224,7 +224,7 @@ namespace BLL.Services
         //retrieve
         public List<Timetableview> Timetable(long userid,DateTime currentDate)
         {
-            var result = _db.Timetableview.Where(s=>s.fkteacherid== userid && s.nameofday==currentDate.DayOfWeek.ToString()).ToList();
+            var result = _db.Timetableview.Where(s=>s.fkteacherid== userid).ToList();
             return result;
         }
 
@@ -311,16 +311,16 @@ namespace BLL.Services
         /// <returns></returns>
        
         //for School Teacher
-        public List<tbl_student> GetStudent(long schoolid)
+        public List<tbl_users> GetStudent(long schoolid)
         {
-            List<tbl_student> students = _db.tbl_student.Where(s => s.fkschoolid == schoolid).ToList();
+            List<tbl_users> students = _db.tbl_users.Where(s => s.fkschoolID == schoolid && s.usertype==4).ToList();
             return students;
         }
 
         //for Individual teacher
         public List<TeacherCouseView>GetCourseStudent(long schoolid)
         {
-            List<TeacherCouseView>courseStudent=_db.teacherCouseViews.Where(s=>s.fkschoolID==schoolid).ToList();
+            List<TeacherCouseView>courseStudent=_db.teacherCouseViews.Where(s=>s.fkuserid==Config.CurrentUser).ToList();
             return courseStudent;
         }
 

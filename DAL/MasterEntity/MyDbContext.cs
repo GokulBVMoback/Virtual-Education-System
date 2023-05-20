@@ -27,8 +27,7 @@ namespace DAL.MasterEntity
         #region [My Entities]
 
         public DbSet<tbl_users> tbl_users { get; set; }
-        public DbSet<tbl_school> tbl_school { get; set; }
-        public DbSet<UserDisplay> UserDisplay { get; set; }
+        public DbSet<tbl_school> tbl_school { get; set; }       
         public DbSet<TeacherViewForStudent> teacherViewForIndividualStudents { get; set; }
         public DbSet<IndividualStudent> individualStudents { get; set; }
         public DbSet<PurchaseCouseView> purchaseCouseViews { get; set; }
@@ -46,7 +45,9 @@ namespace DAL.MasterEntity
         public DbSet<Timetableview> Timetableview { get; set; }
         public DbSet<tbl_course_branch> tbl_course_branch { get; set; }
         public DbSet<tbl_course_topic> tbl_course_topic { get; set; }
-
+        public DbSet<ClassSubject> ClassSubject { get; set; }
+        public DbSet<tbl_avail_course> tbl_avail_course { get; set; }
+        public DbSet<tbl_teacher_availability> tbl_teacher_availability { get; set; }
         #endregion
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

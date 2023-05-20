@@ -15,6 +15,7 @@ namespace DAL.Entities
         [Key]
         public long availcourseid { get; set; }
         public long fkuserid { get; set; }
+        public long teacherid { get; set; }
         public string coursename { get; set; }
         public string duration { get; set; }
         public string course_desc { get; set; }

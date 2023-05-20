@@ -27,7 +27,7 @@ namespace Tutoring.Controllers
         }
 
         //--------------------School Student Methods Start Here ---------------------------
-        [HttpGet]
+        
         public ActionResult profile()
         {
             if (Config.CurrentUser == 0)
@@ -39,7 +39,7 @@ namespace Tutoring.Controllers
             return View(studentData);
         }
 
-        [HttpGet]
+        
         public ActionResult TimetableForSchoolStudent()
         {
             if (Config.CurrentUser == 0)
@@ -52,7 +52,7 @@ namespace Tutoring.Controllers
             return View();
         }
 
-        [HttpGet]
+        
         public ActionResult SubjectView()
         {
             if (Config.CurrentUser == 0)
@@ -64,15 +64,29 @@ namespace Tutoring.Controllers
             return View();
         }
 
-        [HttpGet]
+        
         public ActionResult TeacherViewForStudent()
         {
             if (Config.CurrentUser == 0)
             {
                 return RedirectToAction("Login", "Home");
             }
-            var classdata = _studentManager.TeacherViewForStudent();
-            ViewBag.data = classdata;
+            DateTime currentDate = DateTime.Now.Date;
+            var classdata = _studentManager.TimetableForSchoolStudent(Config.User.fkschoolID, currentDate);
+            List<teacherdata> ltd = new List<teacherdata>();
+            foreach(var item in classdata)
+            {
+                var itemdata = ltd.FirstOrDefault(x => x.firstname == item.firstname && x.subjectname == item.subjectname);
+                if (itemdata == null)
+                {
+                    teacherdata td = new teacherdata();
+                    td.firstname = item.firstname;
+                    td.subjectname = item.subjectname;
+                    ltd.Add(td);
+                }
+            }
+            
+            ViewBag.data = ltd;
             return View();
         }
 
@@ -80,8 +94,13 @@ namespace Tutoring.Controllers
 
         //--------------------Individual Student Methods Start Here ---------------------------
 
+        public class teacherdata
+        {
+            public string firstname { get; set; }
+            public string subjectname { get; set; }
+        }
 
-        [HttpGet]
+
 
         public ActionResult GetIndividualStudentDetails()
         {
@@ -93,7 +112,7 @@ namespace Tutoring.Controllers
             return View(studentData);
         }
 
-        [HttpGet]
+        
         public ActionResult CouseMaster()
         {
             if (Config.CurrentUser == 0)
@@ -102,10 +121,15 @@ namespace Tutoring.Controllers
             }
             var classdata = _studentManager.courseViews();
             ViewBag.data = classdata;
+
+            var studentData = _studentManager.indSt(Config.User.userid);
+            ViewBag.data1 = studentData;
+
+
             return View();
         }    
 
-        [HttpGet]
+        
         public ActionResult TimetableForIndividualStudent()
         {
             if (Config.CurrentUser == 0)
@@ -118,7 +142,7 @@ namespace Tutoring.Controllers
             return View();
         }
 
-        [HttpGet]
+        
         public ActionResult TeacherViewForIndividualStudents()
         {
             if (Config.CurrentUser == 0)
@@ -131,7 +155,7 @@ namespace Tutoring.Controllers
         }
 
 
-        [HttpGet]
+        
         public ActionResult PurchaseCouse()
         {
             if (Config.CurrentUser == 0)
@@ -167,7 +191,7 @@ namespace Tutoring.Controllers
             }
         }
 
-        public ActionResult Profile()
+        public ActionResult Profile1()
         {
             if (Config.CurrentUser == 0)
             {
@@ -176,6 +200,38 @@ namespace Tutoring.Controllers
             var profile = Usermanager.Profile();
             // ViewBag.data = profile;
             return View(profile);
+        }
+
+
+        public ActionResult EnrollNow(int id)
+        {
+            if (Config.CurrentUser == 0)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            ViewBag.id = id;
+            var model = _db.tbl_course.FirstOrDefault(x => x.courseid == id);
+            var item = _db.tbl_teacher_availability.Where(x => x.fkuserid ==model.fkuserid).ToList(); ;
+            ViewBag.c = item;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult EnrollNow(int id, int id1)
+        {
+            var model = _db.tbl_course.FirstOrDefault(x => x.courseid == id);
+
+            tbl_avail_course ac = new tbl_avail_course();
+            ac.fkuserid = Config.CurrentUser;
+            ac.fkcourseid = model.courseid;
+            ac.fkteacheravailid=id1;
+            ac.payment = model.coursefee;
+            ac.isconfirm = true;
+            _db.tbl_avail_course.Add(ac);
+            _db.SaveChanges();
+           
+          return RedirectToAction("Index", "Student");
+           
         }
 
     }

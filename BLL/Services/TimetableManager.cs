@@ -28,7 +28,7 @@ namespace BLL.Servicess
                 timetable.fkteacherid = model.fkteacherid;
                 timetable.fksubjectid = model.fksubjectid;
                 timetable.cr_date = System.DateTime.Now;
-                timetable.fkschoolid = Config.User.fkschoolID;
+                timetable.fkschoolid = Config.CurrentUser;
                 timetable.fkclassid = model.fkclassid;
                 timetable.periodnumber= model.periodnumber;
 

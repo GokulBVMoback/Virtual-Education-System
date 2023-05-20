@@ -19,11 +19,11 @@ namespace BLL.Services
         MyDbContext _db = new MyDbContext();
 
         //------------------School Student Method start Here ------------------------
-        public UserDisplay GetSchoolStudentDetails(int id)
+        public tbl_users GetSchoolStudentDetails(int id)
         {
             try
             {
-                UserDisplay result = _db.UserDisplay.Where(x => x.userid == id).FirstOrDefault();
+                tbl_users result = _db.tbl_users.Where(x => x.userid == id).FirstOrDefault();
                 return result;
             }
             catch { return null; }
@@ -31,7 +31,7 @@ namespace BLL.Services
         public List<Timetableview> TimetableForSchoolStudent(long FKschoolID, DateTime currentDate)
         {
             var user = _db.tbl_student.FirstOrDefault(x => x.fkuserid == Config.CurrentUser);
-            var item = _db.Timetableview.Where(x => x.fkschoolid == FKschoolID && x.fkclassid == user.fkclassid && x.nameofday == currentDate.DayOfWeek.ToString()).ToList();
+            var item = _db.Timetableview.Where(x => x.fkschoolid == FKschoolID && x.fkclassid == user.fkclassid).ToList();
             return item;
         }
 

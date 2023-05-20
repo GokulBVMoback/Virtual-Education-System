@@ -1,4 +1,4 @@
-﻿@model DAL.Entities.tbl_users
+﻿@model Tutoring.Models.Student_Reg
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_schoolLayout.cshtml";
@@ -46,6 +46,24 @@
                             </label>
 
                             @Html.TextBoxFor(x => x.lastname, new { @class = "form-control", @placeholder = "Last Name", required = "required" })
+
+                            @Html.ValidationMessageFor(x => x.lastname, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" style="padding-bottom:10px;">
+                                Father Name
+                            </label>
+
+                            @Html.TextBoxFor(x => x.fatherName, new { @class = "form-control", @placeholder = "Father Name", required = "required" })
+
+                            @Html.ValidationMessageFor(x => x.lastname, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" style="padding-bottom:10px;">
+                                Mother Name
+                            </label>
+
+                            @Html.TextBoxFor(x => x.motherName, new { @class = "form-control", @placeholder = "Mother Name", required = "required" })
 
                             @Html.ValidationMessageFor(x => x.lastname, "", new { @class = "text-danger" })
                         </div>
@@ -121,7 +139,23 @@
 
                             @Html.ValidationMessageFor(x => x.pin, "", new { @class = "text-danger" })
                         </div>
+                        <div class="form-group">
+                            <label class="control-label" style="padding-bottom:10px;">
+                                Class
+                            </label>
 
+                            <select id="mainFilterDropdown" class="form-control" name="fkclassid" required>
+                                @foreach (var item in ViewBag.c)
+                                {
+                                    <option value="@item.classid">@item.classname <span>-</span> @item.section</option>
+                                }
+
+
+                            </select>
+                        </div>
+
+
+                       
                         <div class="form-group">
                             <label class="control-label" style="padding-bottom:10px;">
                                 Status

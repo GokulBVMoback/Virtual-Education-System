@@ -41,9 +41,9 @@
                             @item.schoolname
                         </td>
                         <td>
-                            <a href="@Url.Action("UpdateSubject", new { subjectid = item.subjectid })" class="update">
+                            @*<a href="@Url.Action("UpdateSubject", new { subjectid = item.subjectid })" class="update">
                                 Update
-                            </a>
+                            </a>*@
                             <a href="@Url.Action("DeleteSubject", new { subjectid = item.subjectid })" class="delete" onclick="return confirm('Are you sure you wish to delete? This record will no longer exsists.');">
                                 Delete
                             </a>

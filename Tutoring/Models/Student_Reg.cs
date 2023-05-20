@@ -34,5 +34,7 @@ namespace Tutoring.Models
         public string fatherName { get; set; }
         public string motherName { get;set; }
 
+        public string userimage { get; set; }
+
     }
 }

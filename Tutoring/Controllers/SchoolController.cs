@@ -11,6 +11,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
+using Tutoring.Models;
 
 namespace Tutoring.Controllers
 {
@@ -41,7 +42,7 @@ namespace Tutoring.Controllers
             {
                 return RedirectToAction("Login", "Home");
             }
-            var teacherData = teachermanager.TeacherList(Config.User.fkschoolID);
+            var teacherData = teachermanager.TeacherList(Config.CurrentUser);
             ViewBag.data = teacherData;
             return View();
         }
@@ -151,7 +152,7 @@ namespace Tutoring.Controllers
             {
                 return RedirectToAction("Login", "Home");
             }
-            var classdata = schoolmanager.Classlist(Config.User.fkschoolID);
+            var classdata = schoolmanager.Classlist(Config.CurrentUser);
             ViewBag.data = classdata;
             return View();
         }
@@ -227,7 +228,7 @@ namespace Tutoring.Controllers
             {
                 return RedirectToAction("Login", "Home");
             }
-            var teacherData = studentmanager.Studentlist(Config.User.fkschoolID);
+            var teacherData = studentmanager.Studentlist(Config.CurrentUser);
             ViewBag.data = teacherData;
             return View();
         }
@@ -238,11 +239,14 @@ namespace Tutoring.Controllers
                 return RedirectToAction("Login", "Home");
             }
             ViewBag.msg = msg;
+            var Classdata = _db.tbl_class.Where(x => x.fkschoolid == Config.CurrentUser);
+            ViewBag.c = Classdata;
+
             return View();
         }
 
         [HttpPost]
-        public ActionResult CreateStudent(tbl_users model, HttpPostedFileBase uploadFile1)
+        public ActionResult CreateStudent(Student_Reg model, HttpPostedFileBase uploadFile1)
         {
             string s1;
 
@@ -262,15 +266,53 @@ namespace Tutoring.Controllers
             else { s1 = "0"; }
             model.userimage = s1;
 
-            var itemdata = studentmanager.CreateStudent(model);
-            if (itemdata == true)
-            {
-                return RedirectToAction("StudentMaster", "School");
-            }
-            else
-            {
-                return RedirectToAction("CreateStudent", "School", new { @msg = "Something went wrong" });
-            }
+            tbl_users users = new tbl_users();
+            users.state = model.state;
+            users.email = model.email;
+            users.isactive = model.isactive;
+            users.address = model.address;
+            users.city = model.city;
+            users.country = model.country;
+            users.pin = model.pin;
+            users.cr_date = System.DateTime.Now;
+            users.firstname = model.firstname;
+            users.lastname = model.lastname;
+            users.pass = model.pass;
+            users.contact = model.contact;
+            users.fkschoolID = Config.CurrentUser;
+            users.usertype = Convert.ToInt32(Constant.Student.ToString());
+            users.sex = model.sex;
+            users.userimage = model.userimage;
+            _db.tbl_users.Add(users);
+            _db.SaveChanges();
+
+
+            tbl_student users1 = new tbl_student();
+            users1.state = model.state;
+            users1.email = model.email;
+            users1.fathername = model.fatherName;
+            users1.mothername = model.motherName;
+            users1.address = model.address;
+            users1.city = model.city;
+            users1.country = model.country;
+            users1.pin = model.pin;
+            users1.cr_date = System.DateTime.Now;
+            users1.firstname = model.firstname;
+            users1.lastname = model.lastname;
+            users1.fkuserid = users.userid;
+            users1.fkclassid= model.fkclassId;
+            users1.contact = model.contact;
+            users1.fkschoolid = Config.CurrentUser;
+            
+            users1.sex = model.sex;
+            
+            _db.tbl_student.Add(users1);
+            _db.SaveChanges();
+
+
+            return RedirectToAction("StudentMaster", "School");
+            
+            
 
             return View();
         }
@@ -335,7 +377,7 @@ namespace Tutoring.Controllers
             {
                 return RedirectToAction("Login", "Home");
             }
-            var subjectdata = subjectmanager.Subjectlist(Config.User.fkschoolID);
+            var subjectdata = _db.ClassSubject.Where(x => x.fkschoolid == Config.CurrentUser);
             ViewBag.data = subjectdata;
             return View();
         }
@@ -348,6 +390,8 @@ namespace Tutoring.Controllers
                 return RedirectToAction("Login", "Home");
             }
             ViewBag.msg = msg;
+            var classitem = _db.tbl_class.Where(x => x.fkschoolid == Config.CurrentUser);
+            ViewBag.classdata = classitem;
             return View();
         }
 
@@ -404,7 +448,9 @@ namespace Tutoring.Controllers
             {
                 return RedirectToAction("Login", "Home");
             }
-            var timetable = timetablemanager.timetablelist(Config.User.fkschoolID);
+           
+
+            var timetable = timetablemanager.timetablelist(Config.CurrentUser);
             ViewBag.data = timetable;
             return View();
         }
@@ -417,6 +463,15 @@ namespace Tutoring.Controllers
                 return RedirectToAction("Login", "Home");
             }
             ViewBag.msg = msg;
+            var Teacherdata = _db.tbl_users.Where(x => x.fkschoolID == Config.CurrentUser && x.usertype == 3);
+            ViewBag.t = Teacherdata;
+
+            var Classdata = _db.tbl_class.Where(x => x.fkschoolid == Config.CurrentUser);
+            ViewBag.c = Classdata;
+
+            var subjectdata = _db.tbl_subject.Where(x => x.fkschoolid == Config.CurrentUser);
+            ViewBag.s = subjectdata;
+
             return View();
         }
 

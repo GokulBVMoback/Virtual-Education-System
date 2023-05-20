@@ -86,9 +86,9 @@
                             @item.curriculum
                         </td>
                         <td>
-                            <a href="@Url.Action("UpdateSchool", new { userid = item.fkuserid })" class="update">
+                            @*<a href="@Url.Action("UpdateSchool", new { userid = item.fkuserid })" class="update">
                                 Update
-                            </a>
+                            </a>*@
                             @if (item.isactive == true)
                             {
                                 <a href="@Url.Action("ChangeSchoolActiveStatus", new { schoolid = item.schoolid })" class="update">

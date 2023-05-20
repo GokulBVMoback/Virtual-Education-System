@@ -25,7 +25,7 @@ namespace BLL.Services
                 tbl_subject sub = new tbl_subject();
                 sub.subjectname = model.subjectname;
                 sub.cr_date = System.DateTime.Now;
-                sub.fkschoolid = Config.User.fkschoolID;
+                sub.fkschoolid = Config.CurrentUser;
                 sub.fkclassid = model.fkclassid;
 
                 _db.tbl_subject.Add(sub);

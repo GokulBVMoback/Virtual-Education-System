@@ -1,0 +1,64 @@
+﻿@model DAL.Entities.tbl_avail_course
+@{
+    ViewBag.Title = "EnrollNow";
+    Layout = "~/Views/Shared/_studentLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="card">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="header headerborder">
+                    <h4 class="title" style="margin-left:20px">
+                        Enroll Now
+
+                    </h4>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-lg-offset-2">
+                <div>
+                    @if (ViewBag.msg != null)
+                    {
+                        <h1 style="color:red">@ViewBag.msg</h1>
+                    }
+                </div>
+                <div class="content" style="margin:3% !important;">
+                    @using (Html.BeginForm("EnrollNow", "Student", FormMethod.Post,
+                                      new { enctype = "multipart/form-data", @data_ajax = "false" }))
+                    {
+                        <input type="hidden" name="id" value="@ViewBag.id" />
+
+                        <div class="form-group">
+                            <label class="control-label" style="padding-bottom:10px;">
+                                Teacher Availability
+                            </label>
+                            <select id="mainFilterDropdown" class="form-control" name="id1" required>
+                                @foreach (var item in ViewBag.c)
+                                {
+                                    <option value="@item.teacheravailid">@item.nameofday <span>-</span> @item.timing</option>
+                                }
+
+
+                            </select>
+
+
+                        </div>      
+
+
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-3">
+                                <input id="send" type="submit" class="btn btn-success" value="Submit">
+                                <a href="@Url.Action("CouseMaster","Teacher")" class="btn btn-primary">Cancel</a>
+
+                            </div>
+                        </div>
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

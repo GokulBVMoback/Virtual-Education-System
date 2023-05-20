@@ -1,0 +1,58 @@
+﻿@model DAL.Entities.Timetableview
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_teacherLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Teacher Availability</h3><br /><br />
+        @if (BLL.Helpers.Config.User.fkschoolID==0)
+        {
+            <a href="@Url.Action("CreateTeacherAvailability","Teacher")" class="create">
+                Create
+            </a>
+        }
+
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Name Of Day</th>
+                    <th>Timing</th>
+                    <th></th>
+
+
+
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in ViewBag.ta)
+                {
+                <tr>
+                    <td>@item.nameofday</td>
+                    <td>@item.timing</td>
+                    
+
+                    <td>
+
+
+                           
+                            <a href="@Url.Action("DeleteTeacherAvailability", new { id = item.teacheravailid })" class="delete" onclick="return confirm('Are you sure you wish to delete? This record will no longer exsists.');">
+                                Delete
+                            </a>
+
+                        </td>
+                    
+
+
+                </tr>
+                }
+
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>

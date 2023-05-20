@@ -79,11 +79,16 @@
                             <label class="control-label" style="padding-bottom:10px;">
                                 Topic
                             </label>
+                            <select id="mainFilterDropdown" class="form-control" name="fk_coursetopicid" required>
+                                @foreach (var item in ViewBag.c)
+                                {
+                                    <option value="@item.coursetopicid">@item.topicname</option>
+                                }
 
-                            @Html.TextBoxFor(x => x.fk_coursetopicid, new { @class = "form-control", @placeholder = "Topic ", required = "required" })
 
-                            @Html.ValidationMessageFor(x => x.fk_coursetopicid, "", new { @class = "text-danger" })
-                        </div>
+                            </select>
+
+                               </div>
 
 
 

@@ -33,9 +33,9 @@
                             @item.branchname
                         </td>
                         <td>
-                            <a href="@Url.Action("UpdateCourseBranch", new { coursebranchid = item.coursebranchid })" class="update">
+                            @*<a href="@Url.Action("UpdateCourseBranch", new { coursebranchid = item.coursebranchid })" class="update">
                                 Update
-                            </a>
+                            </a>*@
                             <a href="@Url.Action("DeleteBranch", new { coursebranchid = item.coursebranchid })" class="delete" onclick="return confirm('Are you sure you wish to delete? This record will no longer exsists.');">
                                 Delete
                             </a>

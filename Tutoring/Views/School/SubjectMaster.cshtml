@@ -36,10 +36,10 @@
                     <td>@item.section</td>
 
                     <td>
-                        <a href="@Url.Action("UpdateSubject", new { subjectid = item.fksubjectid })" class="update">
+                        @*<a href="@Url.Action("UpdateSubject", new { subjectid = item.subjectid })" class="update">
                             Update
-                        </a>
-                        <a href="@Url.Action("DeleteSubject", new { subjectid = item.fksubjectid })" class="delete" onclick="return confirm('Are you sure you wish to delete? This record will no longer exsists.');">
+                        </a>*@
+                        <a href="@Url.Action("DeleteSubject", new { subjectid = item.subjectid })" class="delete" onclick="return confirm('Are you sure you wish to delete? This record will no longer exsists.');">
                             Delete
                         </a>
 

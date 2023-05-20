@@ -68,7 +68,7 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Home</a>
+                    <a href="@Url.Action("Index", "Student")" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="@Url.Action("ChangePassword", "Student")" class="nav-link">Change Password</a>
@@ -84,7 +84,7 @@
         </nav>
         <!-- /.navbar -->
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: blueviolet;">
             <!-- Brand Logo -->
             <a href="#" class="brand-link">
                 @*<img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">*@
@@ -112,11 +112,11 @@
     with font-awesome or any other icon font library -->
 
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="@Url.Action("Index", "Student")" class="nav-link">
                                 <i class="nav-icon far fa-calendar-alt"></i>
                                 <p>
                                     DashBoard
-                                    <span class="badge badge-info right">2</span>
+                                   
                                 </p>
                             </a>
                         </li>
@@ -129,7 +129,7 @@
                                     <i class="nav-icon far fa-calendar-alt"></i>
                                     <p>
                                         Profile
-                                        <span class="badge badge-info right">2</span>
+                                       
                                     </p>
                                 </a>
                             </li>
@@ -139,41 +139,18 @@
                                     <i class="nav-icon far fa-calendar-alt"></i>
                                     <p>
                                          All Courses
-                                        <span class="badge badge-info right">2</span>
+                                       
                                     </p>
                                 </a>
                             </li>
-
-
-                            <li class="nav-item">
-                                @*Teacher View for School Student*@
-                                <a href="@Url.Action("TeacherViewForStudent", "Student")" class="nav-link">
-                                    <i class="nav-icon far fa-calendar-alt"></i>
-                                    <p>
-                                        Teacher View
-                                        <span class="badge badge-info right">2</span>
-                                    </p>
-                                </a>
-                            </li>
-
-
-                            <li class="nav-item">
-                                @*Teacher View for Insividual Student*@
-                                <a href="@Url.Action("TimetableForIndividualStudent", "Student")" class="nav-link">
-                                    <i class="nav-icon far fa-calendar-alt"></i>
-                                    <p>
-                                        Time Table View
-                                        <span class="badge badge-info right">2</span>
-                                    </p>
-                                </a>
-                            </li>
+                                                                                
 
                             <li class="nav-item">
                                 <a href="@Url.Action("PurchaseCouse", "Student")" class="nav-link">
                                     <i class="nav-icon far fa-calendar-alt"></i>
                                     <p>
                                         My Learning 
-                                        <span class="badge badge-info right">2</span>
+                                       
                                     </p>
                                 </a>
                             </li>
@@ -187,7 +164,7 @@
                                     <i class="nav-icon far fa-calendar-alt"></i>
                                     <p>
                                         Profile
-                                        <span class="badge badge-info right">2</span>
+                                       
                                     </p>
                                 </a>
                             </li>
@@ -198,7 +175,7 @@
                                     <i class="nav-icon far fa-calendar-alt"></i>
                                     <p>
                                         Time Table
-                                        <span class="badge badge-info right">2</span>
+                                       
                                     </p>
                                 </a>
                             </li>
@@ -207,18 +184,18 @@
                                 <a href="@Url.Action("SubjectView", "Student")" class="nav-link">
                                     <i class="nav-icon far fa-calendar-alt"></i>
                                     <p>
-                                        Subjects
-                                        <span class="badge badge-info right">2</span>
+                                        My Subjects
+                                       
                                     </p>
                                 </a>
                             </li>
 
                             <li class="nav-item">
-                                <a href="@Url.Action("TeacherViewForIndividualStudents", "Student")" class="nav-link">
+                                <a href="@Url.Action("TeacherViewForStudent", "Student")" class="nav-link">
                                     <i class="nav-icon far fa-calendar-alt"></i>
                                     <p>
-                                        Teacher View
-                                        <span class="badge badge-info right">2</span>
+                                       My Teachers
+                                       
                                     </p>
                                 </a>
                             </li>
@@ -241,7 +218,7 @@
             <div class="float-right d-none d-sm-block">
                 <b>Version</b> 1.0.0
             </div>
-            <strong>Copyright &copy; 2022-2023 <a href="#">Online Tutoring</a>.</strong> All rights reserved.
+            <strong>Copyright &copy; 2022-2023 <a href="#">Virtual Class</a>.</strong> All rights reserved.
         </footer>
 
         <!-- Control Sidebar -->
