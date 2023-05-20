@@ -71,6 +71,10 @@
                     <a href="#" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
+                    <a href="@Url.Action("ChangePassword", "Student")" class="nav-link">Change Password</a>
+                </li>
+               
+                <li class="nav-item d-none d-sm-inline-block">
                     <a href="@Url.Action("Logout", "Home")" class="nav-link">Logout</a>
                 </li>
             </ul>
@@ -105,10 +109,10 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-                             with font-awesome or any other icon font library -->
-                     
+    with font-awesome or any other icon font library -->
+
                         <li class="nav-item">
-                            <a href="../calendar.html" class="nav-link">
+                            <a href="#" class="nav-link">
                                 <i class="nav-icon far fa-calendar-alt"></i>
                                 <p>
                                     DashBoard
@@ -116,7 +120,109 @@
                                 </p>
                             </a>
                         </li>
-                       
+
+                        @if (Config.User.fkschoolID == 0)
+                        {
+                            @* Individual student Profile *@
+                            <li class="nav-item">
+                                <a href="@Url.Action("GetIndividualStudentDetails", "Student")" class="nav-link">
+                                    <i class="nav-icon far fa-calendar-alt"></i>
+                                    <p>
+                                        Profile
+                                        <span class="badge badge-info right">2</span>
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="@Url.Action("CouseMaster", "Student")" class="nav-link">
+                                    <i class="nav-icon far fa-calendar-alt"></i>
+                                    <p>
+                                         All Courses
+                                        <span class="badge badge-info right">2</span>
+                                    </p>
+                                </a>
+                            </li>
+
+
+                            <li class="nav-item">
+                                @*Teacher View for School Student*@
+                                <a href="@Url.Action("TeacherViewForStudent", "Student")" class="nav-link">
+                                    <i class="nav-icon far fa-calendar-alt"></i>
+                                    <p>
+                                        Teacher View
+                                        <span class="badge badge-info right">2</span>
+                                    </p>
+                                </a>
+                            </li>
+
+
+                            <li class="nav-item">
+                                @*Teacher View for Insividual Student*@
+                                <a href="@Url.Action("TimetableForIndividualStudent", "Student")" class="nav-link">
+                                    <i class="nav-icon far fa-calendar-alt"></i>
+                                    <p>
+                                        Time Table View
+                                        <span class="badge badge-info right">2</span>
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="@Url.Action("PurchaseCouse", "Student")" class="nav-link">
+                                    <i class="nav-icon far fa-calendar-alt"></i>
+                                    <p>
+                                        My Learning 
+                                        <span class="badge badge-info right">2</span>
+                                    </p>
+                                </a>
+                            </li>
+                        }
+
+                        @if (Config.User.fkschoolID != 0)
+                        {
+                            @* School student Profile *@
+                            <li class="nav-item">
+                                <a href="@Url.Action("Profile", "Student")" class="nav-link">
+                                    <i class="nav-icon far fa-calendar-alt"></i>
+                                    <p>
+                                        Profile
+                                        <span class="badge badge-info right">2</span>
+                                    </p>
+                                </a>
+                            </li>
+
+                            @*Time Table For School student*@
+                            <li class="nav-item">
+                                <a href="@Url.Action("TimetableForSchoolStudent", "Student")" class="nav-link">
+                                    <i class="nav-icon far fa-calendar-alt"></i>
+                                    <p>
+                                        Time Table
+                                        <span class="badge badge-info right">2</span>
+                                    </p>
+                                </a>
+                            </li>
+                            @*Subject View For School student*@
+                            <li class="nav-item">
+                                <a href="@Url.Action("SubjectView", "Student")" class="nav-link">
+                                    <i class="nav-icon far fa-calendar-alt"></i>
+                                    <p>
+                                        Subjects
+                                        <span class="badge badge-info right">2</span>
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="@Url.Action("TeacherViewForIndividualStudents", "Student")" class="nav-link">
+                                    <i class="nav-icon far fa-calendar-alt"></i>
+                                    <p>
+                                        Teacher View
+                                        <span class="badge badge-info right">2</span>
+                                    </p>
+                                </a>
+                            </li>
+                        }
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

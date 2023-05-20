@@ -155,6 +155,7 @@
     <Compile Include="Services\StudentManager.cs" />
     <Compile Include="Services\AdminManager.cs" />
     <Compile Include="Services\SchoolManager.cs" />
+    <Compile Include="Services\StudentManager.cs" />
     <Compile Include="Services\SubjectManager.cs" />
     <Compile Include="Services\TeacherManager.cs" />
     <Compile Include="Services\TimetableManager.cs" />
