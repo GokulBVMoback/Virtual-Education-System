@@ -32,9 +32,9 @@
 
 
                 <tr>
-
-                    <td>@item.timetableid</td>
                     <td> @item.nameofday </td>
+                    <td>@item.periodnumber</td>
+
                     <td>@item.firstname</td>
                     <td>@item.subjectname</td>
                     <td>@item.classname</td>
@@ -44,9 +44,9 @@
 
 
                     <td>
-                        <a href="@Url.Action("UpdateTimetable", new { timetableid = item.timetableid })" class="update">
+                        @*<a href="@Url.Action("UpdateTimetable", new { timetableid = item.timetableid })" class="update">
                             Update
-                        </a>
+                        </a>*@
                         <a href="@Url.Action("DeleteTimetable", new { timetableid = item.timetableid })" class="delete" onclick="return confirm('Are you sure you wish to delete? This record will no longer exsists.');">
                             Delete
                         </a>

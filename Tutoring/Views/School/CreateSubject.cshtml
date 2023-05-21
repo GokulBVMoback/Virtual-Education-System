@@ -41,12 +41,19 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label" style="padding-bottom:10px;">
-                               ClassId
+                                Class
                             </label>
 
-                            @Html.TextBoxFor(x => x.fkclassid, new { @class = "form-control", @placeholder = "ClassId", required = "required" })
+                            <select id="mainFilterDropdown" class="form-control" name="fkclassid" required>
+                                @foreach (var item in ViewBag.classdata)
+                                {
+                                    <option value="@item.classid">@item.classname <span>-</span> @item.section</option>
+                                }
 
-                            @Html.ValidationMessageFor(x => x.fkclassid, "", new { @class = "text-danger" })
+
+                            </select>
+
+                          
                         </div>
                        
 

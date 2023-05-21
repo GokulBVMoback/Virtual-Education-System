@@ -53,7 +53,7 @@
                                 Email
                             </label>
 
-                            @Html.TextBoxFor(x => x.email, new { @class = "form-control", @placeholder = "Subject Name", required = "required" })
+                            @Html.TextBoxFor(x => x.email, new { @class = "form-control", @placeholder = "Email", required = "required" })
 
                             @Html.ValidationMessageFor(x => x.email, "", new { @class = "text-danger" })
                         </div>
@@ -71,7 +71,7 @@
                                 Contact
                             </label>
 
-                            @Html.TextBoxFor(x => x.contact, new { @class = "form-control", @placeholder = "Password", required = "required" })
+                            @Html.TextBoxFor(x => x.contact, new { @class = "form-control", @placeholder = "Contact", required = "required" })
 
                             @Html.ValidationMessageFor(x => x.contact, "", new { @class = "text-danger" })
                         </div>

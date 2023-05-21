@@ -102,9 +102,9 @@
                             @item.sex
                         </td>
                         <td>
-                            <a href="@Url.Action("UpdateIndividualTeacher", new { userid = item.userid })" class="update">
+                            @*<a href="@Url.Action("UpdateIndividualTeacher", new { userid = item.userid })" class="update">
                                 Update
-                            </a>
+                            </a>*@
                             @if (item.isactive == true)
                             {
                                 <a href="@Url.Action("ChangeUserActiveStatus", new { userid = item.userid })" class="update">

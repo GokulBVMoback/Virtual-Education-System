@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 namespace DAL.Entities
 {
     [Table("UserDisplayView")]
@@ -29,5 +30,6 @@ namespace DAL.Entities
         public string classname { get; set; }
         public string schoolname { get; set; }
         public string curriculum { get; set; }
+
     }
 }

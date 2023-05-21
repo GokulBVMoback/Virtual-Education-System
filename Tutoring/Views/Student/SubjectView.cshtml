@@ -1,0 +1,38 @@
+﻿
+@model DAL.Entities.SubjectView
+@{
+    ViewBag.Title = "SubjectView";
+    Layout = "~/Views/Shared/_studentLayout.cshtml";
+}
+<div class="card">
+    <div class="card-header">
+
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Subject Name</th>
+                    <th>Class Name</th>
+                    <th>Section</th>
+                    <th>School Name</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in ViewBag.data)
+                {
+                    <tr>
+
+                        <td>@item.subjectname</td>
+                        <td> @item.classname </td>
+                        <td>@item.section</td>
+                        <td> @item.schoolname </td>
+                    </tr>
+                }
+
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>

@@ -4,10 +4,12 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Data.Entity.Migrations.Model.UpdateDatabaseOperation;
 
 namespace DAL.MasterEntity
 {
@@ -23,10 +25,12 @@ namespace DAL.MasterEntity
         }
 
         #region [My Entities]
-      
-        public DbSet<tbl_users> tbl_users { get; set; }
 
-        public DbSet<tbl_school> tbl_school { get; set; }
+        public DbSet<tbl_users> tbl_users { get; set; }
+        public DbSet<tbl_school> tbl_school { get; set; }       
+        public DbSet<TeacherViewForStudent> teacherViewForIndividualStudents { get; set; }
+        public DbSet<IndividualStudent> individualStudents { get; set; }
+        public DbSet<PurchaseCouseView> purchaseCouseViews { get; set; }
         public DbSet<tbl_course> tbl_course { get; set; }
         public DbSet<tbl_timetable> tbl_timetable { get; set; }
         public DbSet<tbl_subject> tbl_subject { get; set; }
@@ -41,7 +45,9 @@ namespace DAL.MasterEntity
         public DbSet<Timetableview> Timetableview { get; set; }
         public DbSet<tbl_course_branch> tbl_course_branch { get; set; }
         public DbSet<tbl_course_topic> tbl_course_topic { get; set; }
-
+        public DbSet<ClassSubject> ClassSubject { get; set; }
+        public DbSet<tbl_avail_course> tbl_avail_course { get; set; }
+        public DbSet<tbl_teacher_availability> tbl_teacher_availability { get; set; }
         #endregion
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

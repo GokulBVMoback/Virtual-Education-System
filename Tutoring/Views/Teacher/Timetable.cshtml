@@ -26,11 +26,8 @@
                     <!-- <th>Teacher</th>-->
                     <th>Class</th>
                     <th>Section</th>
-
-                    @if (BLL.Helpers.Config.User.fkschoolID == 0)
-                    {
-                        <th>Operation</th>
-                    }
+                    <th></th>
+                  
 
 
 
@@ -47,22 +44,9 @@
                     <!--<td>@item.firstname</td>-->
                     <td>@item.classname</td>
                     <td>@item.section</td>
+                    <td><a href="https://demo.bigbluebutton.org/rooms/mly-le2-xoy-6sy/join" target="_blank" class="btn btn-primary">Go Live</a> </td>
 
-
-                    @if (BLL.Helpers.Config.User.fkschoolID == 0)
-                    {
-                        <td>
-
-
-                            <a href="@Url.Action("UpdateTimetable", new { timetableid = item.timetableid })" class="update">
-                                Update
-                            </a>
-                            <a href="@Url.Action("DeleteTimetable", new { timetableid = item.timetableid })" class="delete" onclick="return confirm('Are you sure you wish to delete? This record will no longer exsists.');">
-                                Delete
-                            </a>
-
-                        </td>
-                    }
+                  
 
 
                 </tr>

@@ -68,8 +68,12 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Home</a>
+                    <a href="@Url.Action("Index", "Student")" class="nav-link">Home</a>
                 </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="@Url.Action("ChangePassword", "Student")" class="nav-link">Change Password</a>
+                </li>
+               
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="@Url.Action("Logout", "Home")" class="nav-link">Logout</a>
                 </li>
@@ -80,7 +84,7 @@
         </nav>
         <!-- /.navbar -->
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: blueviolet;">
             <!-- Brand Logo -->
             <a href="#" class="brand-link">
                 @*<img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">*@
@@ -105,18 +109,97 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-                             with font-awesome or any other icon font library -->
-                     
+    with font-awesome or any other icon font library -->
+
                         <li class="nav-item">
-                            <a href="../calendar.html" class="nav-link">
+                            <a href="@Url.Action("Index", "Student")" class="nav-link">
                                 <i class="nav-icon far fa-calendar-alt"></i>
                                 <p>
                                     DashBoard
-                                    <span class="badge badge-info right">2</span>
+                                   
                                 </p>
                             </a>
                         </li>
-                       
+
+                        @if (Config.User.fkschoolID == 0)
+                        {
+                            @* Individual student Profile *@
+                            <li class="nav-item">
+                                <a href="@Url.Action("GetIndividualStudentDetails", "Student")" class="nav-link">
+                                    <i class="nav-icon far fa-calendar-alt"></i>
+                                    <p>
+                                        Profile
+                                       
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="@Url.Action("CouseMaster", "Student")" class="nav-link">
+                                    <i class="nav-icon far fa-calendar-alt"></i>
+                                    <p>
+                                         All Courses
+                                       
+                                    </p>
+                                </a>
+                            </li>
+                                                                                
+
+                            <li class="nav-item">
+                                <a href="@Url.Action("PurchaseCouse", "Student")" class="nav-link">
+                                    <i class="nav-icon far fa-calendar-alt"></i>
+                                    <p>
+                                        My Learning 
+                                       
+                                    </p>
+                                </a>
+                            </li>
+                        }
+
+                        @if (Config.User.fkschoolID != 0)
+                        {
+                            @* School student Profile *@
+                            <li class="nav-item">
+                                <a href="@Url.Action("Profile", "Student")" class="nav-link">
+                                    <i class="nav-icon far fa-calendar-alt"></i>
+                                    <p>
+                                        Profile
+                                       
+                                    </p>
+                                </a>
+                            </li>
+
+                            @*Time Table For School student*@
+                            <li class="nav-item">
+                                <a href="@Url.Action("TimetableForSchoolStudent", "Student")" class="nav-link">
+                                    <i class="nav-icon far fa-calendar-alt"></i>
+                                    <p>
+                                        Time Table
+                                       
+                                    </p>
+                                </a>
+                            </li>
+                            @*Subject View For School student*@
+                            <li class="nav-item">
+                                <a href="@Url.Action("SubjectView", "Student")" class="nav-link">
+                                    <i class="nav-icon far fa-calendar-alt"></i>
+                                    <p>
+                                        My Subjects
+                                       
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="@Url.Action("TeacherViewForStudent", "Student")" class="nav-link">
+                                    <i class="nav-icon far fa-calendar-alt"></i>
+                                    <p>
+                                       My Teachers
+                                       
+                                    </p>
+                                </a>
+                            </li>
+                        }
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -135,7 +218,7 @@
             <div class="float-right d-none d-sm-block">
                 <b>Version</b> 1.0.0
             </div>
-            <strong>Copyright &copy; 2022-2023 <a href="#">Online Tutoring</a>.</strong> All rights reserved.
+            <strong>Copyright &copy; 2022-2023 <a href="#">Virtual Class</a>.</strong> All rights reserved.
         </footer>
 
         <!-- Control Sidebar -->

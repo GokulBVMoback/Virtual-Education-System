@@ -51,34 +51,48 @@
 
                         <div class="form-group">
                             <label class="control-label" style="padding-bottom:10px;">
-                                Teacher Id
+                                Teacher 
                             </label>
+                            <select id="mainFilterDropdown" class="form-control" name="fkteacherid" required>
+                                @foreach (var item in ViewBag.t)
+                                {
+                                    <option value="@item.userid">@item.firstname <span>-</span> @item.lastname</option>
+                                }
 
-                            @Html.TextBoxFor(x => x.fkteacherid, new { @class = "form-control", @placeholder = "Teacher Id", required = "required" })
 
-                            @Html.ValidationMessageFor(x => x.fkteacherid, "", new { @class = "text-danger" })
+                            </select>
+
                         </div>
 
 
 
                         <div class="form-group">
                             <label class="control-label" style="padding-bottom:10px;">
-                                ClassId
+                                Class
                             </label>
+                            <select id="mainFilterDropdown" class="form-control" name="fkclassid" required>
+                                @foreach (var item in ViewBag.c)
+                                {
+                                    <option value="@item.classid">@item.classname <span>-</span> @item.section</option>
+                                }
 
-                            @Html.TextBoxFor(x => x.fkclassid, new { @class = "form-control", @placeholder = "ClassId", required = "required" })
 
-                            @Html.ValidationMessageFor(x => x.fkclassid, "", new { @class = "text-danger" })
+                            </select>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label" style="padding-bottom:10px;">
-                                Subject Id
+                                Subject
                             </label>
 
-                            @Html.TextBoxFor(x => x.fksubjectid, new { @class = "form-control", @placeholder = "Subject Id", required = "required" })
+                            <select id="mainFilterDropdown" class="form-control" name="fksubjectid" required>
+                                @foreach (var item in ViewBag.s)
+                                {
+                                    <option value="@item.subjectid">@item.subjectname</option>
+                                }
 
-                            @Html.ValidationMessageFor(x => x.fksubjectid, "", new { @class = "text-danger" })
+
+                            </select>
                         </div>
 
 

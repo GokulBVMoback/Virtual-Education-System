@@ -22,7 +22,7 @@ namespace BLL.Services
             return item;
         }
 
-        public int? CreateUser(tbl_users model)
+        public long CreateUser(tbl_users model)
         {
             try
             {
@@ -47,7 +47,7 @@ namespace BLL.Services
 
                 _db.tbl_users.Add(user);
                 _db.SaveChanges();
-                var id = user.usertype;
+                var id = user.userid;
                 return id;
             }
             catch

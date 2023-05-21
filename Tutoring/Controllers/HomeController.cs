@@ -133,6 +133,25 @@ namespace Tutoring.Controllers
 
             if (ModelState.IsValid)
             {
+                tbl_users users = new tbl_users();
+                users.firstname = model.firstname;
+                users.lastname = model.lastname;
+                users.email = model.email;
+                users.address = model.address;
+                users.city = model.city;
+                users.state = model.state;
+                users.country = model.country;
+                users.pin = model.pin;
+                users.pass = model.pass;
+                users.usertype = 2;
+                users.isactive = model.isactive;
+                users.sex = "Male";
+                users.contact = model.contact;
+                users.fkschoolID =0;
+
+                Usermanager userManager = new Usermanager();
+               long id= userManager.CreateUser(users);
+
 
                 tbl_school school = new tbl_school();
 
@@ -144,36 +163,11 @@ namespace Tutoring.Controllers
                 school.country = model.country;
                 school.pin = model.pin;
                 school.curriculum = model.curriculum;
-                school.fkuserid = model.fkuserid;
-                school.schoolname = model.schoolname;
+                school.fkuserid =id;                
 
 
                 SchoolManager schoolManager = new SchoolManager();
                 long school_id = schoolManager.CreateSchool(school);
-
-                tbl_users users = new tbl_users();
-                users.firstname = model.firstname;
-                users.lastname = model.lastname;
-                users.email = model.email;
-                users.address = model.address;
-                users.city = model.city;
-                users.state = model.state;
-                users.country = model.country;
-                users.pin = model.pin;
-                users.pass = model.pass;
-                users.usertype = model.usertype;
-                users.isactive = model.isactive;
-                users.sex = model.sex;
-                users.contact = model.contact;
-                users.fkschoolID = school_id;
-
-                Usermanager userManager = new Usermanager();
-                userManager.CreateUser(users);
-
-
-
-
-
 
             }
 
@@ -216,11 +210,11 @@ namespace Tutoring.Controllers
                 users.country = model.country;
                 users.pin = model.pin;
                 users.pass = model.pass;
-                users.usertype = model.usertype;
+                users.usertype = 3;
                 users.sex = model.sex;
                 users.contact = model.contact;
                 users.isactive = users.isactive;
-
+                users.fkschoolID = 0;
                 //TeacherManager teacherManager = new TeacherManager();
 
                 Usermanager userManager = new Usermanager();
@@ -266,7 +260,27 @@ namespace Tutoring.Controllers
         {
 
             if (ModelState.IsValid)
-            {
+            {             
+
+                tbl_users users = new tbl_users();
+                users.firstname = model.firstname;
+                users.lastname = model.lastname;
+                users.email = model.email;
+                users.address = model.address;
+                users.city = model.city;
+                users.state = model.state;
+                users.country = model.country;
+                users.pin = model.pin;
+                users.pass = model.pass;
+                users.usertype =4;
+                users.isactive = model.isactive;
+                users.sex = model.sex;
+                users.contact = model.contact;
+                users.fkschoolID = 0;
+
+                Usermanager userManager = new Usermanager();
+               long id= userManager.CreateUser(users);
+
 
                 tbl_student student = new tbl_student();
 
@@ -284,32 +298,10 @@ namespace Tutoring.Controllers
                 student.sex = model.sex;
                 student.fkclassid = model.fkclassId;
                 student.fkschoolid = model.fkschoolID;
-
+                student.fkuserid =id;
 
                 StudentManager studentManager = new StudentManager();
                 long studentid = studentManager.Createstudent(student);
-
-                tbl_users users = new tbl_users();
-                users.firstname = model.firstname;
-                users.lastname = model.lastname;
-                users.email = model.email;
-                users.address = model.address;
-                users.city = model.city;
-                users.state = model.state;
-                users.country = model.country;
-                users.pin = model.pin;
-                users.pass = model.pass;
-                users.usertype = model.usertype;
-                users.isactive = model.isactive;
-                users.sex = model.sex;
-                users.contact = model.contact;
-                users.fkschoolID = studentid;
-
-                Usermanager userManager = new Usermanager();
-                userManager.CreateUser(users);
-
-
-
 
 
 

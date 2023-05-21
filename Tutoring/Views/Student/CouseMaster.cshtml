@@ -1,0 +1,65 @@
+﻿@model DAL.Entities.CourseView
+@{
+    ViewBag.Title = "CouseMaster";
+    Layout = "~/Views/Shared/_studentLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+    
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>coursename</th>
+                    <th>duration</th>
+                    <th>coursefee</th>
+                    <th>course_desc</th>
+                    <th>startdate</th>
+                    <th>TeacherNAme</th>
+                  
+                    <th>Operation</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in ViewBag.data)
+                {
+                    <tr>
+
+                        <td>@item.coursename</td>
+                        <td> @item.duration </td>
+                        <td>@item.coursefee</td>
+                        <td> @item.course_desc </td>
+                        <td> @item.startdate </td>
+                        <td> @item.firstname,@item.lastname </td>
+                        @foreach (var item1 in ViewBag.data1)
+                        {
+                            if (item.coursename == item1.coursename)
+                            {
+                                <td>
+                                    <a href="#" class="delete">
+                                       Already Enrolled
+                                    </a>
+                                </td>
+                            }
+                            else
+                            {
+
+                        <td>
+                            <a href="@Url.Action("EnrollNow", new { id = item.courseid })" class="delete" >
+                                Enroll Now
+                            </a>
+                        </td>
+                            }
+                        }
+
+                    </tr>
+                }
+
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>

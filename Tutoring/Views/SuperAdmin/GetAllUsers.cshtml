@@ -35,30 +35,18 @@
                     <th>
                         Contact
                     </th>
-                    <th>
-                        Address
-                    </th>
+                    
                     <th>
                         City
                     </th>
-                    <th>
-                        State
-                    </th>
-                    <th>
-                        Country
-                    </th>
-                    <th>
-                        Pin
-                    </th>
+                   
                     <th>
                         School Name
                     </th>
                     <th>
                         Active Status
                     </th>
-                    <th>
-                        Sex
-                    </th>
+                    
                     <th>Operation</th>
                 </tr>
             </thead>
@@ -109,34 +97,22 @@
                         <td>
                             @item.contact
                         </td>
-                        <td>
-                            @item.address
-                        </td>
+                       
                         <td>
                             @item.city
                         </td>
-                        <td>
-                            @item.state
-                        </td>
-                        <td>
-                            @item.country
-                        </td>
-                        <td>
-                            @item.pin
-                        </td>
+                        
                         <td>
                             @item.SchoolName
                         </td>
                         <td>
                             @item.isactive
                         </td>
+                        
                         <td>
-                            @item.sex
-                        </td>
-                        <td>
-                            <a href="@Url.Action("UpdateUser", new { userid = item.userid })" class="update">
+                            @*<a href="@Url.Action("UpdateUser", new { userid = item.userid })" class="update">
                                 Update
-                            </a>
+                            </a>*@
                             @if (item.isactive == true)
                              {
                                 <a href="@Url.Action("ChangeUserActiveStatus", new { userid = item.userid })" class="update">                                    

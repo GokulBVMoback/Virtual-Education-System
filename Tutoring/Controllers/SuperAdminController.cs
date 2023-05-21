@@ -263,7 +263,9 @@ namespace Tutoring.Controllers
                 return RedirectToAction("Login", "Home");
             }
             ViewBag.msg = msg;
-            return View(new tbl_users());
+            var item = _db.tbl_users.FirstOrDefault(x => x.userid == userid);
+
+            return View(item);
         }
 
         [HttpPost]
@@ -289,14 +291,16 @@ namespace Tutoring.Controllers
             }
         }
 
-        public ActionResult UpdateSchool2(string msg)
+        public ActionResult UpdateSchool2(string msg, long userid)
         {
             if (Config.CurrentUser == 0)
             {
                 return RedirectToAction("Login", "Home");
             }
             ViewBag.msg = msg;
-            return View();
+            var item = _db.tbl_school.FirstOrDefault(x => x.schoolid == userid);
+
+            return View(item);
         }
 
         [HttpPost]

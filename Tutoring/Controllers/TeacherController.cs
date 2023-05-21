@@ -17,7 +17,7 @@ namespace Tutoring.Controllers
         TeacherManager teacherManager=new TeacherManager();
         Usermanager usermanager=new Usermanager();
         MyDbContext _db = new MyDbContext();
-
+        StudentManager _studentManager = new StudentManager();
         // GET: Teacher
         public ActionResult Index()
         {
@@ -133,6 +133,8 @@ namespace Tutoring.Controllers
                 return RedirectToAction("Login", "Home");
             }
             ViewBag.msg = msg;
+            var Classdata = _db.tbl_course_topic.ToList();
+            ViewBag.c = Classdata;
             return View();
         }
 
@@ -206,8 +208,20 @@ namespace Tutoring.Controllers
                 return RedirectToAction("Login", "Home");
             }
             DateTime currentDate = DateTime.Now.Date;
-            var timetable = teacherManager.Timetable(Config.User.userid, currentDate);
-            ViewBag.Timetable = timetable;
+            var timetable = teacherManager.Timetable(Config.User.userid, currentDate).OrderBy(x => x.nameofday).OrderBy(x => x.periodnumber);
+            var item = timetable.Where(x => x.nameofday == currentDate.DayOfWeek.ToString()).OrderBy(x=>x.periodnumber);
+
+            if(item.Count()>0)
+            {
+                ViewBag.Timetable = timetable;
+            }
+            else
+            {
+                ViewBag.Timetable = timetable;
+            }
+
+
+            
             return View();
         }
 
@@ -288,7 +302,7 @@ namespace Tutoring.Controllers
         //for school teacher
         public ActionResult Student()
         {        
-            List<tbl_student> students = teacherManager.GetStudent(Config.User.fkschoolID);
+            List<tbl_users> students = teacherManager.GetStudent(Config.User.fkschoolID);
             ViewBag.data=students;
             return View();
         }
@@ -346,21 +360,72 @@ namespace Tutoring.Controllers
             ViewBag.data = subjects;
             return View();
         }
-        
+
         //...................................................................................................................//
 
 
+        public ActionResult CreateTeacherAvailability(string msg)
+        {
+            if (Config.CurrentUser == 0)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            ViewBag.msg = msg;
+           
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateTeacherAvailability(tbl_teacher_availability model)
+        {
+            tbl_teacher_availability ta = new tbl_teacher_availability();
+            ta.nameofday = model.nameofday;
+            ta.timing = model.timing;
+            ta.fkuserid = Config.CurrentUser;
+            ta.cr_date = System.DateTime.Now;
+            _db.tbl_teacher_availability.Add(ta);
+            _db.SaveChanges();
+                       
+             return RedirectToAction("TeacherAvailmaster", "Teacher");
+          
+
+            return View();
+        }
+
+        public ActionResult TeacherAvailmaster()
+        {
+            if (Config.CurrentUser == 0)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            var item = _db.tbl_teacher_availability.Where(x => x.fkuserid == Config.CurrentUser).ToList();
+            ViewBag.ta = item;
+            return View();
+        }
+
+        public ActionResult DeleteTeacherAvailability(long id)
+        {
+           
+            var item = _db.tbl_teacher_availability.FirstOrDefault(x => x.teacheravailid == id);
+            _db.tbl_teacher_availability.Remove(item);
+            _db.SaveChanges();
+            return RedirectToAction("TeacherAvailmaster", "Teacher");
+        }
 
 
 
 
 
-
-
-
-
-
-
+        public ActionResult PurchaseCouse()
+        {
+            if (Config.CurrentUser == 0)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            var studentData = _db.purchaseCouseViews.Where(i => i.teacherid == Config.CurrentUser).ToList();
+            ViewBag.data = studentData;
+            return View();
+        }
 
 
 
