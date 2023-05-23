@@ -43,9 +43,19 @@
                                 Branch ID
                             </label>
 
-                            @Html.TextBoxFor(x => x.fk_coursebranchid, new { @class = "form-control", @placeholder = "Branch ID", required = "required" })
+                             <select id="mainFilterDropdown" class="form-control" name="fk_coursebranchid" required>
+                                @foreach (var item in ViewBag.c)
+                                {
+                                    <option value="@item.coursebranchid">@item.branchname</option>
+                                }
 
-                            @Html.ValidationMessageFor(x => x.fk_coursebranchid, "", new { @class = "text-danger" })
+
+                            </select>
+
+
+                            @*@Html.TextBoxFor(x => x.fk_coursebranchid, new { @class = "form-control", @placeholder = "Branch ID", required = "required" })
+
+                            @Html.ValidationMessageFor(x => x.fk_coursebranchid, "", new { @class = "text-danger" })*@
                         </div>
 
 
