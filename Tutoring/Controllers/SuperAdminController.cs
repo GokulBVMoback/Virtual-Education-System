@@ -239,6 +239,7 @@ namespace Tutoring.Controllers
                 return RedirectToAction("Login", "Home");
             }
             ViewBag.msg = msg;
+            ViewBag.c = _db.tbl_course_branch.ToList();
             return View();
         }
 
