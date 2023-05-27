@@ -35,24 +35,38 @@
                         <td> @item.course_desc </td>
                         <td> @item.startdate </td>
                         <td> @item.firstname,@item.lastname </td>
-                        @foreach (var item1 in ViewBag.data1)
+                        @if (ViewBag.data2 == "0")
                         {
-                            if (item.coursename == item1.coursename)
-                            {
-                                <td>
-                                    <a href="#" class="delete">
-                                       Already Enrolled
-                                    </a>
-                                </td>
-                            }
-                            else
-                            {
+                            <td>
+                                <a href="@Url.Action("EnrollNow", new { id = item.courseid })" class="delete">
+                                    Enroll Now
+                                </a>
+                            </td>
+                        }
+                        else
+                        {
 
-                        <td>
-                            <a href="@Url.Action("EnrollNow", new { id = item.courseid })" class="delete" >
-                                Enroll Now
-                            </a>
-                        </td>
+
+
+                            foreach (var item1 in ViewBag.data1)
+                            {
+                                if (item.coursename == item1.coursename)
+                                {
+                                    <td>
+                                        <a href="#" class="delete">
+                                            Already Enrolled
+                                        </a>
+                                    </td>
+                                }
+                                else
+                                {
+
+                                    <td>
+                                        <a href="@Url.Action("EnrollNow", new { id = item.courseid })" class="delete">
+                                            Enroll Now
+                                        </a>
+                                    </td>
+                                }
                             }
                         }
 
