@@ -125,6 +125,18 @@ namespace Tutoring.Controllers
             var studentData = _studentManager.indSt(Config.User.userid);
             ViewBag.data1 = studentData;
 
+            foreach(var item in classdata)
+            {
+                foreach(var item1 in studentData)
+                {
+                    if(item.coursename==item1.coursename)
+                    {
+                        item.status = 1;
+                    }
+                   
+                }
+            }
+
             if(studentData.Count==0)
             {
                 ViewBag.data2 = "0";

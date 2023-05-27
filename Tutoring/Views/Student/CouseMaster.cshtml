@@ -35,42 +35,31 @@
                         <td> @item.course_desc </td>
                         <td> @item.startdate </td>
                         <td> @item.firstname,@item.lastname </td>
-                        @if (ViewBag.data2 == "0")
-                        {
-                            <td>
-                                <a href="@Url.Action("EnrollNow", new { id = item.courseid })" class="delete">
-                                    Enroll Now
-                                </a>
-                            </td>
-                        }
-                        else
-                        {
+                        <td>
+                          
+                                    @if (item.status == 1)
+                                    {
 
-
-
-                            foreach (var item1 in ViewBag.data1)
-                            {
-                                if (item.coursename == item1.coursename)
-                                {
-                                    <td>
                                         <a href="#" class="delete">
                                             Already Enrolled
                                         </a>
-                                    </td>
-                                }
-                                else
-                                {
 
-                                    <td>
+                                    }
+                                    else
+                                    {
+
+
                                         <a href="@Url.Action("EnrollNow", new { id = item.courseid })" class="delete">
                                             Enroll Now
                                         </a>
-                                    </td>
-                                }
-                            }
-                        }
 
-                    </tr>
+                                    }
+                                    
+                                  
+                                
+                            
+                            </td>
+                        </tr>
                 }
 
         </table>
