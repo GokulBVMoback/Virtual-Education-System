@@ -24,5 +24,7 @@ namespace DAL.Entities
         public string coursefee { get; set; }
         public string course_desc { get; set; }
         public DateTime? startdate { get; set;}
+
+        public int status { get; set; }
     }
 }
