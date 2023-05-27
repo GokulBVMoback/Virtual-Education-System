@@ -125,6 +125,14 @@ namespace Tutoring.Controllers
             var studentData = _studentManager.indSt(Config.User.userid);
             ViewBag.data1 = studentData;
 
+            if(studentData.Count==0)
+            {
+                ViewBag.data2 = "0";
+            }
+            else
+            {
+                ViewBag.data2 = "1";
+            }
 
             return View();
         }    
